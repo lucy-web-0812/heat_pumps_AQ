@@ -602,13 +602,12 @@ ggplot(sample_data_for_plot) +
 
 
 sample_data_for_plot |> 
-  #filter(model_run %in% c("present_day_scenario", "suitability_probability")) |> #, "nox_targeted")) |> 
   ggplot() +
   geom_line(aes(x = year, y = pct_of_households_with_heat_pump * 100, colour = model_run)) +
   geom_point(aes(x = year, y = pct_of_households_with_heat_pump * 100, colour = model_run)) +
   scale_colour_brewer(palette = "Set2") +
   scale_fill_brewer(palette = "Set2") +
-  facet_wrap( ~ PCON25NM)
+  facet_wrap(~PCON25NM)
 
 
 
