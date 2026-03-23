@@ -22,12 +22,13 @@ bus_per_pc <- spiel_remover(
   mutate(
     westminster_parliamentary_constituency = ifelse(
       westminster_parliamentary_constituency == "Weston-Super-Mare",
-      # changing the name of weston-super-mare so that it other datasets for later joins.....
+      # changing the name of weston-super-mare so that it matches other datasets for later joins..... (although join by ONS code where possible)
       "Weston-super-Mare",
       westminster_parliamentary_constituency
     )
   ) |>
   mutate(BUS_heatpumps_per_pc = as.numeric(heat_pump_technologies_note_24)) |>
+  # Getting rid of extra columns not needed...
   select(
     -c(
       country_or_region,
@@ -95,7 +96,7 @@ write_csv(nesta_suitability_lsoa, "data/processed_data/nesta_suitability_lsoa.cs
 
 
 
-# Parliamentary Constituencies 
+# LSOAs to Parliamentary Constituencies 
 
 
 lsoa_2021_to_pc_2024_england_wales <- read_csv(
@@ -148,3 +149,5 @@ pc_number_of_households <- read_xlsx("data/raw_data/parliamentary_constituencies
 
 
 write_csv(pc_number_of_households, "data/processed_data/pc_number_of_households.csv")
+
+
