@@ -3,6 +3,7 @@
 library(tidyverse)
 library(sf)
 library(terra)
+library(IMD)
 
 
 
@@ -17,7 +18,7 @@ nesta_suitability <- read_csv("data/processed_data/nesta_suitability_lsoa.csv")
 parliamentary_constituencies <- read_csv("data/processed_data/lsoa_2021_to_pc_2024_england_wales.csv")
 
 
-lsoa_populations <- read_csv("data/processed_data/lsoa_population_stats.csv")
+lsoa_populations <- read_csv("data/processed_data/lsoa_population_stats_households.csv")
 
 
 # Getting a list of the LSOAs that are in England and Wales (excluding Scotland)
@@ -117,7 +118,7 @@ process_pollutant <- function(file_name,
     st_drop_geometry() |>
     left_join(boundary_sf, by = "PCON24CD")
   
-  # 4. Optional map 
+  # 4.Map 
   if (plot) {
     p <- ggplot(stats) +
       geom_sf(aes(fill = !!rlang::sym(paste0("pw_mean_", pollutant_name)), geometry = geometry), colour = NA) +
@@ -145,3 +146,100 @@ write_csv(pm10_stats, "data/processed_data/pm10_stats_2024_per_pc.csv")
 write_csv(pm2.5_stats, "data/processed_data/pm_25_stats_2024_per_pc.csv")
 write_csv(no2_stats, "data/processed_data/no2_stats_2024_per_pc.csv")
 write_csv(nox_stats, "data/processed_data/nox_stats_2024_per_pc.csv")
+
+
+
+
+
+##############################
+# 3. Deprivation
+##############################
+ 
+
+# Deprivation is reported for the 2011 LSOAs, however we can map this to the 2021 geometries and further aggregate to the 2024 Parliamentary Constituency boundaries.
+# We need to weight the statistics according to the population..... 
+
+# Use the MySociety IMD 
+dep_by_lsoa <- IMD::load_composite_imd(nation = "E")
+
+
+lsoa_to_pc <- read_csv("data/processed_data/lsoa_2021_to_pc_2024_england_wales.csv")
+
+
+lsoa_pop <- read_csv("data/processed_data/lsoa_population_stats.csv")
+
+
+lsoa_2011_to_lsoa_2021 <- read_csv("data/raw_data/LSOAs/LSOA11_LSOA21_LAD22_EW_LU_v2_-9218941858449512980.csv") |> 
+  select(LSOA11CD, LSOA21CD)
+
+
+
+df_joined <- lsoa_to_pc |> 
+  left_join(lsoa_pop) |> 
+  left_join(lsoa_2011_to_lsoa_2021, join_by(LSOA21CD)) |> 
+  left_join(dep_by_lsoa, join_by(LSOA11CD == lsoa)) |> 
+  filter(is.na(LSOA11CD) == F)
+
+
+
+
+non_weighted_PC_stats <- df_joined |> 
+  group_by(PCON25CD) |> 
+  summarise(total_population_PC = sum(total_population), 
+            mean_imd_ranking = mean(UK_IMD_E_rank), 
+            median_imd_decile = round(median(E_expanded_decile), 0), 
+            total_number_of_LSOAs = n(), 
+            number_of_LSOAs_with_decile_equal_1 = sum(E_expanded_decile == 1), 
+            pct_decile_equal_1 = (number_of_LSOAs_with_decile_equal_1/total_number_of_LSOAs) * 100,
+            number_of_LSOAs_with_decile_equal_10 = sum(E_expanded_decile == 10), 
+            pct_decile_equal_10 = (number_of_LSOAs_with_decile_equal_10/total_number_of_LSOAs) * 100,)
+
+
+
+# Now need to have the population weighted stats.... 
+
+
+PC_total_population <- df_joined |> 
+  group_by(PCON25CD) |> 
+  summarise(total_population_PC = sum(total_population))
+
+df_joined_with_weightings <- df_joined |> 
+  left_join(PC_total_population, join_by(PCON25CD)) |> 
+  mutate(relative_weighting = total_population/ total_population_PC)
+
+
+# Now checking that weightings add to roughly 1..... 
+
+
+qa_check_weighting <- df_joined_with_weightings |> 
+  group_by(PCON25CD) |> 
+  summarise(total_weighting = sum(relative_weighting))
+
+
+# Now producing stats weighted by population.... 
+
+pop_weighted_PC_stats <- df_joined_with_weightings |> 
+  group_by(PCON25CD, PCON25NM) |> 
+  summarise(total_population_PC = sum(total_population), 
+            mean_imd_ranking = sum(UK_IMD_E_rank * relative_weighting), 
+            mean_imd_ranking_package = stats::weighted.mean(UK_IMD_E_rank, total_population),  # both methods agree ! 
+            median_imd_lsoa_ranking = round(matrixStats::weightedMedian(UK_IMD_E_rank, total_population), 0), 
+            median_imd_decile = round(matrixStats::weightedMedian(E_expanded_decile, total_population), 0) , #using the MatrixStats package for weighted median
+            total_number_of_LSOAs = n(), 
+            number_of_LSOAs_with_decile_equal_1 = sum(E_expanded_decile == 1), 
+            pct_decile_equal_1 = (number_of_LSOAs_with_decile_equal_1/total_number_of_LSOAs) * 100,
+            number_of_LSOAs_with_decile_equal_10 = sum(E_expanded_decile == 10), 
+            pct_decile_equal_10 = (number_of_LSOAs_with_decile_equal_10/total_number_of_LSOAs) * 100,)
+
+
+# Now we have our new ranking..... 
+
+new_ranked_PCs_pop_weighted <- pop_weighted_PC_stats |> 
+  arrange(median_imd_lsoa_ranking) |> 
+  ungroup() |> 
+  mutate(new_ranking = row_number()) |> 
+  select(-mean_imd_ranking_package)
+
+
+write_csv(new_ranked_PCs_pop_weighted, file = "data/processed_data/dep_ranked_PCs_pop_weighted.csv")
+

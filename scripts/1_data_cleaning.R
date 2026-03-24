@@ -112,13 +112,24 @@ write_csv(lsoa_2021_to_pc_2024_england_wales, "data/processed_data/lsoa_2021_to_
 
 # LSOA populations 
 
-
-lsoa_population_stats <- read_csv("data/raw_data/LSOAs/household_per_LSOA_estimates.csv") |> # THIS DOES NOT INCLUDE SCOTLAND! Just England and Wales
+# THIS DOES NOT INCLUDE SCOTLAND! Just England and Wales 
+lsoa_population_stats_households <- read_csv("data/raw_data/LSOAs/household_per_LSOA_estimates.csv") |> 
   select(c(`Lower layer Super Output Areas Code`, Observation)) |>
   rename(LSOA21CD = `Lower layer Super Output Areas Code`, number_of_households = Observation)
 
 
+
+write_csv(lsoa_population_stats_households, "data/processed_data/lsoa_population_stats_households.csv")
+
+lsoa_population_stats <- read_csv("data/raw_data/LSOAs/population_estimates_mid_2022_for_LSOA_2021.csv") |> 
+  janitor::clean_names() |> 
+ select(lsoa_2021_code, total) |> 
+  rename(total_population = total, LSOA21CD = lsoa_2021_code)
+
+
 write_csv(lsoa_population_stats, "data/processed_data/lsoa_population_stats.csv")
+
+
 
 
 

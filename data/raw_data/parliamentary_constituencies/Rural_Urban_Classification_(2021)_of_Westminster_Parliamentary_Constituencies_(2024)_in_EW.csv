@@ -1,0 +1,576 @@
+﻿PCON24CD,PCON24NM,RUC21CD,RUC21NM,Rural_Urban_flag,RUC21_settlement_class,Proportion_of_population_in_rur,RUC21_relative_access,Proportion_of_population_in_OAs,ObjectId
+E14001163,Chester North and Neston,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,10.2,Majority nearer to a major town or city,0,1
+E14001164,Chester South and Eddisbury,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,71.1,Majority nearer to a major town or city,8.8,2
+E14001165,Chesterfield,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,3
+E14001166,Chichester,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,26.8,Majority nearer to a major town or city,19.1,4
+E14001167,Chingford and Woodford Green,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,5
+E14001168,Chippenham,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,17,Majority nearer to a major town or city,5.2,6
+E14001169,Chipping Barnet,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,7
+E14001170,Chorley,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,26.2,Majority nearer to a major town or city,0,8
+E14001171,Christchurch,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,11.6,Majority nearer to a major town or city,0,9
+E14001172,Cities of London and Westminster,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,10
+E14001173,City of Durham,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,39.6,Majority nearer to a major town or city,7.1,11
+E14001174,Clacton,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,19.5,Majority nearer to a major town or city,18.5,12
+E14001175,Clapham and Brixton Hill,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,13
+E14001176,Colchester,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.1,Majority nearer to a major town or city,0,14
+E14001177,Colne Valley,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,19.3,Majority nearer to a major town or city,0,15
+E14001178,Congleton,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,22.4,Majority nearer to a major town or city,1.1,16
+E14001179,Corby and East Northamptonshire,UIF,Intermediate urban: Majority further from a major town or city,Urban,Intermediate urban,31.9,Majority further from a major town or city,72.9,17
+E14001180,Coventry East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,18
+E14001181,Coventry North West,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.6,Majority nearer to a major town or city,0,19
+E14001182,Coventry South,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,20
+E14001183,Cramlington and Killingworth,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,19.5,Majority nearer to a major town or city,0,21
+E14001184,Crawley,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,22
+E14001185,Crewe and Nantwich,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,7.5,Majority nearer to a major town or city,0,23
+E14001186,Croydon East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,24
+E14001187,Croydon South,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,25
+E14001188,Croydon West,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,26
+E14001189,Dagenham and Rainham,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,27
+E14001190,Darlington,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,3.9,Majority nearer to a major town or city,0,28
+E14001191,Dartford,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,6.1,Majority nearer to a major town or city,0,29
+E14001192,Daventry,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,63.4,Majority nearer to a major town or city,6,30
+E14001193,Derby North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,31
+E14001194,Derby South,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,32
+E14001195,Derbyshire Dales,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,81.6,Majority nearer to a major town or city,16.2,33
+E14001196,Dewsbury and Batley,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,3.7,Majority nearer to a major town or city,0,34
+E14001197,Didcot and Wantage,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,39.8,Majority nearer to a major town or city,30,35
+E14001198,Doncaster Central,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,7,Majority nearer to a major town or city,0,36
+E14001199,Doncaster East and the Isle of Axholme,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,49.1,Majority nearer to a major town or city,0,37
+E14001200,Doncaster North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,18.6,Majority nearer to a major town or city,0,38
+E14001201,Dorking and Horley,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,27.6,Majority nearer to a major town or city,0,39
+E14001202,Dover and Deal,UIF,Intermediate urban: Majority further from a major town or city,Urban,Intermediate urban,28.1,Majority further from a major town or city,96.9,40
+E14001203,Droitwich and Evesham,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,38.4,Majority nearer to a major town or city,4,41
+E14001204,Dudley,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,42
+E14001205,Dulwich and West Norwood,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,43
+E14001206,Dunstable and Leighton Buzzard,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,4.1,Majority nearer to a major town or city,0,44
+E14001207,Ealing Central and Acton,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,45
+E14001208,Ealing North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,46
+E14001209,Ealing Southall,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,47
+E14001210,Earley and Woodley,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,5.4,Majority nearer to a major town or city,0,48
+E14001211,Easington,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,38.9,Majority nearer to a major town or city,0,49
+E14001212,East Grinstead and Uckfield,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,45.1,Majority nearer to a major town or city,29.7,50
+E14001063,Aldershot,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.9,Majority nearer to a major town or city,0,51
+E14001064,Aldridge-Brownhills,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.3,Majority nearer to a major town or city,0,52
+E14001065,Altrincham and Sale West,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.8,Majority nearer to a major town or city,0,53
+E14001066,Amber Valley,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,18.9,Majority nearer to a major town or city,0,54
+E14001067,Arundel and South Downs,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,85.8,Majority nearer to a major town or city,19.7,55
+E14001068,Ashfield,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,5.4,Majority nearer to a major town or city,0,56
+E14001069,Ashford,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,24,Majority nearer to a major town or city,0.3,57
+E14001070,Ashton-under-Lyne,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.3,Majority nearer to a major town or city,0,58
+E14001071,Aylesbury,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,24.2,Majority nearer to a major town or city,0,59
+E14001072,Banbury,RIF,Intermediate rural: Majority further from a major town or city,Rural,Intermediate rural,43.7,Majority further from a major town or city,100,60
+E14001073,Barking,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,61
+E14001074,Barnsley North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,10.1,Majority nearer to a major town or city,0,62
+E14001075,Barnsley South,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,1.8,Majority nearer to a major town or city,0.3,63
+E14001076,Barrow and Furness,UIF,Intermediate urban: Majority further from a major town or city,Urban,Intermediate urban,31.3,Majority further from a major town or city,100,64
+E14001077,Basildon and Billericay,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.4,Majority nearer to a major town or city,0,65
+E14001078,Basingstoke,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,6.1,Majority nearer to a major town or city,0,66
+E14001079,Bassetlaw,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,33,Majority nearer to a major town or city,1.5,67
+E14001080,Bath,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.9,Majority nearer to a major town or city,0,68
+E14001081,Battersea,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,69
+E14001082,Beaconsfield,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,3.8,Majority nearer to a major town or city,0,70
+E14001083,Beckenham and Penge,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,71
+E14001084,Bedford,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,72
+E14001085,Bermondsey and Old Southwark,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,73
+E14001086,Bethnal Green and Stepney,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,74
+E14001087,Beverley and Holderness,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,51.8,Majority nearer to a major town or city,13,75
+E14001088,Bexhill and Battle,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,44.1,Majority nearer to a major town or city,2.7,76
+E14001089,Bexleyheath and Crayford,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,77
+E14001090,Bicester and Woodstock,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,43.3,Majority nearer to a major town or city,12.2,78
+E14001091,Birkenhead,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.2,Majority nearer to a major town or city,0,79
+E14001092,Birmingham Edgbaston,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,80
+E14001093,Birmingham Erdington,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,81
+E14001094,Birmingham Hall Green and Moseley,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,82
+E14001095,Birmingham Hodge Hill and Solihull North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,83
+E14001096,Birmingham Ladywood,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,84
+E14001097,Birmingham Northfield,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,85
+E14001098,Birmingham Perry Barr,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,86
+E14001099,Birmingham Selly Oak,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,87
+E14001100,Birmingham Yardley,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,88
+E14001101,Bishop Auckland,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,70.2,Majority nearer to a major town or city,29.7,89
+E14001102,Blackburn,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.4,Majority nearer to a major town or city,0,90
+E14001103,Blackley and Middleton South,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,2.3,Majority nearer to a major town or city,0,91
+E14001104,Blackpool North and Fleetwood,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,92
+E14001105,Blackpool South,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,93
+E14001106,Blaydon and Consett,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,26.1,Majority nearer to a major town or city,0,94
+E14001107,Blyth and Ashington,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,16.1,Majority nearer to a major town or city,0,95
+E14001108,Bognor Regis and Littlehampton,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.3,Majority nearer to a major town or city,0,96
+E14001109,Bolsover,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,51.2,Majority nearer to a major town or city,0,97
+E14001110,Bolton North East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.3,Majority nearer to a major town or city,0,98
+E14001111,Bolton South and Walkden,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,99
+E14001112,Bolton West,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,1,Majority nearer to a major town or city,0,100
+E14001363,Mid Dorset and North Poole,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,28.8,Majority nearer to a major town or city,0,101
+E14001364,Mid Leicestershire,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,33.8,Majority nearer to a major town or city,0,102
+E14001365,Mid Norfolk,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,51.5,Majority nearer to a major town or city,43.4,103
+E14001366,Mid Sussex,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,11.1,Majority nearer to a major town or city,0,104
+E14001367,Middlesbrough and Thornaby East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,105
+E14001368,Middlesbrough South and East Cleveland,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,27.6,Majority nearer to a major town or city,2.3,106
+E14001369,Milton Keynes Central,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.9,Majority nearer to a major town or city,0,107
+E14001370,Milton Keynes North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,18.3,Majority nearer to a major town or city,0,108
+E14001371,Mitcham and Morden,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,109
+E14001372,Morecambe and Lunesdale,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,50.4,Majority further from a major town or city,96.6,110
+E14001373,New Forest East,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,31.5,Majority nearer to a major town or city,18,111
+E14001374,New Forest West,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,30.1,Majority nearer to a major town or city,29.1,112
+E14001375,Newark,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,47,Majority nearer to a major town or city,28.8,113
+E14001376,Newbury,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,25.2,Majority nearer to a major town or city,13.3,114
+E14001377,Newcastle upon Tyne Central and West,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,115
+E14001378,Newcastle upon Tyne East and Wallsend,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,116
+E14001379,Newcastle upon Tyne North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,117
+E14001380,Newcastle-under-Lyme,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,17.9,Majority nearer to a major town or city,0,118
+E14001381,Newton Abbot,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,18.6,Majority nearer to a major town or city,11.3,119
+E14001382,Newton Aycliffe and Spennymoor,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,51.1,Majority nearer to a major town or city,0,120
+E14001383,Normanton and Hemsworth,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,52.3,Majority nearer to a major town or city,0,121
+E14001384,North Bedfordshire,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,54.7,Majority nearer to a major town or city,0.2,122
+E14001385,North Cornwall,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,72.6,Majority further from a major town or city,99.3,123
+E14001386,North Cotswolds,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,58.2,Majority nearer to a major town or city,27.3,124
+E14001387,North Devon,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,53.8,Majority further from a major town or city,100,125
+E14001388,North Dorset,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,59.7,Majority further from a major town or city,54,126
+E14001389,North Durham,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,26.2,Majority nearer to a major town or city,1.7,127
+E14001390,North East Cambridgeshire,UIF,Intermediate urban: Majority further from a major town or city,Urban,Intermediate urban,23.5,Majority further from a major town or city,79.7,128
+E14001391,North East Derbyshire,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,30.3,Majority nearer to a major town or city,0,129
+E14001392,North East Hampshire,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,39.3,Majority nearer to a major town or city,0,130
+E14001393,North East Hertfordshire,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,37.8,Majority nearer to a major town or city,1,131
+E14001394,North East Somerset and Hanham,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,33.8,Majority nearer to a major town or city,1.7,132
+E14001395,North Herefordshire,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,79.7,Majority further from a major town or city,87.9,133
+E14001396,North Norfolk,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,85.2,Majority further from a major town or city,85.7,134
+E14001397,North Northumberland,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,69.6,Majority further from a major town or city,67.3,135
+E14001398,North Shropshire,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,68.2,Majority further from a major town or city,53.3,136
+E14001399,North Somerset,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,26,Majority nearer to a major town or city,0,137
+E14001400,North Warwickshire and Bedworth,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,35.4,Majority nearer to a major town or city,0,138
+E14001401,North West Cambridgeshire,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,33.9,Majority nearer to a major town or city,1.9,139
+E14001402,North West Essex,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,65.8,Majority nearer to a major town or city,27.8,140
+E14001403,North West Hampshire,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,29.5,Majority nearer to a major town or city,4.9,141
+E14001404,North West Leicestershire,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,42,Majority nearer to a major town or city,0,142
+E14001405,North West Norfolk,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,51.4,Majority further from a major town or city,100,143
+E14001406,Northampton North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,144
+E14001407,Northampton South,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.6,Majority nearer to a major town or city,0,145
+E14001408,Norwich North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,146
+E14001409,Norwich South,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,147
+E14001410,Nottingham East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,148
+E14001411,Nottingham North and Kimberley,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,149
+E14001412,Nottingham South,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,150
+E14001113,Bootle,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,151
+E14001114,Boston and Skegness,RIF,Intermediate rural: Majority further from a major town or city,Rural,Intermediate rural,40.1,Majority further from a major town or city,100,152
+E14001115,Bournemouth East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,153
+E14001116,Bournemouth West,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,154
+E14001117,Bracknell,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.3,Majority nearer to a major town or city,0,155
+E14001118,Bradford East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,156
+E14001119,Bradford South,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,1.2,Majority nearer to a major town or city,0,157
+E14001120,Bradford West,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.7,Majority nearer to a major town or city,0,158
+E14001121,Braintree,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,32.1,Majority nearer to a major town or city,24.3,159
+E14001122,Brent East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,160
+E14001123,Brent West,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,161
+E14001124,Brentford and Isleworth,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,162
+E14001125,Brentwood and Ongar,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,42.7,Majority nearer to a major town or city,0,163
+E14001126,Bridgwater,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,21,Majority nearer to a major town or city,12.7,164
+E14001127,Bridlington and The Wolds,RIF,Intermediate rural: Majority further from a major town or city,Rural,Intermediate rural,48.1,Majority further from a major town or city,83.8,165
+E14001128,Brigg and Immingham,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,42.4,Majority nearer to a major town or city,0,166
+E14001129,Brighton Kemptown and Peacehaven,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,167
+E14001130,Brighton Pavilion,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,168
+E14001131,Bristol Central,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,169
+E14001132,Bristol East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,170
+E14001133,Bristol North East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,171
+E14001134,Bristol North West,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,172
+E14001135,Bristol South,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,173
+E14001136,Broadland and Fakenham,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,89.5,Majority nearer to a major town or city,20.2,174
+E14001137,Bromley and Biggin Hill,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,175
+E14001138,Bromsgrove,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,20.3,Majority nearer to a major town or city,0,176
+E14001139,Broxbourne,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,4.7,Majority nearer to a major town or city,0,177
+E14001140,Broxtowe,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.4,Majority nearer to a major town or city,0,178
+E14001141,Buckingham and Bletchley,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,26.4,Majority nearer to a major town or city,0.2,179
+E14001142,Burnley,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,4.6,Majority nearer to a major town or city,0,180
+E14001143,Burton and Uttoxeter,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,13.9,Majority nearer to a major town or city,1.8,181
+E14001144,Bury North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,2.2,Majority nearer to a major town or city,0,182
+E14001145,Bury South,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,1.4,Majority nearer to a major town or city,0,183
+E14001146,Bury St Edmunds and Stowmarket,RIF,Intermediate rural: Majority further from a major town or city,Rural,Intermediate rural,37.7,Majority further from a major town or city,69.7,184
+E14001147,Calder Valley,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,35.3,Majority nearer to a major town or city,0,185
+E14001148,Camborne and Redruth,RIF,Intermediate rural: Majority further from a major town or city,Rural,Intermediate rural,44.1,Majority further from a major town or city,100,186
+E14001149,Cambridge,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,187
+E14001150,Cannock Chase,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,10.4,Majority nearer to a major town or city,0.5,188
+E14001151,Canterbury,UUF,Urban: Majority further from a major town or city,Urban,Urban,15.9,Majority further from a major town or city,91.5,189
+E14001152,Carlisle,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,23.5,Majority nearer to a major town or city,1,190
+E14001153,Carshalton and Wallington,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,191
+E14001154,Castle Point,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,192
+E14001155,Central Devon,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,99.4,Majority nearer to a major town or city,35.1,193
+E14001156,Central Suffolk and North Ipswich,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,49,Majority nearer to a major town or city,8,194
+E14001157,Chatham and Aylesford,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,5.8,Majority nearer to a major town or city,0,195
+E14001158,Cheadle,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,196
+E14001159,Chelmsford,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.1,Majority nearer to a major town or city,0,197
+E14001160,Chelsea and Fulham,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,198
+E14001161,Cheltenham,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,199
+E14001162,Chesham and Amersham,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,12.1,Majority nearer to a major town or city,0,200
+E14001263,Hamble Valley,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,2.2,Majority nearer to a major town or city,0,201
+E14001264,Hammersmith and Chiswick,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,202
+E14001265,Hampstead and Highgate,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,203
+E14001266,"Harborough, Oadby and Wigston",UUN,Urban: Majority nearer to a major town or city,Urban,Urban,17.1,Majority nearer to a major town or city,26.9,204
+E14001267,Harlow,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,9.4,Majority nearer to a major town or city,0,205
+E14001268,Harpenden and Berkhamsted,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,27,Majority nearer to a major town or city,0,206
+E14001269,Harrogate and Knaresborough,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,9.8,Majority nearer to a major town or city,0,207
+E14001270,Harrow East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,208
+E14001271,Harrow West,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,209
+E14001272,Hartlepool,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,3.1,Majority nearer to a major town or city,0,210
+E14001273,Harwich and North Essex,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,62.1,Majority nearer to a major town or city,0,211
+E14001274,Hastings and Rye,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,13.2,Majority nearer to a major town or city,1.1,212
+E14001275,Havant,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,1.9,Majority nearer to a major town or city,0,213
+E14001276,Hayes and Harlington,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,214
+E14001277,Hazel Grove,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,1.2,Majority nearer to a major town or city,0,215
+E14001278,Hemel Hempstead,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.5,Majority nearer to a major town or city,0,216
+E14001279,Hendon,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,217
+E14001280,Henley and Thame,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,73.3,Majority nearer to a major town or city,2.3,218
+E14001281,Hereford and South Herefordshire,UIF,Intermediate urban: Majority further from a major town or city,Urban,Intermediate urban,29.8,Majority further from a major town or city,98,219
+E14001282,Herne Bay and Sandwich,UUF,Urban: Majority further from a major town or city,Urban,Urban,14,Majority further from a major town or city,100,220
+E14001283,Hertford and Stortford,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,6.3,Majority nearer to a major town or city,0,221
+E14001284,Hertsmere,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,19.7,Majority nearer to a major town or city,0,222
+E14001285,Hexham,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,61.5,Majority nearer to a major town or city,19.9,223
+E14001286,Heywood and Middleton North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,1.1,Majority nearer to a major town or city,0,224
+E14001287,High Peak,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,29.9,Majority nearer to a major town or city,44.9,225
+E14001288,Hinckley and Bosworth,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,27.4,Majority nearer to a major town or city,0,226
+E14001289,Hitchin,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,31.7,Majority nearer to a major town or city,0,227
+E14001290,Holborn and St Pancras,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,228
+E14001291,Honiton and Sidmouth,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,72.3,Majority further from a major town or city,52.8,229
+E14001292,Hornchurch and Upminster,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,230
+E14001293,Hornsey and Friern Barnet,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,231
+E14001294,Horsham,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,31.6,Majority nearer to a major town or city,0,232
+E14001295,Houghton and Sunderland South,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,1.8,Majority nearer to a major town or city,0,233
+E14001296,Hove and Portslade,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,234
+E14001297,Huddersfield,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.4,Majority nearer to a major town or city,0,235
+E14001298,Huntingdon,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,49.7,Majority nearer to a major town or city,44.3,236
+E14001299,Hyndburn,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,8.4,Majority nearer to a major town or city,0,237
+E14001300,Ilford North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,238
+E14001301,Ilford South,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,239
+E14001302,Ipswich,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,240
+E14001303,Isle of Wight East,UIF,Intermediate urban: Majority further from a major town or city,Urban,Intermediate urban,31.9,Majority further from a major town or city,100,241
+E14001304,Isle of Wight West,RIF,Intermediate rural: Majority further from a major town or city,Rural,Intermediate rural,43,Majority further from a major town or city,100,242
+E14001305,Islington North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,243
+E14001306,Islington South and Finsbury,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,244
+E14001307,Jarrow and Gateshead East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,245
+E14001308,Keighley and Ilkley,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,18,Majority nearer to a major town or city,16,246
+E14001309,Kenilworth and Southam,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,68,Majority nearer to a major town or city,4.7,247
+E14001310,Kensington and Bayswater,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,248
+E14001311,Kettering,UIF,Intermediate urban: Majority further from a major town or city,Urban,Intermediate urban,20.6,Majority further from a major town or city,77,249
+E14001312,Kingston and Surbiton,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,250
+E14001413,Nuneaton,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,4.9,Majority nearer to a major town or city,0,251
+E14001414,Old Bexley and Sidcup,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,252
+E14001415,Oldham East and Saddleworth,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,2.5,Majority nearer to a major town or city,0,253
+E14001416,"Oldham West, Chadderton and Royton",UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,254
+E14001417,Orpington,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,255
+E14001418,Ossett and Denby Dale,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,32.2,Majority nearer to a major town or city,0,256
+E14001419,Oxford East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,257
+E14001420,Oxford West and Abingdon,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,7.6,Majority nearer to a major town or city,0,258
+E14001421,Peckham,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,259
+E14001422,Pendle and Clitheroe,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,18.8,Majority nearer to a major town or city,0,260
+E14001423,Penistone and Stocksbridge,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,22.1,Majority nearer to a major town or city,0.8,261
+E14001424,Penrith and Solway,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,81.6,Majority nearer to a major town or city,47.3,262
+E14001425,Peterborough,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,7.8,Majority nearer to a major town or city,0,263
+E14001426,Plymouth Moor View,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,264
+E14001427,Plymouth Sutton and Devonport,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,265
+E14001428,"Pontefract, Castleford and Knottingley",UUN,Urban: Majority nearer to a major town or city,Urban,Urban,1.8,Majority nearer to a major town or city,0,266
+E14001429,Poole,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,267
+E14001430,Poplar and Limehouse,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,268
+E14001431,Portsmouth North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,269
+E14001432,Portsmouth South,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,270
+E14001433,Preston,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,271
+E14001434,Putney,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,272
+E14001435,Queen's Park and Maida Vale,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,273
+E14001436,Rawmarsh and Conisbrough,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,2.5,Majority nearer to a major town or city,0,274
+E14001437,Rayleigh and Wickford,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,7.1,Majority nearer to a major town or city,0,275
+E14001438,Reading Central,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,276
+E14001439,Reading West and Mid Berkshire,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,39.8,Majority nearer to a major town or city,3.4,277
+E14001440,Redcar,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,19.4,Majority nearer to a major town or city,0,278
+E14001441,Redditch,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,12.5,Majority nearer to a major town or city,0,279
+E14001442,Reigate,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,2.1,Majority nearer to a major town or city,0,280
+E14001443,Ribble Valley,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,43.5,Majority nearer to a major town or city,1.6,281
+E14001444,Richmond and Northallerton,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,63.5,Majority nearer to a major town or city,17.4,282
+E14001445,Richmond Park,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,283
+E14001446,Rochdale,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.7,Majority nearer to a major town or city,0,284
+E14001447,Rochester and Strood,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,30.6,Majority nearer to a major town or city,0,285
+E14001448,Romford,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,286
+E14001449,Romsey and Southampton North,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,39.5,Majority nearer to a major town or city,12.3,287
+E14001450,Rossendale and Darwen,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,10.6,Majority nearer to a major town or city,0,288
+E14001451,Rother Valley,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,24.1,Majority nearer to a major town or city,0,289
+E14001452,Rotherham,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,4.1,Majority nearer to a major town or city,0,290
+E14001453,Rugby,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,14.5,Majority nearer to a major town or city,0,291
+E14001454,"Ruislip, Northwood and Pinner",UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,292
+E14001455,Runcorn and Helsby,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,25.5,Majority nearer to a major town or city,0,293
+E14001456,Runnymede and Weybridge,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,2.4,Majority nearer to a major town or city,0,294
+E14001457,Rushcliffe,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,49.2,Majority nearer to a major town or city,1.3,295
+E14001458,Rutland and Stamford,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,55.6,Majority nearer to a major town or city,41.7,296
+E14001459,Salford,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,297
+E14001460,Salisbury,RIF,Intermediate rural: Majority further from a major town or city,Rural,Intermediate rural,48.5,Majority further from a major town or city,96,298
+E14001461,Scarborough and Whitby,UIF,Intermediate urban: Majority further from a major town or city,Urban,Intermediate urban,22.4,Majority further from a major town or city,99.3,299
+E14001462,Scunthorpe,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,22.6,Majority nearer to a major town or city,0,300
+E14001313,Kingston upon Hull East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,301
+E14001314,Kingston upon Hull North and Cottingham,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.5,Majority nearer to a major town or city,0,302
+E14001315,Kingston upon Hull West and Haltemprice,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,303
+E14001316,Kingswinford and South Staffordshire,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,16.9,Majority nearer to a major town or city,0.4,304
+E14001317,Knowsley,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,305
+E14001318,Lancaster and Wyre,RIF,Intermediate rural: Majority further from a major town or city,Rural,Intermediate rural,44.6,Majority further from a major town or city,56.5,306
+E14001319,Leeds Central and Headingley,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,307
+E14001320,Leeds East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,4.8,Majority nearer to a major town or city,0,308
+E14001321,Leeds North East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.1,Majority nearer to a major town or city,0,309
+E14001322,Leeds North West,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,8.1,Majority nearer to a major town or city,0,310
+E14001323,Leeds South,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,311
+E14001324,Leeds South West and Morley,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,2.4,Majority nearer to a major town or city,0,312
+E14001325,Leeds West and Pudsey,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.3,Majority nearer to a major town or city,0,313
+E14001326,Leicester East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,314
+E14001327,Leicester South,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,315
+E14001328,Leicester West,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.6,Majority nearer to a major town or city,0,316
+E14001329,Leigh and Atherton,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,3.5,Majority nearer to a major town or city,0,317
+E14001330,Lewes,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,19.3,Majority nearer to a major town or city,0.7,318
+E14001331,Lewisham East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,319
+E14001332,Lewisham North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,320
+E14001333,Lewisham West and East Dulwich,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,321
+E14001334,Leyton and Wanstead,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,322
+E14001335,Lichfield,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,30.4,Majority nearer to a major town or city,2.1,323
+E14001336,Lincoln,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,8,Majority nearer to a major town or city,0,324
+E14001337,Liverpool Garston,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,325
+E14001338,Liverpool Riverside,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,326
+E14001339,Liverpool Walton,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,327
+E14001340,Liverpool Wavertree,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,328
+E14001341,Liverpool West Derby,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,329
+E14001342,Loughborough,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,16.8,Majority nearer to a major town or city,0,330
+E14001343,Louth and Horncastle,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,68.5,Majority further from a major town or city,65.8,331
+E14001344,Lowestoft,UUF,Urban: Majority further from a major town or city,Urban,Urban,8.5,Majority further from a major town or city,100,332
+E14001345,Luton North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,333
+E14001346,Luton South and South Bedfordshire,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,11.2,Majority nearer to a major town or city,0,334
+E14001347,Macclesfield,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,10.2,Majority nearer to a major town or city,3.4,335
+E14001348,Maidenhead,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,8.3,Majority nearer to a major town or city,0,336
+E14001349,Maidstone and Malling,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,13.9,Majority nearer to a major town or city,0,337
+E14001350,Makerfield,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,1.3,Majority nearer to a major town or city,0,338
+E14001351,Maldon,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,46.6,Majority nearer to a major town or city,21.8,339
+E14001352,Manchester Central,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.9,Majority nearer to a major town or city,0,340
+E14001353,Manchester Rusholme,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,341
+E14001354,Manchester Withington,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,342
+E14001355,Mansfield,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,12,Majority nearer to a major town or city,22.3,343
+E14001356,Melksham and Devizes,RIF,Intermediate rural: Majority further from a major town or city,Rural,Intermediate rural,46,Majority further from a major town or city,66.2,344
+E14001357,Melton and Syston,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,41.5,Majority nearer to a major town or city,45.9,345
+E14001358,Meriden and Solihull East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,18.5,Majority nearer to a major town or city,0,346
+E14001359,Mid Bedfordshire,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,70.7,Majority nearer to a major town or city,0,347
+E14001360,Mid Buckinghamshire,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,82,Majority nearer to a major town or city,0,348
+E14001361,Mid Cheshire,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,2.2,Majority nearer to a major town or city,36.9,349
+E14001362,Mid Derbyshire,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,20.3,Majority nearer to a major town or city,0,350
+E14001213,East Ham,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,351
+E14001214,East Hampshire,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,34.9,Majority nearer to a major town or city,1.1,352
+E14001215,East Surrey,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,33.3,Majority nearer to a major town or city,0.3,353
+E14001216,East Thanet,UUF,Urban: Majority further from a major town or city,Urban,Urban,0,Majority further from a major town or city,100,354
+E14001217,East Wiltshire,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,63.1,Majority further from a major town or city,69.3,355
+E14001218,East Worthing and Shoreham,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,356
+E14001219,Eastbourne,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,357
+E14001220,Eastleigh,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.5,Majority nearer to a major town or city,0,358
+E14001221,Edmonton and Winchmore Hill,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,359
+E14001222,Ellesmere Port and Bromborough,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.4,Majority nearer to a major town or city,0,360
+E14001223,Eltham and Chislehurst,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,361
+E14001224,Ely and East Cambridgeshire,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,64.7,Majority further from a major town or city,58.4,362
+E14001225,Enfield North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,363
+E14001226,Epping Forest,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,10,Majority nearer to a major town or city,0,364
+E14001227,Epsom and Ewell,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,1.5,Majority nearer to a major town or city,0,365
+E14001228,Erewash,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,8.2,Majority nearer to a major town or city,0,366
+E14001229,Erith and Thamesmead,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,367
+E14001230,Esher and Walton,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,368
+E14001231,Exeter,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,369
+E14001232,Exmouth and Exeter East,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,25.1,Majority nearer to a major town or city,0,370
+E14001233,Fareham and Waterlooville,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,12.8,Majority nearer to a major town or city,0,371
+E14001234,Farnham and Bordon,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,20.5,Majority nearer to a major town or city,0,372
+E14001235,Faversham and Mid Kent,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,30.3,Majority nearer to a major town or city,1.4,373
+E14001236,Feltham and Heston,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,374
+E14001237,Filton and Bradley Stoke,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,375
+E14001238,Finchley and Golders Green,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,376
+E14001239,Folkestone and Hythe,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,26.2,Majority nearer to a major town or city,0.4,377
+E14001240,Forest of Dean,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,66.8,Majority further from a major town or city,64.3,378
+E14001241,Frome and East Somerset,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,41.9,Majority nearer to a major town or city,44.4,379
+E14001242,Fylde,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,19.9,Majority nearer to a major town or city,0,380
+E14001243,Gainsborough,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,74.8,Majority nearer to a major town or city,1.6,381
+E14001244,Gateshead Central and Whickham,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.6,Majority nearer to a major town or city,0,382
+E14001245,Gedling,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,3.3,Majority nearer to a major town or city,0,383
+E14001246,Gillingham and Rainham,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,1,Majority nearer to a major town or city,0,384
+E14001247,Glastonbury and Somerton,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,86.2,Majority further from a major town or city,100,385
+E14001248,Gloucester,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,386
+E14001249,Godalming and Ash,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,25.7,Majority nearer to a major town or city,0,387
+E14001250,Goole and Pocklington,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,55.9,Majority nearer to a major town or city,16.9,388
+E14001251,Gorton and Denton,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,389
+E14001252,Gosport,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,390
+E14001253,Grantham and Bourne,RIF,Intermediate rural: Majority further from a major town or city,Rural,Intermediate rural,36.6,Majority further from a major town or city,81.8,391
+E14001254,Gravesham,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,14.6,Majority nearer to a major town or city,0,392
+E14001255,Great Grimsby and Cleethorpes,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,393
+E14001256,Great Yarmouth,UIF,Intermediate urban: Majority further from a major town or city,Urban,Intermediate urban,34.8,Majority further from a major town or city,98.6,394
+E14001257,Greenwich and Woolwich,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,395
+E14001258,Guildford,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,11.7,Majority nearer to a major town or city,0,396
+E14001259,Hackney North and Stoke Newington,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,397
+E14001260,Hackney South and Shoreditch,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,398
+E14001261,Halesowen,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,399
+E14001262,Halifax,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,3.5,Majority nearer to a major town or city,0,400
+E14001522,Stoke-on-Trent South,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,15.9,Majority nearer to a major town or city,0,401
+E14001523,"Stone, Great Wyrley and Penkridge",RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,45.8,Majority nearer to a major town or city,8.6,402
+E14001524,Stourbridge,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,403
+E14001525,Stratford and Bow,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,404
+E14001526,Stratford-on-Avon,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,61.6,Majority nearer to a major town or city,19.4,405
+E14001527,Streatham and Croydon North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,406
+E14001528,Stretford and Urmston,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,407
+E14001529,Stroud,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,22.5,Majority nearer to a major town or city,8.7,408
+E14001530,Suffolk Coastal,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,46.5,Majority nearer to a major town or city,36.3,409
+E14001531,Sunderland Central,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,410
+E14001532,Surrey Heath,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,12.5,Majority nearer to a major town or city,0,411
+E14001533,Sussex Weald,UIF,Intermediate urban: Majority further from a major town or city,Urban,Intermediate urban,32.9,Majority further from a major town or city,51.4,412
+E14001534,Sutton and Cheam,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,413
+E14001535,Sutton Coldfield,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.4,Majority nearer to a major town or city,0,414
+E14001536,Swindon North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,9.4,Majority nearer to a major town or city,0,415
+E14001463,Sefton Central,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,4.4,Majority nearer to a major town or city,0,416
+E14001537,Swindon South,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,417
+E14001538,Tamworth,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,11.2,Majority nearer to a major town or city,0,418
+E14001539,Tatton,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,24.8,Majority nearer to a major town or city,0.6,419
+E14001540,Taunton and Wellington,UUF,Urban: Majority further from a major town or city,Urban,Urban,16.2,Majority further from a major town or city,99.3,420
+E14001541,Telford,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.6,Majority nearer to a major town or city,0,421
+E14001542,Tewkesbury,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,20,Majority nearer to a major town or city,0.2,422
+E14001543,The Wrekin,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,35.2,Majority nearer to a major town or city,0.4,423
+E14001544,Thirsk and Malton,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,73.2,Majority further from a major town or city,78.5,424
+E14001545,Thornbury and Yate,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,34,Majority nearer to a major town or city,1.5,425
+E14001546,Thurrock,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,8.1,Majority nearer to a major town or city,0,426
+E14001547,Tipton and Wednesbury,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,427
+E14001548,Tiverton and Minehead,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,64,Majority further from a major town or city,65.2,428
+E14001549,Tonbridge,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,45.6,Majority nearer to a major town or city,22.1,429
+E14001550,Tooting,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,430
+E14001551,Torbay,UUF,Urban: Majority further from a major town or city,Urban,Urban,0,Majority further from a major town or city,100,431
+E14001552,Torridge and Tavistock,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,54.6,Majority further from a major town or city,82,432
+E14001553,Tottenham,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,433
+E14001554,Truro and Falmouth,RIF,Intermediate rural: Majority further from a major town or city,Rural,Intermediate rural,36.4,Majority further from a major town or city,100,434
+E14001555,Tunbridge Wells,RIF,Intermediate rural: Majority further from a major town or city,Rural,Intermediate rural,40.6,Majority further from a major town or city,71.1,435
+E14001556,Twickenham,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,436
+E14001557,Tynemouth,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.2,Majority nearer to a major town or city,0,437
+E14001558,Uxbridge and South Ruislip,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,438
+E14001559,Vauxhall and Camberwell Green,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,439
+E14001560,Wakefield and Rothwell,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,1.8,Majority nearer to a major town or city,0,440
+E14001561,Wallasey,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,441
+E14001562,Walsall and Bloxwich,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,442
+E14001563,Walthamstow,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,443
+E14001564,Warrington North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,15.2,Majority nearer to a major town or city,0,444
+E14001565,Warrington South,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,2.7,Majority nearer to a major town or city,0,445
+E14001566,Warwick and Leamington,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,5.5,Majority nearer to a major town or city,0,446
+E14001567,Washington and Gateshead South,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,1.9,Majority nearer to a major town or city,0,447
+E14001568,Watford,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,448
+E14001569,Waveney Valley,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,84.5,Majority further from a major town or city,87.3,449
+E14001570,Weald of Kent,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,86,Majority nearer to a major town or city,3.6,450
+E14001571,Wellingborough and Rushden,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,15.8,Majority nearer to a major town or city,0,451
+E14001572,Wells and Mendip Hills,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,71.9,Majority nearer to a major town or city,43,452
+E14001573,Welwyn Hatfield,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,9.2,Majority nearer to a major town or city,0,453
+E14001574,West Bromwich,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,454
+E14001575,West Dorset,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,51.1,Majority further from a major town or city,99.2,455
+E14001576,West Ham and Beckton,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,456
+E14001577,West Lancashire,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,25.7,Majority nearer to a major town or city,0,457
+E14001578,West Suffolk,RIF,Intermediate rural: Majority further from a major town or city,Rural,Intermediate rural,48.2,Majority further from a major town or city,74.5,458
+E14001579,West Worcestershire,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,62.9,Majority nearer to a major town or city,6.7,459
+E14001580,Westmorland and Lonsdale,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,67,Majority further from a major town or city,97.1,460
+E14001581,Weston-super-Mare,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,5.9,Majority nearer to a major town or city,0,461
+E14001464,Selby,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,62.2,Majority nearer to a major town or city,14.2,462
+E14001582,Wetherby and Easingwold,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,83.4,Majority nearer to a major town or city,3.7,463
+E14001465,Sevenoaks,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,41,Majority nearer to a major town or city,0.3,464
+E14001466,Sheffield Brightside and Hillsborough,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,465
+E14001583,Whitehaven and Workington,RIF,Intermediate rural: Majority further from a major town or city,Rural,Intermediate rural,41.6,Majority further from a major town or city,100,466
+E14001584,Widnes and Halewood,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.7,Majority nearer to a major town or city,0,467
+E14001467,Sheffield Central,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,468
+E14001468,Sheffield Hallam,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,4.2,Majority nearer to a major town or city,0,469
+E14001585,Wigan,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,5.7,Majority nearer to a major town or city,0,470
+E14001469,Sheffield Heeley,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,471
+E14001586,Wimbledon,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,472
+E14001470,Sheffield South East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,473
+E14001587,Winchester,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,41.1,Majority nearer to a major town or city,0,474
+E14001471,Sherwood Forest,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,39.7,Majority nearer to a major town or city,35.2,475
+E14001588,Windsor,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,8.4,Majority nearer to a major town or city,0,476
+E14001472,Shipley,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,22.9,Majority nearer to a major town or city,7,477
+E14001589,Wirral West,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,1.6,Majority nearer to a major town or city,0,478
+E14001473,Shrewsbury,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,23.3,Majority nearer to a major town or city,0,479
+E14001590,Witham,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,57.5,Majority nearer to a major town or city,0,480
+E14001474,Sittingbourne and Sheppey,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,17,Majority nearer to a major town or city,3.6,481
+E14001591,Witney,RIF,Intermediate rural: Majority further from a major town or city,Rural,Intermediate rural,48.1,Majority further from a major town or city,73,482
+E14001592,Woking,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.8,Majority nearer to a major town or city,0,483
+E14001475,Skipton and Ripon,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,57.2,Majority further from a major town or city,50.9,484
+E14001593,Wokingham,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,24.9,Majority nearer to a major town or city,0,485
+E14001476,Sleaford and North Hykeham,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,59.3,Majority nearer to a major town or city,23.9,486
+E14001594,Wolverhampton North East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,487
+E14001477,Slough,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,488
+E14001478,Smethwick,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,489
+E14001595,Wolverhampton South East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,490
+E14001596,Wolverhampton West,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,491
+E14001479,Solihull West and Shirley,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,8.7,Majority nearer to a major town or city,0,492
+E14001597,Worcester,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,493
+E14001480,South Basildon and East Thurrock,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,13.5,Majority nearer to a major town or city,0,494
+E14001481,South Cambridgeshire,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,60.9,Majority nearer to a major town or city,2.1,495
+E14001482,South Cotswolds,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,76.9,Majority nearer to a major town or city,22.4,496
+E14001483,South Derbyshire,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,33.3,Majority nearer to a major town or city,0,497
+E14001598,Worsley and Eccles,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.3,Majority nearer to a major town or city,0,498
+E14001484,South Devon,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,62,Majority further from a major town or city,89.1,499
+E14001485,South Dorset,RIF,Intermediate rural: Majority further from a major town or city,Rural,Intermediate rural,43.8,Majority further from a major town or city,89.6,500
+E14001486,South East Cornwall,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,70.7,Majority nearer to a major town or city,40.3,501
+E14001599,Worthing West,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.8,Majority nearer to a major town or city,0,502
+E14001487,South Holland and The Deepings,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,55.4,Majority nearer to a major town or city,46.6,503
+E14001600,Wycombe,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,9,Majority nearer to a major town or city,0,504
+E14001488,South Leicestershire,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,49.2,Majority nearer to a major town or city,0,505
+E14001601,Wyre Forest,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,21.3,Majority nearer to a major town or city,17.9,506
+E14001489,South Norfolk,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,67.7,Majority nearer to a major town or city,3.7,507
+E14001602,Wythenshawe and Sale East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,508
+E14001490,South Northamptonshire,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,66.3,Majority nearer to a major town or city,30.5,509
+E14001491,South Ribble,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,17.3,Majority nearer to a major town or city,0,510
+E14001492,South Shields,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.2,Majority nearer to a major town or city,0,511
+E14001493,South Shropshire,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,69.2,Majority further from a major town or city,50.7,512
+E14001494,South Suffolk,RMN,Majority rural: Majority nearer to a major town or city,Rural,Majority rural,68.3,Majority nearer to a major town or city,47.2,513
+E14001495,South West Devon,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,23.5,Majority nearer to a major town or city,0,514
+E14001496,South West Hertfordshire,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,2.2,Majority nearer to a major town or city,0,515
+E14001497,South West Norfolk,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,60.7,Majority further from a major town or city,99.7,516
+E14001498,South West Wiltshire,UUF,Urban: Majority further from a major town or city,Urban,Urban,17,Majority further from a major town or city,50.3,517
+E14001499,Southampton Itchen,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,518
+E14001500,Southampton Test,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,519
+E14001501,Southend East and Rochford,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,3.4,Majority nearer to a major town or city,0,520
+E14001502,Southend West and Leigh,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,521
+E14001503,Southgate and Wood Green,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,522
+E14001504,Southport,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,17.5,Majority nearer to a major town or city,0,523
+E14001505,Spelthorne,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.9,Majority nearer to a major town or city,0,524
+E14001506,Spen Valley,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.4,Majority nearer to a major town or city,0,525
+E14001507,St Albans,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,11.9,Majority nearer to a major town or city,0,526
+E14001508,St Austell and Newquay,RIF,Intermediate rural: Majority further from a major town or city,Rural,Intermediate rural,47.3,Majority further from a major town or city,100,527
+E14001509,St Helens North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,8.2,Majority nearer to a major town or city,0,528
+E14001510,St Helens South and Whiston,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.7,Majority nearer to a major town or city,0,529
+E14001511,St Ives,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,63.3,Majority further from a major town or city,100,530
+E14001512,St Neots and Mid Cambridgeshire,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,39.8,Majority nearer to a major town or city,0,531
+E14001513,Stafford,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,27.8,Majority nearer to a major town or city,1.2,532
+E14001514,Staffordshire Moorlands,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,28.2,Majority nearer to a major town or city,4,533
+E14001515,Stalybridge and Hyde,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.2,Majority nearer to a major town or city,0,534
+E14001516,Stevenage,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,5.4,Majority nearer to a major town or city,0,535
+E14001517,Stockport,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,536
+E14001603,Yeovil,RIF,Intermediate rural: Majority further from a major town or city,Rural,Intermediate rural,38.5,Majority further from a major town or city,100,537
+E14001604,York Central,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,538
+E14001518,Stockton North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,5,Majority nearer to a major town or city,0,539
+E14001605,York Outer,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,29.8,Majority nearer to a major town or city,0,540
+E14001519,Stockton West,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,17.7,Majority nearer to a major town or city,0,541
+W07000081,Aberafan Maesteg,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,18.3,Majority nearer to a major town or city,26.7,542
+E14001520,Stoke-on-Trent Central,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,543
+W07000082,Alyn and Deeside,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,22.6,Majority nearer to a major town or city,0.3,544
+E14001521,Stoke-on-Trent North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.6,Majority nearer to a major town or city,0,545
+W07000083,Bangor Aberconwy,RIF,Intermediate rural: Majority further from a major town or city,Rural,Intermediate rural,43.2,Majority further from a major town or city,100,546
+W07000084,Blaenau Gwent and Rhymney,UIF,Intermediate urban: Majority further from a major town or city,Urban,Intermediate urban,23.2,Majority further from a major town or city,95.1,547
+W07000085,"Brecon, Radnor and Cwm Tawe",RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,73.3,Majority further from a major town or city,69.6,548
+W07000086,Bridgend,UUF,Urban: Majority further from a major town or city,Urban,Urban,13.1,Majority further from a major town or city,89.8,549
+W07000087,Caerfyrddin,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,63,Majority further from a major town or city,81.7,550
+W07000088,Caerphilly,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,13,Majority nearer to a major town or city,9.2,551
+W07000089,Cardiff East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.4,Majority nearer to a major town or city,0,552
+W07000090,Cardiff North,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,2.4,Majority nearer to a major town or city,0,553
+W07000091,Cardiff South and Penarth,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0.9,Majority nearer to a major town or city,3,554
+W07000092,Cardiff West,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,7.3,Majority nearer to a major town or city,0,555
+W07000093,Ceredigion Preseli,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,82.5,Majority further from a major town or city,100,556
+W07000094,Clwyd East,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,52.4,Majority further from a major town or city,58.9,557
+W07000095,Clwyd North,UIF,Intermediate urban: Majority further from a major town or city,Urban,Intermediate urban,24.6,Majority further from a major town or city,100,558
+W07000096,Dwyfor Meirionnydd,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,89.3,Majority further from a major town or city,100,559
+W07000097,Gower,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,31.5,Majority nearer to a major town or city,2.4,560
+W07000098,Llanelli,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,34.2,Majority nearer to a major town or city,27,561
+W07000099,Merthyr Tydfil and Aberdare,UUF,Urban: Majority further from a major town or city,Urban,Urban,8.7,Majority further from a major town or city,93.7,562
+W07000100,Mid and South Pembrokeshire,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,71.1,Majority further from a major town or city,100,563
+W07000101,Monmouthshire,RIN,Intermediate rural: Majority nearer to a major town or city,Rural,Intermediate rural,46.5,Majority nearer to a major town or city,42.7,564
+W07000102,Montgomeryshire and Glyndwr,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,63.9,Majority further from a major town or city,67.8,565
+W07000103,Neath and Swansea East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,15.9,Majority nearer to a major town or city,3.2,566
+W07000104,Newport East,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,11.3,Majority nearer to a major town or city,0,567
+W07000105,Newport West and Islwyn,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,8.8,Majority nearer to a major town or city,15.3,568
+W07000106,Pontypridd,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,13.7,Majority nearer to a major town or city,17.3,569
+W07000107,Rhondda and Ogmore,UUF,Urban: Majority further from a major town or city,Urban,Urban,15.7,Majority further from a major town or city,86.9,570
+W07000108,Swansea West,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,0,Majority nearer to a major town or city,0,571
+W07000109,Torfaen,UUN,Urban: Majority nearer to a major town or city,Urban,Urban,8.7,Majority nearer to a major town or city,0.4,572
+W07000110,Vale of Glamorgan,UIF,Intermediate urban: Majority further from a major town or city,Urban,Intermediate urban,27.1,Majority further from a major town or city,92.3,573
+W07000111,Wrexham,UIN,Intermediate urban: Majority nearer to a major town or city,Urban,Intermediate urban,33,Majority nearer to a major town or city,8.4,574
+W07000112,Ynys Môn,RMF,Majority rural: Majority further from a major town or city,Rural,Majority rural,82.5,Majority further from a major town or city,100,575

@@ -1,0 +1,11 @@
+﻿FORGE_type,Central damage cost (£/t),Damage cost sensitivity range (£/t): low,Damage cost sensitivity range (£/t): high
+Central London,92180,9612,328231
+Inner London,87005,9113,309690
+Outer London,53260,5849,188798
+Inner conurbation,34167,4003,120397
+Outer conurbation,22755,2900,79511
+Urban big,20114,2645,70045
+Urban large,17188,2363,59561
+Urban medium,13097,1968,44902
+Urban small,10618,1730,36020
+Rural,6403,1323,20916

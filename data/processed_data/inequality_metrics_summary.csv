@@ -1,0 +1,15 @@
+model_run,year,mean_emission_Q1,mean_emission_Q5,absolute_gap,q1_q5_ratio
+present_day_scenario,2023,3.867,1.921,1.946,2.013
+suitability_probability,2023,3.865,1.921,1.944,2.012
+present_day_scenario,2025,3.861,1.915,1.946,2.016
+suitability_probability,2025,3.852,1.915,1.937,2.012
+present_day_scenario,2030,3.834,1.886,1.948,2.033
+suitability_probability,2030,3.79,1.886,1.904,2.01
+present_day_scenario,2035,3.674,1.733,1.941,2.12
+suitability_probability,2035,3.504,1.752,1.753,2.001
+present_day_scenario,2040,3.322,1.514,1.808,2.194
+suitability_probability,2040,3.089,1.563,1.527,1.977
+present_day_scenario,2045,2.816,1.369,1.447,2.057
+suitability_probability,2045,2.7,1.395,1.305,1.936
+present_day_scenario,2050,2.554,1.327,1.227,1.924
+suitability_probability,2050,2.538,1.33,1.208,1.909
