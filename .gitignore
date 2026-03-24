@@ -51,4 +51,4 @@ rsconnect/
 
 # Plots (these can be generated) 
 
-plots/*.png
+*.png
