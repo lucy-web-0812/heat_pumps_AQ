@@ -47,3 +47,8 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+
+# Plots (these can be generated) 
+
+plots/misc_plots/*.png
