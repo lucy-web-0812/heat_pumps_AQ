@@ -348,13 +348,14 @@ ggplot(key_dates) +
 
 # How many of these nox conc 5 quintiles are in London? 
 
-a <- pc_combined_dataset |> 
+london_count_per_quintile <- pc_combined_dataset |> 
   left_join(london_pcs, join_by(PCON25NM == PCON24NM)) |> 
   mutate(london_flag = ifelse(is.na(london_flag), FALSE, TRUE)) |> 
-  group_by(label, nox_conc_quintile) |> 
+  group_by(london_flag, nox_conc_quintile) |> 
   summarise(count = n())
 
 
 
-ggplot(a) +
-  geom_col(aes(x = nox_conc_quintile, y = count, fill = label ))
+ggplot(london_count_per_quintile) +
+  geom_col(aes(x = nox_conc_quintile, y = count, fill = london_flag)) +
+  scale_fill_viridis_d(name = "London vs Rest of England and Wales")
