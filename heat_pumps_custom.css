@@ -29,7 +29,7 @@
   --amber:   #B4CEB3;          /* your BUS sage green — positive/highlight */
   --sky:     #6C568C;          /* dark purple from acton palette — data callouts */
   --page-bg: #FFFFFF;          /* white page background */
-  --serif: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
+  --serif: 'Inter', 'Times New Roman', Georgia, serif;
   --sans:  'Inter', 'Helvetica Neue', sans-serif;
 }
 
