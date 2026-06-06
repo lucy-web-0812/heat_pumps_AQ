@@ -5,6 +5,7 @@
 library(sf)
 library(tidyverse)
 library(plotly)
+library(patchwork)
 
 
 source("scripts/functions/removing_spiel_function.R")
@@ -117,7 +118,7 @@ write_csv(
 # Now use the updated damage costs and tie into the model run.... 
 
 nox_from_boiler <- 0.056 # 0.056 g kwh-1
-kw_hours_per_year <- 12000 # Taken from Ofgem
+kw_hours_per_year <- 11500 # Taken from Ofgem
 grams_to_tonnes_factor <- 10^-6
 
 
@@ -143,7 +144,14 @@ total_damage_costs <- model_results |>
   group_by(PCON25CD, model_run) |>
   mutate(
     cumulative_damage_cost_avoided = cumsum(total_damage_cost_avoided)
-  )
+  ) |>   
+  mutate(model_run_label = case_when(
+    model_run == "all_three_factors" ~ "BUS, ECO and Suitability", 
+    model_run == "BUS_only" ~ "Boiler Upgrade Scheme \n(non-means tested)", 
+    model_run == "ECO_only" ~ "Energy Company Obligation\n (means tested)", 
+    model_run == "present_day_scenario" ~ "Current trends continue", 
+    model_run == "suitability_probability" ~ "Suitability-driven uptake", 
+  ))
 
 
 
@@ -168,16 +176,175 @@ summary_by_quintile <- df_joined |>
             cumulative_damage_cost_avoided_by_quintile = sum(cumulative_damage_cost_avoided))
 
 
+ribbon_df <- summary_by_quintile |> 
+  filter(model_run %in% c("present_day_scenario", "suitability_probability")) |>
+  mutate(model_run_label = case_when(
+    model_run == "present_day_scenario" ~ "Current trends continue", 
+    model_run == "suitability_probability" ~ "Suitability-driven uptake", 
+  )) |> 
+  filter(new_ranking_quintile_deprivation %in% c("1", "5")) |> 
+  select(year, model_run, new_ranking_quintile_deprivation, cumulative_damage_cost_avoided_by_quintile, model_run_label) |>
+  pivot_wider(
+    names_from = new_ranking_quintile_deprivation,
+    values_from = cumulative_damage_cost_avoided_by_quintile
+  ) |>
+  rename(
+    least_deprived = `5`,
+    most_deprived= `1`
+  ) |> 
+  mutate(difference = least_deprived - most_deprived)
 
 
-summary_by_quintile |> 
+
+p1 <- summary_by_quintile |>
+  filter(model_run %in% c("present_day_scenario", "suitability_probability")) |>
+  filter(new_ranking_quintile_deprivation %in% c("1", "5")) |>
   ggplot() +
-  geom_line(aes(x = year, y = cumulative_damage_cost_avoided_by_quintile, colour = new_ranking_quintile_deprivation, group = new_ranking_quintile_deprivation)) +
-  facet_wrap(~model_run) +
-  scale_x_date(limits = as_date(c("2025-01-01", "2040-01-01"))) +
-  scale_y_continuous(limits = c(0,500000000)) +
-  scico::scale_colour_scico(palette = "acton") +
-  theme_minimal()
+  geom_ribbon(data = ribbon_df, aes(x = year, ymin = least_deprived/ 1000000, ymax = most_deprived/ 1000000), fill = "grey", alpha = 0.2) +
+  geom_line(
+    aes(
+      x = year,
+      y = cumulative_damage_cost_avoided_by_quintile / 1000000,
+      colour = factor(new_ranking_quintile_deprivation),
+      group = new_ranking_quintile_deprivation
+    ),
+    linewidth = 1.2
+  ) +
+  facet_wrap(~ model_run) +
+  scale_y_continuous(name = "Cumulative damage \ncost avoided (£Millions)", expand = c(0, 0)) +
+  scale_colour_manual(
+    name = "Relative Deprivation Quintile",
+    values = c("#DCA1C2", "#260C3F"),
+    labels = c(`1` = "1 Most Deprived", `5` = "5 - Least Deprived")
+  ) +
+  theme_minimal(18) +
+  theme(
+    legend.position = "top",
+    legend.justification.top = "left",
+    legend.text = element_text(size = 18),
+    axis.line = element_line()
+  ) +
+  guides(colour = guide_legend(override.aes = list(size = 4, linewidth = 2)))
+
+
+p2 <- ggplot(ribbon_df) +
+  geom_area(
+    aes(
+      x = year,
+      y = difference/1000000,
+      colour = model_run,
+      fill = model_run
+    ),
+    fill = "grey",
+    alpha = 0.2, 
+    linewidth = 1.2
+  ) +
+  scale_colour_manual(values = c("#7F7B82", "#DC6BAD")) +
+  scale_fill_manual(values = c("#7F7B82", "#DC6BAD")) +
+  scale_x_date(name = "Year") +
+  scale_y_continuous(name = "Difference in damage \ncost avoided (£Millions)") +
+  facet_wrap( ~ model_run) +
+  ggtitle("Difference between quintiles (Q5 - Q1)") +
+  theme_minimal(18) +
+  theme(legend.position = "none", 
+        axis.line = element_line()) 
+
+
+
+
+p1 /p5 
+
+
+ggsave("plots/misc_plots/difference_between_quintiles.png")
+
+
+
+# AND Now by NOx conc 
+
+
+summary_by_quintile_nox <- df_joined |> 
+  group_by(model_run,nox_conc_quintile, year) |> 
+  summarise(total_dca_by_quintile = sum(total_damage_cost_avoided), 
+            cumulative_damage_cost_avoided_by_quintile = sum(cumulative_damage_cost_avoided))
+
+
+ribbon_df_nox <- summary_by_quintile_nox |> 
+  filter(model_run %in% c("present_day_scenario", "suitability_probability")) |>
+  filter(nox_conc_quintile %in% c("1", "5")) |> 
+  select(year, model_run, nox_conc_quintile, cumulative_damage_cost_avoided_by_quintile) |>
+  pivot_wider(
+    names_from = nox_conc_quintile,
+    values_from = cumulative_damage_cost_avoided_by_quintile
+  ) |>
+  rename(
+    most_polluted = `5`,
+    least_polluted = `1`
+  ) |> 
+  mutate(difference = most_polluted - least_polluted )
+
+
+
+p5 <- summary_by_quintile_nox |>
+  filter(model_run %in% c("present_day_scenario", "suitability_probability")) |>
+  filter(nox_conc_quintile %in% c("1", "5")) |>
+  ggplot() +
+  geom_ribbon(data = ribbon_df_nox, aes(x = year, ymin = most_polluted/ 1000000, ymax = least_polluted/ 1000000), fill = "grey", alpha = 0.2) +
+  geom_line(
+    aes(
+      x = year,
+      y = cumulative_damage_cost_avoided_by_quintile / 1000000,
+      colour = factor(nox_conc_quintile),
+      group = nox_conc_quintile
+    ),
+    linewidth = 1.2
+  ) +
+  facet_wrap(~ model_run) +
+  scale_x_date(name = "Year") +
+  scale_y_continuous(name = "Cumulative damage cost \navoided (£Millions)", expand = c(0, 0), limits = c(0,1600)) +
+  scale_colour_manual(
+    name = "NOx Concentration Quintile",
+    values = c("#607345FF", "#6C568CFF"),
+    labels = c(`1` = "1 Least polluted", `5` = "5 - Most polluted")
+  ) +
+  theme_minimal(18) +
+  theme(
+    legend.position = "top",
+    legend.justification.top = "left",
+    legend.text = element_text(size = 18),
+    axis.line = element_line()
+  ) +
+  guides(colour = guide_legend(override.aes = list(size = 4, linewidth = 2)))
+
+
+p6 <- ggplot(ribbon_df_nox) +
+  geom_area(
+    aes(
+      x = year,
+      y = difference/1000000,
+      colour = model_run,
+      fill = model_run
+    ),
+    fill = "grey",
+    alpha = 0.2, 
+    linewidth = 1.2
+  ) +
+  scale_colour_manual(values = c("#7F7B82", "#DC6BAD")) +
+  scale_fill_manual(values = c("#7F7B82", "#DC6BAD")) +
+  scale_x_date(name = "Year") +
+  scale_y_continuous(name = "Difference in damage cost \navoided (£Millions)") +
+  facet_wrap( ~ model_run) +
+  ggtitle("Difference between quintiles (Q5 - Q1)") +
+  theme_minimal(18) +
+  theme(legend.position = "none", 
+        axis.line = element_line()) 
+
+
+
+
+p5 /p6
+
+
+
 
 
 
@@ -208,12 +375,15 @@ ggplot(key_dates) +
       x = factor(new_ranking_quintile_deprivation),
       y = cumulative_damage_cost_avoided_by_quintile / 1000000,
       label = paste0("£", round(cumulative_damage_cost_avoided_by_quintile / 1000000, 0), "M"), 
-      hjust = -0.2
-    )
+      hjust = ifelse(cumulative_damage_cost_avoided_by_quintile / 1000000 > 600, 1.1, -0.1),
+      colour = ifelse(cumulative_damage_cost_avoided_by_quintile / 1000000 > 600 & new_ranking_quintile_deprivation %in% c(1,2,3), "white", "black"),
+    ), 
+    size = 6
   ) +
   facet_grid(rows = vars(year), cols = vars(model_run), scales = "free_x",   labeller = labeller(model_run = nice_labels, year = c("2030-01-01" = "2030", "2040-01-01"= "2040", "2050-01-01"="2050")),) +
   #facet_wrap(~model_run) +
   scico::scale_fill_scico_d(palette = "acton", name = "Relative Deprivation Quintile") +
+  scale_colour_identity()+
   coord_flip() +
   scale_y_continuous(limits = c(0,1300), name = "Damage Cost Avoided (£ Millions) since 2025") +
   scale_x_discrete(name = "") +
@@ -226,7 +396,13 @@ ggplot(key_dates) +
         legend.justification = "left", 
         legend.text = element_text(size = 18),
         legend.title = element_text(size = 18),
-        axis.text = element_text(size = 12))
+        axis.text = element_text(size = 12), 
+        axis.title = element_text(size = 16))
+
+
+
+
+ggsave("plots/paper_plots/deprivation_damage_costs.png", width = 14.209302, height = 12.662791, dpi = 600)
 
 
 
@@ -254,25 +430,11 @@ ggplot(key_dates) +
         legend.justification = "left", 
         legend.text = element_text(size = 18),
         legend.title = element_text(size = 18),
-        axis.text = element_text(size = 12))
+        axis.text = element_text(size = 12), 
+        axis.title = element_text(size = 16))
 
 
 # Lets do a plot of the constituency maps.... 
-
-
-spatial_damage_cost <- total_damage_costs |> 
-  filter(year %in% c("2040-01-01")) |>  #, "2050-01-01")) |> 
-  left_join(pc_boundaries, join_by(PCON25CD == PCON24CD))
-
-ggplotly(
-  ggplot(spatial_damage_cost) +
-    geom_sf(aes(fill = cumulative_damage_cost_avoided/1000000, geometry = geometry), colour = NA) +
-    facet_wrap(~model_run, nrow = 2) +
-    scale_fill_gradient(low = "purple", high = "white")+
-    ggthemes::theme_map() +
-    theme(legend.position = "top")
-)
-
 
 
 # And do for NOX
@@ -285,14 +447,32 @@ summary_by_quintile <- df_joined |>
 
 
 
+ggplot(summary_by_quintile) +
+  geom_col(aes(x = year, y = total_dca_by_quintile, fill = factor(nox_conc_quintile) ), position = "fill") +
+  scale_fill_paletteer_d("calecopal::lupinus", name = "NOx Concentration Quintile", direction = -1) +
+  facet_wrap(~model_run)
 
-summary_by_quintile |> 
+
+
+
+summary_by_quintile |>
   ggplot() +
-  geom_line(aes(x = year, y = cumulative_damage_cost_avoided_by_quintile, colour = nox_conc_quintile, group = nox_conc_quintile)) +
-  facet_wrap(~model_run) +
-  scale_x_date(limits = as_date(c("2025-01-01", "2040-01-01"))) +
-  scale_y_continuous(limits = c(0,500000000)) +
-  scale_colour_viridis_c() +
+  geom_area(
+    aes(
+      x = year,
+      y = cumulative_damage_cost_avoided_by_quintile,
+      colour = factor(nox_conc_quintile),
+      fill = factor(nox_conc_quintile),
+      group = nox_conc_quintile
+    ),
+    linewidth = 1,
+    alpha = 0.6
+  ) +
+  facet_wrap( ~ model_run) +
+  scale_x_date(limits = as_date(c("2025-01-01", "2050-01-01"))) +
+  scale_y_continuous(limits = c(0, 6000000000)) +
+  scale_colour_paletteer_d("calecopal::lupinus", name = "NOx Concentration Quintile", direction = -1) +
+  scale_fill_paletteer_d("calecopal::lupinus", name = "NOx Concentration Quintile", direction = -1) +
   theme_minimal()
 
 
@@ -324,12 +504,15 @@ ggplot(key_dates) +
       x = factor(nox_conc_quintile),
       y = cumulative_damage_cost_avoided_by_quintile / 1000000,
       label = paste0("£", round(cumulative_damage_cost_avoided_by_quintile / 1000000, 0), "M"), 
-      hjust = -0.2
-    )
+      hjust = ifelse(cumulative_damage_cost_avoided_by_quintile / 1000000 > 600, 1.1, -0.1),
+      colour = ifelse(cumulative_damage_cost_avoided_by_quintile / 1000000 > 600 & nox_conc_quintile %in% c(5,4,2,1), "white", "black"),
+    ), 
+    size = 6
   ) +
   facet_grid(rows = vars(year), cols = vars(model_run), scales = "free_x",   labeller = labeller(model_run = nice_labels, year = c("2030-01-01" = "2030", "2040-01-01"= "2040", "2050-01-01"="2050")),) +
   #facet_wrap(~model_run) +
-  scale_fill_viridis_d(name = "NOx Concentration Quintile") +
+  scale_fill_paletteer_d("calecopal::lupinus", name = "NOx Concentration Quintile", direction = -1) +
+  scale_colour_identity() +
   coord_flip() +
   scale_y_continuous(limits = c(0,1750), name = "Damage Cost Avoided (£ Millions) since 2025") +
   scale_x_discrete(name = "") +
@@ -342,7 +525,12 @@ ggplot(key_dates) +
         legend.justification = "left", 
         legend.text = element_text(size = 18),
         legend.title = element_text(size = 18),
-        axis.text = element_text(size = 12))
+        axis.text = element_text(size = 12), 
+        axis.title = element_text(size = 16))
+
+
+ggsave("plots/paper_plots/nox_quintile_damage_costs.png", width = 14.209302, height = 10.662791, dpi = 600)
+
 
 
 

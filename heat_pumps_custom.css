@@ -1,0 +1,299 @@
+/* ═══════════════════════════════════════════════════════════════════
+   Heat Pump Inequalities — Scrollytelling CSS
+   Design direction: data journalism editorial — think FT/Guardian
+   environmental reporting. Warm newsprint background, terracotta
+   accent (evokes heat + urgency), deep green for the "right" path.
+   No gradient banners. Type drives the hero.
+
+   Palette:
+   --paper:      #FAFAF7   Warm off-white (newsprint)
+   --ink:        #1A1A1A   Near-black body text
+   --muted:      #5C5C5C   Secondary / captions
+   --rule:       #D8D4CC   Warm grey rule
+   --heat:       #C45E2A   Terracotta / current-trend accent
+   --clean:      #2E5E4E   Deep forest green / suitability accent
+   --amber:      #E8A317   Warning amber
+   --sky:        #2166AC   Data blue
+   --page-bg:    #F0EDE6   Slightly warmer than paper
+   ═══════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap');
+
+:root {
+  --paper:   #FFFFFF;          /* white — matches figure backgrounds */
+  --ink:     #1A1A1A;          /* near-black body text */
+  --muted:   #6F6B73;          /* your "current trends" grey — doubles as muted text */
+  --rule:    #E0DDE6;          /* very light purple-tinted rule */
+  --heat:    #DC6BAD;          /* your suitability-driven pink — primary accent */
+  --clean:   #6969B3;          /* your ECO purple — secondary accent */
+  --amber:   #B4CEB3;          /* your BUS sage green — positive/highlight */
+  --sky:     #6C568C;          /* dark purple from acton palette — data callouts */
+  --page-bg: #FFFFFF;          /* white page background */
+  --serif: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
+  --sans:  'Inter', 'Helvetica Neue', sans-serif;
+}
+
+/* ── Base ───────────────────────────────────────────────────────── */
+body {
+  font-family: var(--serif);
+  background: var(--page-bg);
+  color: var(--ink);
+  font-size: 1.1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Hero ───────────────────────────────────────────────────────── */
+/* Editorial typographic hero — no gradients, no backgrounds */
+.hero-banner {
+  background: var(--paper);
+  padding: 3.5rem 4rem 2.5rem;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+/* Thin terracotta dateline rule above heading */
+.hero-banner::before {
+  content: '';
+  display: block;
+  width: 3.5rem;
+  height: 3px;
+  background: var(--heat);
+  margin-bottom: 1.5rem;
+}
+
+/* Dateline label */
+.hero-dateline {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--heat);
+  margin-bottom: 0.9rem;
+}
+
+/* Main display heading — Cormorant at scale, like a newspaper splash */
+.hero-banner h1 {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  line-height: 1.1;
+  color: var(--ink);
+  max-width: 820px;
+  margin-bottom: 1.2rem;
+}
+
+/* Deck / standfirst */
+.hero-deck {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--muted);
+  max-width: 640px;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+/* Byline */
+.hero-byline {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+/* ── Part headers ───────────────────────────────────────────────── */
+.part-header {
+  background: var(--paper);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 0.55rem 4rem;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--heat);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* ── Closeread ──────────────────────────────────────────────────── */
+.cr-section { background: transparent; }
+
+.cr-narrative {
+  background: var(--paper) !important;
+  border-left: 3px solid var(--heat) !important;
+  border-radius: 2px !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  padding: 1.7rem 1.6rem !important;
+}
+
+.cr-narrative p {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  line-height: 1.72;
+  color: var(--ink);
+}
+
+.cr-narrative h3 {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--heat);
+  margin: 1.2rem 0 0.4rem;
+}
+
+/* Bold emphasis — amber highlight for key stats */
+.cr-narrative strong {
+  color: var(--ink);
+  font-weight: 700;
+  background: rgba(232,163,23,0.18);
+  padding: 0 3px;
+  border-radius: 2px;
+}
+
+.cr-sticky {
+  background: var(--paper) !important;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.07);
+  padding: 0.5rem;
+  overflow: hidden;
+}
+
+/* ── Pull-quote blocks ─────────────────────────────────────────── */
+.pullquote {
+  border-left: 4px solid var(--heat);
+  padding: 0.8rem 1.2rem;
+  margin: 1rem 0;
+  background: rgba(196,94,42,0.06);
+  border-radius: 0 4px 4px 0;
+}
+.pullquote p {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* ── Scenario legend chips ─────────────────────────────────────── */
+.legend-chip {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+.chip-current { background: #D0D0D0; color: #333; }
+.chip-suit    { background: rgba(46,94,78,0.18); color: var(--clean); }
+
+/* ── Stat callout ──────────────────────────────────────────────── */
+.stat-block {
+  text-align: center;
+  padding: 1.2rem;
+}
+.stat-block .stat-number {
+  font-family: var(--serif);
+  font-size: 4.5rem;
+  font-weight: 700;
+  color: var(--heat);
+  line-height: 1;
+  display: block;
+}
+.stat-block .stat-label {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-top: 0.4rem;
+}
+
+/* ── Closing section ────────────────────────────────────────────── */
+.closing-banner {
+  background: var(--paper);
+  border-top: 3px solid var(--heat);
+  padding: 3.5rem 4rem 3rem;
+  margin-top: 2rem;
+  text-align: left;
+}
+.closing-banner h2 {
+  font-family: var(--serif);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.6rem;
+}
+.closing-banner p {
+  font-family: var(--serif);
+  /*font-style: italic;*/
+  color: var(--muted);
+  margin-bottom: 0.3rem;
+}
+.closing-banner a {
+  color: var(--heat);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  text-decoration: none;
+  border-bottom: 1px solid var(--heat);
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--page-bg); }
+::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--heat); }
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero-banner { padding: 2.5rem 1.8rem 2rem; }
+  .part-header { padding: 0.5rem 1.5rem; }
+  .closing-banner { padding: 2.5rem 1.8rem; }
+}
+
+/* ── Plotly chart tweaks ────────────────────────────────────────── */
+.plotly-chart { width: 100%; min-height: 380px; }
+.chart-caption {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+  padding: 0 0.5rem;
+  line-height: 1.4;
+}
+
+
+.three-col {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 2rem 4rem;
+}
+
+.col-left,
+.col-right {
+  position: sticky;
+  top: 4rem;           /* how far from the top of the viewport */
+}
+
+.col-middle {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  padding: 0 0.5rem;
+}
+
+.col-middle p {
+  margin-bottom: 2.5rem;  /* space between paragraphs — controls how long
+                             the plots stay visible while you scroll */
+}

@@ -6,7 +6,9 @@ library(readxl)
 
 # LAST UPDATED....
 
-# 19.03.2026 with the January BUS and February ECO statistics
+# 05.05.2026 with the March BUS and April HEE - BUT THIS IS ACTUALLY ONLY UNTIL DECEMEBER! 
+
+# 19.03.2026 with the January BUS and April ECO statistics
 
 
 source("scripts/functions/removing_spiel_function.R")
@@ -15,7 +17,7 @@ source("scripts/functions/removing_spiel_function.R")
 # Boiler Upgrade Scheme Statistics
 
 bus_per_pc <- spiel_remover(
-  "data/raw_data/BUS_stats/Boiler_Upgrade_Scheme_BUS_Statistics_January_2026.xlsx",
+  "data/raw_data/BUS_stats/Boiler_Upgrade_Scheme_BUS_Statistics_March_2026.xlsx",
   sheet = "Q1.3"
 ) |>
   filter(is.na(westminster_parliamentary_constituency) == FALSE) |>
@@ -44,7 +46,7 @@ write_csv(bus_per_pc, "data/processed_data/bus_per_pc.csv")
 
 # Energy Company Obligation Statistics
 
-eco_per_pc_raw  <- spiel_remover("data/raw_data/ECO_stats/Headline_HEE_tables_February_2026.xlsx",
+eco_per_pc_raw  <- spiel_remover("data/raw_data/ECO_stats/Headline_HEE_tables_April_2026.xlsx",
                                  sheet = "T3.7")
 
 

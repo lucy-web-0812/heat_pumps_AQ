@@ -3,7 +3,8 @@ library(tidyverse)
 library(sf)
 library(ineq)
 library(ggridges)
-
+library(paletteer)
+library(patchwork)
 
 
 # ==============================================================================
@@ -25,7 +26,7 @@ parliamentary_boundaries <- read_sf("data/raw_data/parliamentary_constituencies/
 
 # Assumed nox (grams) per boiler per year
 
-nox_per_boiler_per_year <- 672 #(assuming 672g NOx per boiler per year)
+nox_per_boiler_per_year <- 644 #(assuming 644g NOx per boiler per year)
 
 
 # And some labels for later
@@ -74,7 +75,7 @@ data_joined <- model_results_per_pc |>
     # Updated total emissions
     updated_total_emissions_tonnes = total_baseline_emissions_tonnes * (1 - reduction_fraction),
 
-    # Emission savings spread uniformly (for comparison only)
+    # Emission savings spread uniformly
     emission_saving_uniform_per_km2 = emission_saving_total_tonnes / area_km2
   ) |>
   dplyr::select(
@@ -174,6 +175,305 @@ data_joined |>
 
 
 ggsave("plots/misc_plots/baseline_nox_inequality.png", width = 10, height = 6)
+
+
+
+
+
+
+
+
+
+
+# Alternative way of plotting ------------------------------------------------------------
+# ==============================================================================
+# 6. INEQUALITY METRICS
+# ==============================================================================
+
+# --- 6.1 Constituency-level summary by quintile ---
+# Calculate mean emission intensity per deprivation quintile, year and scenario
+
+quintile_means <- data_joined |>
+  filter(model_run %in% c("present_day_scenario", "suitability_probability")) |>
+  filter(new_ranking_quintile_deprivation %in% c("1", "5")) |>
+  group_by(year, model_run, new_ranking_quintile_deprivation) |>
+  summarise(
+    mean_emission  = mean(updated_exposure_per_km2, na.rm = TRUE),
+    median_emission = median(updated_exposure_per_km2, na.rm = TRUE),
+    p25 = quantile(updated_exposure_per_km2, 0.25),
+    p75 = quantile(updated_exposure_per_km2, 0.75),
+    .groups = "drop"
+  )
+
+# ==============================================================================
+# PREPARE DATA
+# ==============================================================================
+
+scenario_colours <- c(
+  "Current trends persist"    = "#6F6B73",
+  "Suitability-driven uptake" = "#D95AA3"
+)
+
+# --- Baseline normalisation for % reduction plot ---
+quintile_means_norm <- quintile_means |>
+  group_by(model_run, new_ranking_quintile_deprivation) |>
+  mutate(
+    baseline_median = median_emission[year == as.Date("2025-01-01")],
+    baseline_p25    = p25[year == as.Date("2025-01-01")],
+    baseline_p75    = p75[year == as.Date("2025-01-01")],
+    pct_median = (median_emission - baseline_median) / baseline_median * 100,
+    pct_p25    = (p25 - baseline_p25) / baseline_p25 * 100,
+    pct_p75    = (p75 - baseline_p75) / baseline_p75 * 100
+  ) |>
+  ungroup() |>
+  mutate(
+    model_run = recode(model_run,
+                       "present_day_scenario"    = "Current trends persist",
+                       "suitability_probability" = "Suitability-driven uptake"
+    ),
+    deprivation = recode(new_ranking_quintile_deprivation,
+                         "1" = "Q1 (most deprived)",
+                         "5" = "Q5 (least deprived)"
+    )
+  )
+
+# --- Absolute and relative gap ---
+# Pivot wide so Q1 and Q5 are columns, then compute gap metrics
+gap_metrics <- quintile_means |>
+  mutate(
+    model_run = recode(model_run,
+                       "present_day_scenario"    = "Current trends persist",
+                       "suitability_probability" = "Suitability-driven uptake"
+    )
+  ) |>
+  pivot_wider(
+    names_from  = new_ranking_quintile_deprivation,
+    values_from = c(mean_emission, median_emission, p25, p75),
+    names_sep   = "_Q"
+  ) |>
+  mutate(
+    # Absolute gap: Q1 (most deprived) minus Q5 (least deprived)
+    abs_median = median_emission_Q1 - median_emission_Q5,
+    abs_p25    = p25_Q1 - p25_Q5,
+    abs_p75    = p75_Q1 - p75_Q5,
+    # Relative gap: ratio of Q1 to Q5
+    rel_median = median_emission_Q1 / median_emission_Q5,
+    rel_p25    = p25_Q1 / p25_Q5,
+    rel_p75    = p75_Q1 / p75_Q5
+  )
+
+# ==============================================================================
+# SHARED THEME
+# ==============================================================================
+
+theme_inequality <- function() {
+  theme_minimal(base_size = 14) +
+    theme(
+      legend.position      = "bottom",
+      legend.justification = "left",
+      legend.key.width     = unit(2.5, "cm"),
+      axis.line            = element_line(colour = "black", linewidth = 0.3),
+      axis.ticks           = element_line(colour = "black")
+    )
+}
+
+# ==============================================================================
+# PLOT Z: Absolute reduction in emission intensity from 2025 baseline
+# ==============================================================================
+plot_abs <- ggplot(
+  quintile_means_norm,
+  aes(colour = model_run, fill = model_run, linetype = deprivation)
+) +
+  geom_line(aes(x= year, y = median_emission), linewidth = 1.2) +
+  scale_colour_manual(name = "", values = scenario_colours) +
+  scale_fill_manual(name = "", values = scenario_colours) +
+  scale_linetype_manual(
+    name   = "",
+    values = c(
+      "Q1 (most deprived)"  = "dashed",
+      "Q5 (least deprived)" = "solid"
+    ),
+    labels = c(
+      "Q1 (most deprived)"  = expression("Q"[1]~"(most deprived)"),
+      "Q5 (least deprived)" = expression("Q"[5]~"(least deprived)")
+    )) +
+  scale_x_date(
+    name   = "Year",
+    guide  = guide_axis(minor.ticks = TRUE),
+    limits = c(as.Date("2025-01-01"), NA)
+  ) +
+  scale_y_continuous(
+    name   = expression("Median emissions intensity (tonnes km"^{-2}*")"),
+    guide  = guide_axis(minor.ticks = TRUE),
+    expand = expansion(mult = 0.2)
+  )  +
+  guides(
+    colour   = guide_legend(nrow = 2, byrow = TRUE),
+    fill     = guide_legend(nrow = 2, byrow = TRUE),
+    linetype = guide_legend(nrow = 2, byrow = TRUE)
+  ) +
+  theme_inequality()
+
+
+# ==============================================================================
+# PLOT A: % reduction in emission intensity from 2025 baseline
+# ==============================================================================
+
+plot_pct <- ggplot(
+  quintile_means_norm,
+  aes(colour = model_run, fill = model_run, linetype = deprivation)
+) +
+  # geom_ribbon(
+  #   aes(x = year, ymin = pct_p25, ymax = pct_p75),
+  #   alpha = 0.15, colour = NA
+  # ) +
+  geom_line(aes(x = year, y = pct_median), linewidth = 1.2) +
+  scale_colour_manual(name = "", values = scenario_colours) +
+  scale_fill_manual(name = "", values = scenario_colours) +
+  scale_linetype_manual(
+    name   = "",
+    values = c(
+      "Q1 (most deprived)"  = "dashed",
+      "Q5 (least deprived)" = "solid"
+    ),
+    labels = c(
+      "Q1 (most deprived)"  = expression("Q"[1]~"(most deprived)"),
+      "Q5 (least deprived)" = expression("Q"[5]~"(least deprived)")
+    )
+  ) +
+  scale_x_date(
+    name   = "Year",
+    guide  = guide_axis(minor.ticks = TRUE),
+    limits = c(as.Date("2025-01-01"), NA)
+  ) +
+  scale_y_continuous(
+    name   = "Reduction in emission intensity (%)",
+    labels = scales::label_number(suffix = "%"),
+    guide  = guide_axis(minor.ticks = TRUE),
+    expand = expansion(mult = 0.2)
+  ) +
+  guides(
+    colour   = guide_legend(nrow = 2, byrow = TRUE),
+    fill     = guide_legend(nrow = 2, byrow = TRUE),
+    linetype = guide_legend(nrow = 2, byrow = TRUE)
+  ) +
+  theme_inequality()
+
+# ==============================================================================
+# PLOT B: Absolute gap (Q1 - Q5)
+# ==============================================================================
+
+plot_absolute <- ggplot(gap_metrics, aes(colour = model_run, fill = model_run)) +
+  # geom_ribbon(
+  #   aes(x = year, ymin = abs_p25, ymax = abs_p75),
+  #   alpha = 0.15, colour = NA
+  # ) +
+  geom_line(aes(x = year, y = abs_median), linewidth = 1.2) +
+  geom_hline(yintercept = 0, linetype = "dotted", colour = "grey50") +
+  scale_colour_manual(name = "", values = scenario_colours) +
+  scale_fill_manual(name = "", values = scenario_colours) +
+  scale_x_date(
+    name   = "Year",
+    guide  = guide_axis(minor.ticks = TRUE),
+    limits = c(as.Date("2025-01-01"), NA)
+  ) +
+  scale_y_continuous(
+    name  = expression("Absolute gap (Q1 − Q5) (tonnes km"^{-2}*")"),
+    guide = guide_axis(minor.ticks = TRUE),
+    expand = expansion(mult = 0.1)
+  ) +
+  guides(colour = "none", fill = "none")+
+  theme_inequality() 
+
+# ==============================================================================
+# PLOT C: Relative gap (Q1 / Q5 ratio)
+# ==============================================================================
+
+plot_relative <- ggplot(gap_metrics, aes(colour = model_run, fill = model_run)) +
+  # geom_ribbon(
+  #   aes(x = year, ymin = rel_p25, ymax = rel_p75),
+  #   alpha = 0.15, colour = NA
+  # ) +
+  geom_line(aes(x = year, y = rel_median), linewidth = 1.2) +
+  geom_hline(yintercept = 1, linetype = "dotted", colour = "grey50") +
+  scale_colour_manual(name = "", values = scenario_colours, ) +
+  scale_fill_manual(name = "", values = scenario_colours) +
+  scale_x_date(
+    name   = "Year",
+    guide  = guide_axis(minor.ticks = TRUE),
+    limits = c(as.Date("2025-01-01"), NA)
+  ) +
+  scale_y_continuous(
+    name  = "Relative gap (Q1 / Q5 ratio)",
+    guide = guide_axis(minor.ticks = TRUE),
+    expand = expansion(mult = 0.1)
+  ) +
+  guides(colour = "none", fill = "none")+
+  theme_inequality()
+
+# ==============================================================================
+# COMBINE
+# ==============================================================================
+
+library(patchwork)
+
+plot_abs + plot_pct + plot_absolute + plot_relative +
+  plot_annotation(tag_levels = "A") +
+  plot_layout(guides = "collect") &
+  theme(
+    legend.position      = "bottom",
+    plot.tag.position    = c(0, 1)
+  )
+
+ggsave(
+  "plots/paper_plots/inequality_figure.png", dpi = 600
+)
+
+
+
+
+(plot_pct + plot_absolute + plot_relative + guide_area()) +
+  plot_layout(
+    design = "
+AB
+CL
+",
+    guides = "collect") +
+  plot_annotation(tag_levels = "A") &
+  theme(
+    legend.position      = "right",
+    legend.justification = "left",
+    legend.direction = "horizontal",
+    plot.tag.position    = c(0, 1)
+  )+
+  theme(
+    legend.key.width = unit(2.5, "cm"),
+    legend.spacing.y = unit(0.5, "cm")
+  )
+
+
+
+ggsave(
+  "plots/paper_plots/inequality_figure.png", dpi = 600
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # ==============================================================================
 # 4. FUTURE PROJECTIONS (2025-2050)
@@ -447,6 +747,33 @@ inequality_metrics <- quintile_means |>
 
 
 
+inequality_metrics_norm <- inequality_metrics |>
+  filter(model_run %in% c("present_day_scenario", "suitability_probability")) |>
+  group_by(model_run) |>
+  mutate(
+    # 2023 baselines
+    q1_2023 = Q1[year == as.Date("2023-01-01")], 
+    q5_2023 = Q5[year == as.Date("2023-01-01")]
+  ) |>
+  mutate(q1_norm = (Q1 - q1_2023)/ q1_2023 * 100 , 
+         q5_norm = (Q5 - q5_2023)/ q5_2023 * 100) |> 
+  ungroup() |> 
+  pivot_longer(cols = c(q1_norm, q5_norm), names_to = "q_norm", values_to = "pct_red")
+
+
+
+inequality_metrics_norm |> 
+  ggplot(aes(x = year, y = pct_red, colour = interaction(model_run, q_norm))) +
+  geom_point()
+
+
+
+
+
+
+
+
+
 # Plot Absolute gap over time
 inequality_metrics |>
   filter(model_run %in% c("present_day_scenario", "suitability_probability")) |>
@@ -537,7 +864,7 @@ inequality_metrics |>
     subtitle = "Most deprived (Q1) compared to least deprived (Q5)",
     x = "Year"
   ) +
-  theme_minimal(base_size = 24) +
+  theme_minimal(base_size = 12) +
   theme(legend.position = "top",
         legend.justification = "left", 
         legend.text = element_text(size = 16),
@@ -548,6 +875,77 @@ guides(colour=guide_legend(nrow=2,byrow=TRUE))
 
 ggsave("plots/poster_plots/absolute_and_rel_inequality.png", width = 23.79, height = 31.32, units = "cm")
 ggsave("plots/paper_plots/absolute_and_rel_inequality.png", width = 8.79, height = 12.32)
+
+
+# And a version with just the present data and suitability 
+
+
+inequality_metrics |>
+  filter(model_run %in% c("present_day_scenario", "suitability_probability")) |>
+  dplyr::select(year,gini, absolute_gap, q1_q5_ratio, model_run) |>
+  pivot_longer(cols = c(absolute_gap, q1_q5_ratio), 
+               names_to = "metric", values_to = "value") |>
+  ggplot(aes(x = year, y = value, colour = model_run)) +
+  geom_line(linewidth = 1.2) +
+  geom_point() +
+  scale_x_date(name = "Year", guide = guide_axis(minor.ticks = TRUE)) +
+  scale_colour_manual(
+    name = "Model Run",
+    values = c("present_day_scenario" = "#7F7B82", "suitability_probability" = "#DC6BAD","ECO_only"= "#6969B3", "BUS_only" = "#B4CEB3"),
+    labels = c("present_day_scenario" = "Current Trends Persist",
+               "suitability_probability" ="Suitability Probability", 
+               "ECO_only" = "Energy Company Obligation",
+               "BUS_only" ="Boiler Upgrade Scheme"
+    )) +
+  facet_wrap(~metric, scales = "free_y", ncol = 2, labeller = labeller(
+    metric = c( 
+      absolute_gap = "Absolute gap Q1 - Q5 (tonnes/km²)",
+      q1_q5_ratio  = "Relative gap (Q1 / Q5 ratio)"
+    )
+  )) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "top",
+        legend.justification = "left", 
+        legend.title.position = "top",
+        legend.text = element_text(size = 12),
+        axis.line = element_line(), 
+        axis.ticks = element_line(),
+        axis.title.y = element_blank(), 
+        panel.background = element_blank(),
+        plot.background = element_blank())
+  
+ggsave("plots/paper_plots/absolute_and_rel_inequality_two_scenarios.png", width = 20, height = 12, units = "cm", dpi = 600)
+
+
+
+
+# Normalised to emissions pct
+
+
+df_norm <- inequality_metrics |>
+  filter(model_run %in% c("present_day_scenario", "suitability_probability")) |>
+  group_by(model_run) |>
+  mutate(
+    Q1_pct = (Q1 / Q1[year == min(year)]) * 100,
+    Q5_pct = (Q5 / Q5[year == min(year)]) * 100
+  )  |>
+  ungroup()
+
+
+
+
+ggplot(df_norm, aes(x = year)) +
+  geom_line(aes(y = Q1_pct, colour = "Most deprived"), linewidth = 1.2) +
+  geom_line(aes(y = Q5_pct, colour = "Least deprived"), linewidth = 1.2)  +
+  facet_wrap(~model_run)
+
+
+
+
+
+
+
+
 
 
 # Now also if getting error bars....
@@ -750,48 +1148,5 @@ ggplot(future_inequality,
 
 
 
-# And lets have a look at some outlier cases
 
-# ==============================================================================
-# 7. OUTLIER CASES 
-# ==============================================================================
-
-
-# Westminster has the highest NOx emissions in tonnes km-2 
-
-
-
-
-
-# Lets just look at all of these patterns for all quintiles....
-
-
-
-data_joined |> 
-  group_by(new_ranking_quintile_deprivation, model_run, year) |> 
-  summarise(
-    total_heat_pumps = sum(cumulative_heat_pump_number),
-    .groups = "drop"
-  ) |> 
-  group_by(model_run, year) |> 
-  mutate(
-    share_heat_pumps = total_heat_pumps / sum(total_heat_pumps)
-  ) |> 
-  ggplot(
-    aes(
-      x = year,
-      y = share_heat_pumps,
-      colour = factor(new_ranking_quintile_deprivation),
-      group = new_ranking_quintile_deprivation
-    )
-  ) +
-  geom_point() +
-  geom_line() +
-  scale_colour_viridis_d(option = "C", end = 0.95) +
-  facet_wrap(~model_run) +
-  theme_minimal(base_size = 14) +
-  theme(
-    axis.line = element_line(),
-    legend.position = "top"
-  )
 

@@ -191,7 +191,7 @@ model_runs <- unique(ordered_with_relative_probabilities$model_run)
 results <- list()
 
 # Set number of Monte Carlo draws (1 for testing, 10000 for production)
-n_draws <- 100  # Change to 10000 (or however many you want) for full model
+n_draws <- 1000  # Change to 10000 (or however many you want) for full model
 hard_cap_start <- 0.70
 hard_cap_end <- 0.80
 
