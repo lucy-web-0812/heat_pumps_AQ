@@ -17,7 +17,7 @@
    --page-bg:    #F0EDE6   Slightly warmer than paper
    ═══════════════════════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap');
 
 :root {
   --paper:   #FFFFFF;          /* white — matches figure backgrounds */
@@ -142,7 +142,6 @@ body {
   font-family: var(--sans);
   font-size: 0.95rem;
   font-weight: 600;
-  text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--heat);
   margin: 1.2rem 0 0.4rem;
@@ -212,7 +211,6 @@ body {
 .stat-block .stat-label {
   font-family: var(--sans);
   font-size: 0.8rem;
-  text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--muted);
   margin-top: 0.4rem;
@@ -283,7 +281,7 @@ body {
 .col-left,
 .col-right {
   position: sticky;
-  top: 4rem;           /* how far from the top of the viewport */
+  top: 1rem;           /* how far from the top of the viewport */
 }
 
 .col-middle {
