@@ -6,7 +6,8 @@ library(tidyverse)
 library(sf)
 library(paletteer)
 library(patchwork)
-
+library(plotly)
+library(htmlwidgets)
 
 model_results_per_pc <- read_csv("data/processed_data/model_results_per_pc.csv")
 
@@ -53,7 +54,8 @@ p <- pc_dep_model_results_all |>
                   fill = "white",
                   shape = 22,
                   colour = "#004C1F",
-                  size = 0.8
+                  size = 0.6, 
+                  linewidth = 0.5
   ) +
   scale_y_continuous(breaks = seq(0, 65, 10),  name = expression("Annual mean modelled NO" [x] * " concentration - " * mu * "g m"^{-3}, limits = c(0,65))
   ) +
@@ -65,7 +67,7 @@ p <- pc_dep_model_results_all |>
     minor_breaks = rep(1:9, times = 5) * 10^(0:4),
     breaks = c(1, 5, 10, 50, 100, 200, 300, 500)
   ) +
-  theme_classic() +
+  theme_classic(base_size = 20) +
   annotation_logticks(sides = "b") +
   theme(
     panel.grid.minor.x = element_line("lightgrey", linewidth = 0.2),
@@ -94,8 +96,109 @@ explainer <- ggplot() +
 cowplot::ggdraw(p) +
   cowplot::draw_plot(explainer, x = 0.82, y = 0.77, width = 0.35, height = 0.21)
 
-ggsave("plots/paper_plots/nox_by_pc.png")
+ggsave("plots/paper_plots/nox_by_pc.png", height = 18, width = 24, units = "cm")
 
+
+# Now get just Liverpool and then Just ST IVes....
+
+
+lpool_data <- pc_dep_model_results_all |> 
+  filter(year == "2023-01-01") |> 
+  arrange(total_heat_pumps_per_pc) |> 
+  head(1) |> 
+  mutate(heat_pumps_per_pop = total_heat_pumps_per_pc /total_population_PC * 10000) 
+
+
+
+stives_data <- pc_dep_model_results_all |> 
+  filter(year == "2023-01-01") |> 
+  arrange(total_heat_pumps_per_pc) |> 
+  tail(1) |> 
+  mutate(heat_pumps_per_pop = total_heat_pumps_per_pc /total_population_PC * 10000) 
+
+
+p_lpool <- pc_dep_model_results_all |> 
+  filter(year == "2023-01-01") |> 
+  mutate(heat_pumps_per_pop = total_heat_pumps_per_pc /total_population_PC * 10000) |> 
+  ggplot(aes(x = heat_pumps_per_pop, y = pw_mean_nox)) +
+  geom_pointrange(aes(ymin= min_nox, ymax = max_nox),
+                  fill = "white",
+                  shape = 22,
+                  colour = "grey",
+                  size = 0.6, 
+                  linewidth = 0.5
+  ) +
+  geom_pointrange(data = lpool_data, aes(ymin= min_nox, ymax = max_nox),
+                  fill = "white",
+                  shape = 22,
+                  colour = "#004C1F",
+                  size = 0.6, 
+                  linewidth = 0.5) + 
+  scale_y_continuous(breaks = seq(0, 65, 10),  name = expression("Annual mean modelled NO" [x] * " concentration - " * mu * "g m"^{-3}, limits = c(0,65))
+  ) +
+  scale_x_continuous(
+    name = "Heat Pumps per 10,000 people",
+    trans = "log10",
+    expand = c(0, 0),
+    limits = c(1, 400),
+    minor_breaks = rep(1:9, times = 5) * 10^(0:4),
+    breaks = c(1, 5, 10, 50, 100, 200, 300, 500)
+  ) +
+  theme_classic(base_size = 20) +
+  annotation_logticks(sides = "b") +
+  theme(
+    panel.grid.minor.x = element_line("lightgrey", linewidth = 0.2),
+    panel.grid.major.x = element_line("lightgrey", linewidth = 0.2),
+    panel.grid.major.y = element_line("lightgrey")
+  ) 
+
+
+cowplot::ggdraw(p_lpool) +
+  cowplot::draw_plot(explainer, x = 0.82, y = 0.77, width = 0.35, height = 0.21)
+
+ggsave("plots/scrolytelling_plots/nox_by_pc_lpool_highlight.png", height = 18, width = 24, units = "cm")
+
+
+p_stives <- pc_dep_model_results_all |> 
+  filter(year == "2023-01-01") |> 
+  mutate(heat_pumps_per_pop = total_heat_pumps_per_pc /total_population_PC * 10000) |> 
+  ggplot(aes(x = heat_pumps_per_pop, y = pw_mean_nox)) +
+  geom_pointrange(aes(ymin= min_nox, ymax = max_nox),
+                  fill = "white",
+                  shape = 22,
+                  colour = "grey",
+                  size = 0.6, 
+                  linewidth = 0.5
+  ) +
+  geom_pointrange(data = stives_data, aes(ymin= min_nox, ymax = max_nox),
+                  fill = "white",
+                  shape = 22,
+                  colour = "#004C1F",
+                  size = 0.6, 
+                  linewidth = 0.5) + 
+  scale_y_continuous(breaks = seq(0, 65, 10),  name = expression("Annual mean modelled NO" [x] * " concentration - " * mu * "g m"^{-3}, limits = c(0,65))
+  ) +
+  scale_x_continuous(
+    name = "Heat Pumps per 10,000 people",
+    trans = "log10",
+    expand = c(0, 0),
+    limits = c(1, 400),
+    minor_breaks = rep(1:9, times = 5) * 10^(0:4),
+    breaks = c(1, 5, 10, 50, 100, 200, 300, 500)
+  ) +
+  theme_classic(base_size = 20) +
+  annotation_logticks(sides = "b") +
+  theme(
+    panel.grid.minor.x = element_line("lightgrey", linewidth = 0.2),
+    panel.grid.major.x = element_line("lightgrey", linewidth = 0.2),
+    panel.grid.major.y = element_line("lightgrey")
+  ) 
+
+
+cowplot::ggdraw(p_stives) +
+  cowplot::draw_plot(explainer, x = 0.82, y = 0.77, width = 0.35, height = 0.21)
+
+ggsave("plots/scrolytelling_plots/nox_by_pc_st_ives_highlight.png", height = 18, width = 24, units = "cm")
 
 
 
@@ -517,7 +620,12 @@ model_names <- c("present_day_scenario" = "Current trends continue",
 
 
 
-pc_dep_model_results_all |>
+
+
+
+
+
+p <- pc_dep_model_results_all |>
   group_by(nox_conc_quintile, model_run, year) |>
   summarise(
     total_hp_per_quintile = sum(heat_pump_number),
@@ -527,14 +635,26 @@ pc_dep_model_results_all |>
   ungroup() |>
   filter(model_run %in% c("suitability_probability", "present_day_scenario")) |>
   filter(nox_conc_quintile %in% c("1", "5")) |>
-  
+  mutate(
+    nox_conc_quintile = factor(
+      nox_conc_quintile,
+      levels = c("1", "5"),
+      labels = c("Least polluted", "Most polluted")
+    ), 
+    tooltip = paste0(
+      "Year: ", format(year, "%Y"),
+      "<br>Group: ", nox_conc_quintile,
+      "<br>Installations: ", round(total_hp_per_quintile / 1000, 1), " thousand"
+    )
+  ) |> 
   ggplot() +
   geom_line(
     aes(
       x = year,
       y = total_hp_per_quintile / 1000,
-      colour = factor(nox_conc_quintile),
-      group = nox_conc_quintile
+      colour = nox_conc_quintile, 
+      group = nox_conc_quintile,
+      text = tooltip
     ), 
     linewidth = 1.2
   ) +
@@ -560,6 +680,16 @@ pc_dep_model_results_all |>
 
 
 
+ggplotly(p, tooltip = "text")
+
+
+with_tooltip_nox_conc_hp_installs <- ggplotly(p, tooltip = "text")
+
+saveWidget(
+  with_tooltip_nox_conc_hp_installs,
+  file = "plots/scrolytelling_plots/heat_pump_nox_quintiles.html",
+  selfcontained = FALSE
+)
 
 
 pc_dep_model_results_all |>

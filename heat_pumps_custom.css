@@ -113,7 +113,6 @@ body {
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
   color: var(--heat);
   position: sticky;
   top: 0;
@@ -196,24 +195,28 @@ body {
 .chip-suit    { background: rgba(46,94,78,0.18); color: var(--clean); }
 
 /* ── Stat callout ──────────────────────────────────────────────── */
-.stat-block {
-  text-align: center;
-  padding: 1.2rem;
-}
-.stat-block .stat-number {
+.stat-number {
   font-family: var(--serif);
-  font-size: 4.5rem;
+  font-size: 4rem;
   font-weight: 700;
-  color: var(--heat);
+  color: #DC6BAD;
   line-height: 1;
   display: block;
 }
-.stat-block .stat-label {
+
+.stat-label {
   font-family: var(--sans);
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  color: var(--muted);
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  color: #6F6B73;
   margin-top: 0.4rem;
+  line-height: 1.4;
+  display: block;
+}
+
+.stat-block {
+  text-align: center;
+  padding: 1rem 0.5rem;
 }
 
 /* ── Closing section ────────────────────────────────────────────── */
@@ -295,3 +298,11 @@ body {
   margin-bottom: 2.5rem;  /* space between paragraphs — controls how long
                              the plots stay visible while you scroll */
 }
+
+
+.cr-method-maps {
+  width: 80%;
+  margin-left: auto;   
+}
+
+ 

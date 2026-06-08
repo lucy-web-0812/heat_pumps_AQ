@@ -14,6 +14,9 @@ format:
     embed-resources: true
     smooth-scroll: true
     mathjax: true
+    resources:
+      - plots/scrolytelling_plots/heat_pump_nox_quintiles.html
+      - plots/scrolytelling_plots/heat_pump_nox_quintiles_files
     include-in-header:
       text: |
         <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.27.0/plotly.min.js"></script>
@@ -137,7 +140,7 @@ show_widget <- function(path) {
 KMS Prize Interview · 9th June 2026
 :::
 
-# Will heat pumps lead to widening Air Quality inequality in the UK?
+# Will heat pumps lead to widening air quality disparity in the UK?
 
 ::: hero-deck
 -   197 kilotonnes of potential NOx savings from installing heat pumps from 2025 to 2050
@@ -190,9 +193,9 @@ knitr::include_graphics("plots/scrolytelling_plots/nox_chemistry.png")
 :::
 
 :::::: cr-section
-Government support comes through two schemes: the **Boiler Upgrade Scheme (BUS)** — a £7,500 grant with no means-testing — and **ECO4**, which targets lower-income households. By 2026 these had delivered 79,000 and 36,000 installations respectively. Plot this against the annual average NO$_x$ concentration over the constituency. @cr-nox-scatter
+Government support comes through two schemes: the **Boiler Upgrade Scheme (BUS)** — a £7,500 grant with no means-testing — and **ECO4**, which targets lower-income households. By 2026 these had delivered 79,000 and 36,000 installations respectively. @cr-nox-scatter
 
-The overall picture shows a clear negative relationship — areas with more heat pumps tend to have lower NO$_x$. @cr-nox-scatter
+Plot this against the annual average NO$_x$ concentration over the constituency. The overall picture shows a clear negative relationship — areas with more heat pumps tend to have lower NO$_x$. @cr-nox-scatter
 
 Ceredigion Preseli, a rural constituency in Wales, has the most heat pumps per capita with 287 per 10,000 people. @cr-nox-scatter-ceri
 
@@ -235,13 +238,13 @@ knitr::include_graphics("plots/scrolytelling_plots/nox_by_pc_lpool_highlight.png
 ```
 
 ::: part-header
-The model — data, scenarios, and equations
+### Where will heat pumps go? — model, data and policy scenarios
 :::
 
 <!-- ── 3a: Data overview ─────────────────────────────────────── -->
 
-::::::::: cr-section
-The analysis draws on six spatial datasets, all harmonised to the **575 parliamentary constituencies** of England and Wales (ONS July 2024 boundaries) — chosen because they represent the finest scale at which BUS and ECO statistics are publicly reported. @cr-data-table
+:::: cr-section
+The analysis draws on six spatial datasets, all aggregated to the **575 parliamentary constituencies** of England and Wales (ONS July 2024 boundaries). @cr-data-table
 
 ::: {#cr-data-table}
 ```{r data-table, fig.height=5.5, fig.width=8.5}
@@ -289,52 +292,17 @@ ggplot(datasets, aes(y=reorder(layer, -seq_len(nrow(datasets))),
                                    margin=margin(b=10)))
 ```
 :::
-
-Geography and deprivation are linked from the outset. Constituency-level NOx concentrations were derived as **population-weighted means** of DEFRA's 1 km² modelled background grid. The population-weighted median IMD rank was used to assign deprivation quintiles, ensuring each quintile contains roughly equal numbers of residents rather than equal numbers of constituencies: @cr-method-maps
-
-$$\bar{x}_i = \frac{\displaystyle\sum_{j \in i} \, p_j \, x_j}{\displaystyle\sum_{j \in i} \, p_j}$$
-
-where $x_j$ is the value (concentration or IMD score) in grid cell $j$, and $p_j$ is its population.
-
-::::::: {#cr-method-maps}
-:::::: three-col
-::: col-left
-```{r map-nox}
-#| out-width: "100%"
-show_plot("plots/paper_plots/nox_quintile_map.png")
-```
-:::
-
-::: col-middle
-**NOx quintile map (left)**
-
-Q1 (palest) = least polluted 20% of constituencies. Q5 (darkest) = most polluted 20%.
-
-The geographic pattern reflects urban–rural divides: cities and major transport corridors dominate Q4–Q5.
-
- 
-
-**Deprivation quintile map (right)**
-
-Q1 = most deprived. The spatial overlap with the NOx map is striking — and forms the foundation for the equity analysis.
-:::
-
-::: col-right
-```{r map-dep}
-#| out-width: "100%"
-show_plot("plots/paper_plots/dep_quintile_map.png")
-```
-:::
-::::::
-:::::::
-:::::::::
+::::
 
 <!-- ── 3b: Two scenarios ──────────────────────────────────────── -->
 
 :::: cr-section
-The model allocates the **CCC 7th Carbon Budget Balanced Net Zero** projections — the pathway reflecting effective and feasible decarbonisation options — across constituencies each year from 2025 to 2050. Total annual installations are identical under both scenarios; only the geographic *weighting* differs. @cr-scenarios-table
+Produce a model to allocate the **CCC 7th Carbon Budget Balanced Net Zero** projections — the pathway reflecting effective and feasible decarbonisation options — across constituencies each year from 2025 to 2050. @cr-scenarios-table
 
-Two scenarios explore the consequences of policy choice. The total number of heat pumps installed each year — constrained by the CCC trajectory — is fixed. The only difference is *where* they go. @cr-scenarios-table
+Two scenarios explore the consequences of policy choice. The total number of heat pumps installed each year is fixed. The only difference is *where* they go. @cr-scenarios-table
+
+
+We can do this by asigning each constituency a relative probability of adoption based on either the number of heat pumps installed so far - <span style="color: #7F7B82;">(*Current trends continue*)</span> - or the relative suitability for a heat pump <span style="color: #DC6BAD;">(*Suitability-driven uptake*)</span> @cr-scenarios-table
 
 ::: {#cr-scenarios-table}
 ```{r scenarios-table, fig.height=2.8, fig.width=6.5}
@@ -395,13 +363,13 @@ where the probability for constituency $i$ is:
 
 $$p_{i,t} \;=\; \frac{w_i \;\cdot\; \bigl(N_{i,t} - C_{i,t-1}\bigr)^{\!+}}{\displaystyle\sum_{j=1}^{575} w_j \;\cdot\; \bigl(N_{j,t} - C_{j,t-1}\bigr)^{\!+}}$$
 
-| Symbol      | Meaning                                                   |
-|:------------|:----------------------------------------------------------|
-| $H_t$       | National total installations in year $t$ (CCC)            |
-| $w_i$       | Scenario weight — BUS+ECO uptake **or** suitability score |
-| $N_{i,t}$   | Projected households in constituency $i$ at year $t$      |
-| $C_{i,t-1}$ | Cumulative installations to end of $t-1$                  |
-| $(\cdot)^+$ | Soft-saturation cap (max 85% household uptake)            |
+| Symbol | Meaning |
+|:---------------|:-------------------------------------------------------|
+| $H_t$ | National total installations in year $t$ (Climate Change Committee) |
+| $w_i$ | Scenario weight — BUS+ECO uptake **or** suitability score |
+| $N_{i,t}$ | Projected households in constituency $i$ at year $t$ |
+| $C_{i,t-1}$ | Cumulative installations to end of $t-1$ |
+| $(\cdot)^+$ | Soft-saturation cap (max 85% household uptake) |
 :::
 ::::
 :::::
@@ -409,7 +377,9 @@ $$p_{i,t} \;=\; \frac{w_i \;\cdot\; \bigl(N_{i,t} - C_{i,t-1}\bigr)^{\!+}}{\disp
 <!-- ── 3d: NOx savings equation ───────────────────────────────── -->
 
 ::::: cr-section
-Each heat pump installation displaces a natural gas boiler. The annual NOx saving per installation is derived from the **Eco-Design Directive emission limit** and **Ofgem median gas consumption**: @cr-nox-eq
+We assume that each heat pump installation displaces a natural gas boiler. The annual NOx saving per installation is derived from the **Eco-Design Directive emission limit** and **Ofgem median gas consumption**: @cr-nox-eq
+
+We can also calculate the **cumulative emissions savings** across a constituency. This really helps to show the benefits that early adopters get. @cr-nox-eq
 
 :::: {#cr-nox-eq}
 ::: model-box
@@ -431,7 +401,9 @@ $$\text{NOx}_i^{\text{saved}} \;=\; \sum_{t=2025}^{2050} \Delta\text{NOx}_{i,t}$
 <!-- ── 3e: Damage costs ────────────────────────────────────────── -->
 
 ::::: cr-section
-Finally, avoided damage costs translate the NOx savings into economic terms. **Damage cost rates vary by location** — a tonne of NOx avoided in a city is worth more than one avoided in the countryside, because more people breathe the air. @cr-damage-eq
+Avoided damage costs translate the NOx savings into economic terms and is frequently used by policy makers. **Damage cost rates vary by location** — a tonne of NOx avoided in a city is worth more than one avoided in the countryside, because more people breathe the air. @cr-damage-eq
+
+$c_i$ *is derived from UK Treasury Green Book estimates for three geographic categories (London, Urban, Rural) mapped to each constituency via population-weighted rural–urban classification shares.* @cr-damage-eq
 
 :::: {#cr-damage-eq}
 ::: model-box
@@ -444,10 +416,306 @@ $$D_i \;=\; \sum_{t=2025}^{2050} \frac{\Delta\text{NOx}_{i,t} \;\times\; c_i}{(1
 | $c_i$  | Constituency-specific damage cost (£ per tonne NOx) |
 | $r$    | HM Treasury discount rate (−1.5% yr⁻¹)              |
 
-$c_i$ *is derived from UK Treasury Green Book estimates for three geographic categories (London, Urban, Rural) mapped to each constituency via population-weighted rural–urban classification shares.*
+
 :::
 ::::
 :::::
+
+:::: cr-section
+Constituency-level NOx concentrations were derived as **population-weighted means** of DEFRA's 1 km² modelled background grid. The population-weighted median IMD rank was used to assign deprivation quintiles, ensuring each quintile contains roughly equal numbers of residents rather than equal numbers of constituencies: @cr-method-maps
+
+$$\bar{x}_i = \frac{\displaystyle\sum_{j \in i} \, p_j \, x_j}{\displaystyle\sum_{j \in i} \, p_j}$$ where $x_j$ is the value (concentration or IMD score) in grid cell $j$, and $p_j$ is its population.
+
+::: {#cr-method-maps}
+```{r map-nox}
+#| out-width: "60%"
+
+library(patchwork)
+
+show_plot("plots/paper_plots/nox_quintile_map.png")
+
+
+
+
+# dep_img_data <- png::readPNG("plots/paper_plots/dep_quintile_map.png")
+# dep <- grid::rasterGrob(dep_img_data, interpolate = TRUE)
+# 
+# wrap_elements(nox) + wrap_elements(dep) & theme(plot.background = element_rect(fill='transparent'))
+
+```
+:::
+::::
+
+```{=html}
+<!-- ══════════════════════════════════════════════════════════════
+     Results
+     ══════════════════════════════════════════════════════════════ -->
+```
+
+::: part-header
+### Results
+:::
+
+
+:::{.cr-section}
+
+Replacing gas boilers in line with the CCC Balanced Net Zero pathway would deliver a cumulative **197 kilotonnes** of NOx savings across England and Wales by 2050 — roughly 20% of the UK's total annual NOx budget. That is a substantial public health prize. The question is who collects it. @cr-results-total
+
+:::{#cr-results-total}
+
+::: {.stat-block}
+::: {.stat-number}
+197 kilotonnes
+:::
+::: {.stat-label}
+of NOx abated,
+
+England & Wales, 2025–2050
+:::
+:::
+
+::: {.stat-block}
+::: {.stat-number}
+£4.8 Billion 
+:::
+::: {.stat-label}
+Potential damage cost savings  
+
+:::
+:::
+
+::: {.stat-block}
+::: {.stat-number}
+1.9 to 1.7
+:::
+::: {.stat-label}
+Reduction in the ratio of average NOx emissions intensity
+
+most deprived vs least deprived, 2025 and 2050
+:::
+:::
+
+:::
+
+
+:::
+
+
+
+
+
+:::: cr-section
+Under **current policy**, annual installations in the least-polluted quintile (Q1) peak at **470,000 by 2034** — a full decade ahead of Q5, where peak installations of 390,000 are not reached until **2044**. This lag means the cleanest areas bank clean-air benefits early, compounding the advantages. @cr-fig3-installs
+
+::: {#cr-fig3-installs}
+```{r}
+
+#| out-width: "100%"
+
+
+library(tidyverse)
+library(plotly)
+
+model_names <- c("present_day_scenario" = "Current trends continue",
+                    "suitability_probability" = "Suitability-driven uptake" )
+
+
+model_results_per_pc <- read_csv("data/processed_data/model_results_per_pc.csv")
+
+pc_combined_dataset <- read_csv("data/processed_data/pc_combined_dataset.csv") |> 
+  select(-PCON25NM)
+
+
+nox_savings_per_boiler_per_year <- (0.056 * 11500) / 1000000000 # Convert from grams to kilotonnnes
+
+
+
+
+
+pc_dep_model_results_all <- model_results_per_pc |> 
+  left_join(pc_combined_dataset, join_by(PCON25CD)) |> 
+  mutate(median_imd_decile = as.factor(median_imd_decile)) |> 
+  mutate(nox_saving = heat_pump_years * nox_savings_per_boiler_per_year) |> # cumulative emissions savings in kilotonnes
+  mutate(model_run_label = case_when(
+    model_run == "all_three_factors" ~ "BUS, ECO and Suitability", 
+    model_run == "BUS_only" ~ "Boiler Upgrade Scheme \n(non-means tested)", 
+    model_run == "ECO_only" ~ "Energy Company Obligation\n (means tested)", 
+    model_run == "present_day_scenario" ~ "Current trends continue", 
+    model_run == "suitability_probability" ~ "Suitability-driven uptake", 
+  ))
+
+
+
+
+
+
+p <- pc_dep_model_results_all |>
+  group_by(nox_conc_quintile, model_run, year) |>
+  summarise(
+    total_hp_per_quintile = sum(heat_pump_number),
+    total_hp_lower = sum(heat_pump_number_lower_bound),
+    total_hp_upper = sum(heat_pump_number_upper_bound)
+  ) |>
+  ungroup() |>
+  filter(model_run %in% c("suitability_probability", "present_day_scenario")) |>
+  filter(nox_conc_quintile %in% c("1", "5")) |>
+  mutate(
+    nox_conc_quintile = factor(
+      nox_conc_quintile,
+      levels = c("1", "5"),
+      labels = c("Least polluted", "Most polluted")
+    ), 
+    tooltip = paste0(
+      "Year: ", format(year, "%Y"),
+      "<br>Group: ", nox_conc_quintile,
+      "<br>Installations: ", round(total_hp_per_quintile / 1000, 1), " thousand"
+    )
+  ) |> 
+  ggplot() +
+  geom_line(
+    aes(
+      x = year,
+      y = total_hp_per_quintile / 1000,
+      colour = nox_conc_quintile, 
+      group = nox_conc_quintile,
+      text = tooltip
+    ), 
+    linewidth = 1.2
+  ) +
+  scale_colour_manual(
+    name = "NOx Concentration Quintile",
+    values = c("#607345FF", "#6C568CFF"),
+    labels = c(`1` = "1 Least polluted", `5` = "5 - Most polluted")
+  ) +
+  scale_fill_manual(
+    name = "NOx Concentration Quintile",
+    values = c("#607345FF", "#6C568CFF"),
+    labels = c(`1` = "1 Least polluted", `5` = "5 - Most polluted")
+  ) +
+  scale_x_datetime(name = "Year", limits = c(as.POSIXct("2020-01-01"), NA)) +
+  scale_y_continuous(name = "Heat pump installations (thousands)",
+                     expand = c(0, 0),
+                     limits = c(0, 500)) +
+  facet_wrap( ~ model_run, labeller = as_labeller(model_names)) +
+  theme_minimal(12) +
+  theme(legend.position = "top", axis.line = element_line())
+
+
+
+
+
+ggplotly(p, tooltip = "text")
+
+```
+
+:::
+
+Under **current policy**, annual installations in the least-polluted quintile (Q1) peak at **470,000 by 2034** — a full decade ahead of Q5, where peak installations of 390,000 are not reached until **2044**. This lag means the cleanest areas bank clean-air benefits early, compounding the advantages. @cr-fig3-nox-savings
+
+::: {#cr-fig3-nox-savings}
+```{r}
+
+#| out-width: "100%"
+
+
+library(tidyverse)
+library(plotly)
+
+model_names <- c("present_day_scenario" = "Current trends continue",
+                    "suitability_probability" = "Suitability-driven uptake" )
+
+
+model_results_per_pc <- read_csv("data/processed_data/model_results_per_pc.csv")
+
+pc_combined_dataset <- read_csv("data/processed_data/pc_combined_dataset.csv") |> 
+  select(-PCON25NM)
+
+
+nox_savings_per_boiler_per_year <- (0.056 * 11500) / 1000000000 # Convert from grams to kilotonnnes
+
+
+
+
+
+pc_dep_model_results_all <- model_results_per_pc |> 
+  left_join(pc_combined_dataset, join_by(PCON25CD)) |> 
+  mutate(median_imd_decile = as.factor(median_imd_decile)) |> 
+  mutate(nox_saving = heat_pump_years * nox_savings_per_boiler_per_year) |> # cumulative emissions savings in kilotonnes
+  mutate(model_run_label = case_when(
+    model_run == "all_three_factors" ~ "BUS, ECO and Suitability", 
+    model_run == "BUS_only" ~ "Boiler Upgrade Scheme \n(non-means tested)", 
+    model_run == "ECO_only" ~ "Energy Company Obligation\n (means tested)", 
+    model_run == "present_day_scenario" ~ "Current trends continue", 
+    model_run == "suitability_probability" ~ "Suitability-driven uptake", 
+  ))
+
+
+
+
+
+
+q <- pc_dep_model_results_all |>
+  group_by(nox_conc_quintile, model_run, year) |>
+  summarise(
+    total_nox_per_quintile = sum(nox_saving),
+  ) |>
+  ungroup() |>
+  filter(model_run %in% c("suitability_probability", "present_day_scenario")) |>
+  filter(nox_conc_quintile %in% c("1", "5")) |>
+  mutate(
+    nox_conc_quintile = factor(
+      nox_conc_quintile,
+      levels = c("1", "5"),
+      labels = c("Least polluted", "Most polluted")
+    ), 
+    tooltip = paste0(
+      "Year: ", format(year, "%Y"),
+      "<br>Group: ", nox_conc_quintile,
+      "<br>Installations: ", round(total_nox_per_quintile / 1000, 1), " thousand"
+    )
+  ) |> 
+  ggplot() +
+  geom_line(
+    aes(
+      x = year,
+      y = total_nox_per_quintile / 1000,
+      colour = nox_conc_quintile, 
+      group = nox_conc_quintile,
+      text = tooltip
+    ), 
+    linewidth = 1.2
+  ) +
+  scale_colour_manual(
+    name = "NOx Concentration Quintile",
+    values = c("#607345FF", "#6C568CFF"),
+    labels = c(`1` = "1 Least polluted", `5` = "5 - Most polluted")
+  ) +
+  scale_fill_manual(
+    name = "NOx Concentration Quintile",
+    values = c("#607345FF", "#6C568CFF"),
+    labels = c(`1` = "1 Least polluted", `5` = "5 - Most polluted")
+  ) +
+  scale_x_datetime(name = "Year", limits = c(as.POSIXct("2020-01-01"), NA)) +
+  scale_y_continuous(name = "NOx savings per annum",
+                     expand = c(0, 0),
+                     limits = c(0, NA)) +
+  facet_wrap( ~ model_run, labeller = as_labeller(model_names)) +
+  theme_minimal(12) +
+  theme(legend.position = "top", axis.line = element_line())
+
+
+
+
+
+ggplotly(q, tooltip = "text")
+
+```
+
+:::
+
+
+
+::::
 
 ```{=html}
 <!-- ══════════════════════════════════════════════════════════════
