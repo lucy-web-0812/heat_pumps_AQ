@@ -177,7 +177,7 @@ NO2 is harmful but also plays an important role formation of secondary pollutant
 #| fig-cap: "NO$_x$ tropospheric reaction scheme | Source: Wilson (2025)"
 
 
-knitr::include_graphics("plots/scrolytelling_plots/nox_chemistry.png")
+#knitr::include_graphics("plots/scrolytelling_plots/nox_chemistry.png")
 ```
 :::
 ::::
