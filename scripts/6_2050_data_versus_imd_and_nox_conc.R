@@ -561,7 +561,9 @@ p3 <- timeseries_dep |>
     ),
     linewidth = 1.2
   ) +
-  scale_colour_manual(values = c("#260C3F", "#DCA1C2"), name = "Deprivation Quintile", labels = c(`1`= "1 Most Deprived", `5` = "5 - Least Deprived")) +
+  scale_colour_manual(values = c("#260C3F", "#DCA1C2"), 
+                      name = "Deprivation Quintile", 
+                      labels = c(`1`= "1 Most Deprived", `5` = "5 - Least Deprived")) +
   scale_x_date(name = "Year") +
   scale_y_continuous(name = "NOx savings (killotonnes)", expand = c(0,0),limits = c(0,50)) +
   
@@ -748,4 +750,5 @@ pc_dep_model_results_all |>
   facet_wrap( ~ model_run, labeller = as_labeller(model_names)) +
   theme_minimal(18) +
   theme(legend.position = "top", axis.line = element_line())
+
 

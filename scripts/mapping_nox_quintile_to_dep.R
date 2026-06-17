@@ -18,7 +18,7 @@ plot_data <- pc_combined_dataset |>
     total_population_PC = sum(total_population_PC),
     .groups = "drop"
   ) |>
-  group_by(new_ranking_quintile_deprivation) |>
+  #group_by(new_ranking_quintile_deprivation) |>
   mutate(
     prop = total_population_PC / sum(total_population_PC),
     label = scales::percent(prop, accuracy = 1)
@@ -70,11 +70,29 @@ ggplot(plot_data) +
 
 # How about a heat map of where everyone lives? 
 
+
+totals <- plot_data |>
+  group_by(new_ranking_quintile_deprivation) |>
+  summarise(
+    total_pop = sum(total_population_PC)
+  )
+
+
+totals_nox <- plot_data |>
+  group_by(nox_conc_quintile) |>
+  summarise(
+    total_pop = sum(total_population_PC)
+  )
+
+
+
+
 plot_data |> 
   ungroup() |> 
+ # group_by(new_ranking_quintile_deprivation) |> 
   mutate(
     prop = total_population_PC / sum(total_population_PC),
-    label = scales::percent(prop, accuracy = 1)
+    label = scales::percent(prop, accuracy = 0.1)
   ) |> 
   mutate(text_colour = ifelse(
     scales::rescale(total_population_PC) > 0.5,
@@ -83,30 +101,55 @@ plot_data |>
   )) |> 
   ggplot() +
   geom_tile(
-    aes(x = nox_conc_quintile, y = new_ranking_quintile_deprivation, fill = total_population_PC),
+    aes(x = nox_conc_quintile, y = new_ranking_quintile_deprivation, fill = prop),
+    #height= 0.8,
     colour = "white"
   ) +
   geom_text(
     aes(
       x = nox_conc_quintile,
       y = new_ranking_quintile_deprivation,
-      label = paste0(
-        sprintf("%.2f", total_population_PC / 1e6),
-        "M"
-      ),
+      label = label,
       colour = text_colour
     )) +
-      scale_x_continuous(expand = c(0, 0), 
-                     name = "NOx Concentration Quintie", 
+  geom_text(
+    data = totals,
+    aes(
+      y = new_ranking_quintile_deprivation,
+      x = 5.6,
+      colour = "grey30", 
+      label = scales::label_number(scale = 1e-6, suffix = "M", accuracy = 0.01)(total_pop)
+    ),
+    inherit.aes = FALSE,
+    size = 5,
+    hjust = 0
+  ) +
+  geom_text(
+    data = totals_nox,
+    aes(
+      x = nox_conc_quintile - 0.25,
+      #vjust = -0.1,
+      y = 0.2,
+      colour = "grey30", 
+      label = scales::label_number(scale = 1e-6, suffix = "M", accuracy = 0.01)(total_pop)
+    ),
+    inherit.aes = FALSE,
+    size = 5,
+    hjust = 0
+  ) +
+  scale_x_continuous(expand = c(0, 0), 
+                     name = "NOx Concentration Quintile", 
                      breaks = c(1:5),
-                     labels = c("1 - Least \nPolluted", "2", "3", "4", "5 - Most\n Polluted")) +
-  scale_y_continuous(expand = c(0, 0), limits = c(0.45, 5.55), 
-                     name = "Relative Deprivation Quintie", 
+                     limits = c(0.45, 6.5), 
+                     labels = c("1 - Least \nPolluted", "2", "3", "4", "5 - Most\n Polluted"), 
+                     position = "top") +
+  scale_y_continuous(expand = c(0, 0), limits = c(-0.75, 5.5), 
+                     name = "Relative Deprivation Quintile", 
                      breaks = c(1:5),
                      labels = c("1 - Most\n Deprived", "2", "3", "4", "5 - Least\n Deprived")) +
   scale_fill_distiller(palette = "Greens", direction = 1,
-    labels = scales::label_number(scale = 1e-6, suffix = "M"),
-    name = "Population (millions)"
+    labels = scales::label_percent(),
+    name = "Population"
   ) +
   scale_colour_identity() +
   guides(
@@ -119,12 +162,31 @@ plot_data |>
       ticks.colour = "white"
     )
   ) +
+  annotate(
+    "text",
+    x = 6.4,
+    y = 5.4,
+    label = "population in deprivation quintile",
+    fontface = "italic",
+    hjust = 0, 
+    angle = -90, 
+    size = 4
+  ) +
+  annotate(
+    "text",
+    x = 1.25,
+    y = -0.15,
+    label = "population in NOx quintile", 
+    fontface = "italic", 
+    size = 4
+  ) +
   theme_minimal(base_size = 16) +
   theme(
-    legend.position = "top",
-    #legend.position = "none",
+    panel.grid.major.y = element_line(linewidth = 30, colour = "white"),
+    legend.position = "none",
         legend.justification = "left",
-        panel.grid = element_blank())
+        panel.grid = element_blank(), 
+    axis.text = element_text(colour = "black"))
  
 
 

@@ -5,6 +5,7 @@ library(tidyverse)
 library(patchwork)
 library(sf)
 library(paletteer)
+library(plotly)
 
 
 # defining labels to use on plots 
@@ -18,7 +19,7 @@ nice_labels <- c(
 
 metric_labels <- c(
   hp_installed = "Heat pumps installed\n(thousands)",
-  cumulative_savings_per_quintile = "Cumulative NOx savings\n(kilotonnes)",
+  cumulative_savings_per_quintile = "Cumulative \nNOx savings\n(kilotonnes)",
   cumulative_damage_cost_avoided_per_quintile = "Cumulative damage \ncost avoided\n(£ millions)",
   present_day_scenario    = "Current trends continue",
   suitability_probability = "Suitability-driven uptake"
@@ -243,21 +244,22 @@ fill_df <- long_data |>
 q <- long_data |>
   filter(
     metric %in% c(
-      "hp_installed",
-      "cumulative_savings_per_quintile",
-      "cumulative_damage_cost_avoided_per_quintile"
+      "hp_installed"#,
+      #"cumulative_savings_per_quintile",
+      #"cumulative_damage_cost_avoided_per_quintile"
     )
   ) |>
   ggplot() +
-  geom_ribbon(data = fill_df, aes(x = year, ymin = `1`, ymax = `5`), fill = "grey", alpha = 0.2)+
+  #geom_ribbon(data = fill_df, aes(x = year, ymin = `1`, ymax = `5`), fill = "grey", alpha = 0.2)+
   scale_x_date(name = "Year") +
   scale_y_continuous(expand = c(0,0), limits = c(0,NA)) +
+  scale_linetype_manual(values = c(1, 2), name = "Deprivation Quintile", labels = c(`1`= "1 Most Deprived", `5` = "5 - Least Deprived")) +
   scale_colour_manual(values = c("#260C3F", "#DCA1C2"), name = "Deprivation Quintile", labels = c(`1`= "1 Most Deprived", `5` = "5 - Least Deprived")) +
   geom_line(aes(
     x = year,
     y = value,
     colour = factor(new_ranking_quintile_deprivation),
-    linewidth = factor(new_ranking_quintile_deprivation),
+    linetype = factor(new_ranking_quintile_deprivation),
     group = interaction(model_run, new_ranking_quintile_deprivation)
   ),
   linewidth = 1.2) +
@@ -267,23 +269,25 @@ q <- long_data |>
              switch = "y",
              axes = "all",
              labeller = as_labeller(metric_labels)) +
-  theme_minimal(base_size = 16) +
+  theme_minimal(base_size = 14) +
   theme(
     axis.ticks = element_line(),
     strip.placement = "outside",
-    strip.text = element_text(size = 16), 
+    legend.title.position = "top",
+    legend.title = element_text(size = 16),
     legend.position = "top",
     legend.justification.top = "left",
-    legend.text = element_text(size = 16),
+    legend.text = element_text(size = 12),
     axis.line = element_line(),
     axis.title.y = element_blank(), 
-    panel.spacing = unit(2, "lines")
-  ) +
-  guides(colour = guide_legend(override.aes = list(size = 10, linewidth = 2))) 
+    panel.spacing = unit(2, "lines"),
+    legend.key.height = unit(0.5, "cm"),
+    legend.key.width = unit(2, "cm")
+  ) 
 
-plotly::ggplotly(q)
+ggplotly(q)
 
-ggsave("plots/paper_plots/deprivation_quintiles_timeseries.png", height = 12, width = 12)
+ggsave("plots/paper_plots/dep_quintiles_timeseries.png", width = 17.75, height = 20, units = "cm")
 
 
 # NOx quintiles -----------------------------------------------------------
@@ -375,7 +379,7 @@ fill_df <- long_data_nox_quntile |>
 
 
 
-p <- long_data_nox_quntile |>
+long_data_nox_quntile |>
   filter(
     metric %in% c(
       "hp_installed",
@@ -384,16 +388,18 @@ p <- long_data_nox_quntile |>
     )
   ) |>
   ggplot() +
-  geom_ribbon(data = fill_df, aes(x = year, ymin = `1`, ymax = `5`), fill = "grey", alpha = 0.2) +
+ # geom_ribbon(data = fill_df, aes(x = year, ymin = `1`, ymax = `5`), fill = "grey", alpha = 0.2) +
   geom_line(aes(
     x = year,
     y = value,
     colour = factor(nox_conc_quintile),
-    group = nox_conc_quintile
+    group = nox_conc_quintile, 
+    linetype = factor(nox_conc_quintile),
   )) +
+  scale_linetype_manual(values = c(1,2), name = "NOx Concentration Quintile", labels = c(`1`= "1 - Least Polluted", `5` = "5 - Most Polluted")) +
   scale_x_date(name = "Year", limits = as_date(c("2025-01-01", "2050-01-01"))) +
   scale_y_continuous(limits = c(0,NA), expand = c(0,0)) +
-  scale_colour_manual(values = c("#607345FF", "#6C568CFF"), name = "NOx Concentration Quintile", labels = c(`1`= "1 Least Polluted", `5` = "5 - Most Polluted"))  +#, labels = c(`1`= "1 L
+  scale_colour_manual(values = c("#607345FF", "#6C568CFF"), name = "NOx Concentration Quintile", labels = c(`1`= "1 - Least Polluted", `5` = "5 - Most Polluted"))  +#, labels = c(`1`= "1 L
   facet_grid(
     rows = vars(metric),
     cols = vars(model_run),
@@ -402,21 +408,193 @@ p <- long_data_nox_quntile |>
     axes = "all",
     labeller = as_labeller(metric_labels)
   ) +
-  theme_minimal(base_size = 16) +
+  theme_minimal(base_size = 14) +
   theme(
     axis.ticks = element_line(),
     strip.placement = "outside",
+    legend.title.position = "top",
+    legend.title = element_text(size = 16),
     legend.position = "top",
     legend.justification.top = "left",
-    legend.text = element_text(size = 16),
+    legend.text = element_text(size = 12),
     axis.line = element_line(),
     axis.title.y = element_blank(), 
-    panel.spacing = unit(2, "lines")
-  ) +
-  guides(colour = guide_legend(override.aes = list(size = 10, linewidth = 2))) 
+    panel.spacing = unit(2, "lines"),
+    legend.key.height = unit(0.5, "cm"),
+    legend.key.width = unit(2, "cm")
+  ) 
 
 plotly::ggplotly(p)
 
-ggsave("plots/paper_plots/nox_quintiles_timeseries.png")
+ggsave("plots/paper_plots/nox_quintiles_timeseries.png", width = 17.75, height = 20, units = "cm")
 
 
+
+
+
+
+# Making them nice for the presentation.... 
+
+
+long_data_nox_quntile |>
+  filter(
+    metric %in% c(
+      "hp_installed"# ,
+     # "cumulative_savings_per_quintile",
+      #"cumulative_damage_cost_avoided_per_quintile"
+    )
+  ) |>
+  ggplot() +
+  # geom_ribbon(data = fill_df, aes(x = year, ymin = `1`, ymax = `5`), fill = "grey", alpha = 0.2) +
+  geom_line(aes(
+    x = year,
+    y = value,
+    colour = factor(nox_conc_quintile),
+    group = nox_conc_quintile, 
+    linetype = factor(nox_conc_quintile),
+  ), 
+  linewidth = 1.2) +
+  scale_linetype_manual(values = c(1,2), name = "NOx Concentration Quintile", labels = c(`1`= "1 - Least Polluted", `5` = "5 - Most Polluted")) +
+  scale_x_date(name = "Year", limits = as_date(c("2025-01-01", "2050-01-01"))) +
+  scale_y_continuous(limits = c(0,NA), expand = expansion(mult = c(0, 0.1)), name = "Installations (thousands)") +
+  scale_colour_manual(values = c("#607345FF", "#6C568CFF"), name = "NOx Concentration Quintile", labels = c(`1`= "1 - Least Polluted", `5` = "5 - Most Polluted"))  +#, labels = c(`1`= "1 L
+  facet_wrap(~model_run,
+    scales = "free",
+    axes = "all",
+    labeller = as_labeller(metric_labels)
+  ) +
+  theme_minimal(base_size = 10) +
+  theme(
+    panel.grid.major.y = element_line(colour = "darkgrey"),
+    panel.grid.minor.y = element_line(colour = "darkgrey"),
+    axis.ticks = element_line(),
+    strip.text = element_text(size = 12),
+    strip.placement = "outside",
+    legend.title.position = "top",
+    legend.title = element_blank(),
+    legend.position = "top",
+    legend.justification.top = "left",
+    legend.text = element_text(size = 10),
+    axis.line = element_line(),
+    #axis.title.y = element_blank(), 
+    panel.spacing = unit(2, "lines"),
+    legend.key.height = unit(0.5, "cm"),
+    legend.key.width = unit(1.5, "cm"), 
+    plot.title = element_text(face = "bold")
+  )  +
+  ggtitle("Annual heat pump installations")
+
+
+ggsave("plots/presentation/nox_quintiles_timeseries_a.png", width = 17.75, height = 10, units = "cm")
+
+
+# Cumulative savings... 
+
+
+long_data_nox_quntile |>
+  filter(
+    metric %in% c(
+      #"hp_installed"# ,
+       "cumulative_savings_per_quintile"#,
+      #"cumulative_damage_cost_avoided_per_quintile"
+    )
+  ) |>
+  ggplot() +
+  # geom_ribbon(data = fill_df, aes(x = year, ymin = `1`, ymax = `5`), fill = "grey", alpha = 0.2) +
+  geom_line(aes(
+    x = year,
+    y = value,
+    colour = factor(nox_conc_quintile),
+    group = nox_conc_quintile, 
+    linetype = factor(nox_conc_quintile),
+  ), 
+  linewidth = 1.2) +
+  scale_linetype_manual(values = c(1,2), name = "NOx Concentration Quintile", labels = c(`1`= "1 - Least Polluted", `5` = "5 - Most Polluted")) +
+  scale_x_date(name = "Year", limits = as_date(c("2025-01-01", "2050-01-01"))) +
+  scale_y_continuous(limits = c(0,NA), expand = expansion(mult = c(0, 0.1)), name = "Nox savings (kilotonnes)") +
+  scale_colour_manual(values = c("#607345FF", "#6C568CFF"), name = "NOx Concentration Quintile", labels = c(`1`= "1 - Least Polluted", `5` = "5 - Most Polluted"))  +#, labels = c(`1`= "1 L
+  facet_wrap(~model_run,
+             scales = "free",
+             axes = "all",
+             labeller = as_labeller(metric_labels)
+  ) +
+  theme_minimal(base_size = 10) +
+  theme(
+    axis.ticks = element_line(),
+    panel.grid.major.y = element_line(colour = "darkgrey"),
+    panel.grid.minor.y = element_line(colour = "darkgrey"),
+    strip.text = element_text(size = 12),
+    strip.placement = "outside",
+    legend.title.position = "top",
+    legend.title = element_blank(),
+    legend.position = "top",
+    legend.justification.top = "left",
+    legend.text = element_text(size = 10),
+    axis.line = element_line(),
+    #axis.title.y = element_blank(), 
+    panel.spacing = unit(2, "lines"),
+    legend.key.height = unit(0.5, "cm"),
+    legend.key.width = unit(1.5, "cm"),
+    plot.title = element_text(face = "bold")
+  )  +
+  ggtitle("Cumulative NOx Savings")
+
+
+ggsave("plots/presentation/nox_quintiles_timeseries_b.png", width = 17.75, height = 10, units = "cm")
+
+
+
+
+# And then damage costs... 
+
+
+long_data_nox_quntile |>
+  filter(
+    metric %in% c(
+      #"hp_installed"# ,
+      #"cumulative_savings_per_quintile"#,
+      "cumulative_damage_cost_avoided_per_quintile"
+    )
+  ) |>
+  ggplot() +
+  # geom_ribbon(data = fill_df, aes(x = year, ymin = `1`, ymax = `5`), fill = "grey", alpha = 0.2) +
+  geom_line(aes(
+    x = year,
+    y = value,
+    colour = factor(nox_conc_quintile),
+    group = nox_conc_quintile, 
+    linetype = factor(nox_conc_quintile),
+  ), 
+  linewidth = 1.2) +
+  scale_linetype_manual(values = c(1,2), name = "NOx Concentration Quintile", labels = c(`1`= "1 - Least Polluted", `5` = "5 - Most Polluted")) +
+  scale_x_date(name = "Year", limits = as_date(c("2025-01-01", "2050-01-01"))) +
+  scale_y_continuous(limits = c(0,NA), expand = expansion(mult = c(0, 0.1)), name = "Cost avoided (£Millions)") +
+  scale_colour_manual(values = c("#607345FF", "#6C568CFF"), name = "NOx Concentration Quintile", labels = c(`1`= "1 - Least Polluted", `5` = "5 - Most Polluted"))  +#, labels = c(`1`= "1 L
+  facet_wrap(~model_run,
+             scales = "free",
+             axes = "all",
+             labeller = as_labeller(metric_labels)
+  ) +
+  theme_minimal(base_size = 10) +
+  theme(
+    panel.grid.major.y = element_line(colour = "darkgrey"),
+    panel.grid.minor.y = element_line(colour = "darkgrey"),
+    axis.ticks = element_line(),
+    strip.text = element_text(size = 12),
+    strip.placement = "outside",
+    legend.title.position = "top",
+    legend.title = element_blank(),
+    legend.position = "top",
+    legend.justification.top = "left",
+    legend.text = element_text(size = 10),
+    axis.line = element_line(),
+    #axis.title.y = element_blank(), 
+    panel.spacing = unit(2, "lines"),
+    legend.key.height = unit(0.5, "cm"),
+    legend.key.width = unit(1.5, "cm"),
+    plot.title = element_text(face = "bold")
+  )  +
+  ggtitle("Cumulative damage costs avoided")
+
+
+ggsave("plots/presentation/nox_quintiles_timeseries_c.png", width = 17.75, height = 10, units = "cm")

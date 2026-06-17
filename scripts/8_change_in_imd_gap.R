@@ -368,7 +368,8 @@ plot_absolute <- ggplot(gap_metrics, aes(colour = model_run, fill = model_run)) 
   #   aes(x = year, ymin = abs_p25, ymax = abs_p75),
   #   alpha = 0.15, colour = NA
   # ) +
-  geom_line(aes(x = year, y = abs_median), linewidth = 1.2) +
+  geom_point(aes(x = year, y = abs_median), size = 0.6) +
+  geom_line(aes(x = year, y = abs_median), linewidth = 1.2, alpha = 0.7) +
   geom_hline(yintercept = 0, linetype = "dotted", colour = "grey50") +
   scale_colour_manual(name = "", values = scenario_colours) +
   scale_fill_manual(name = "", values = scenario_colours) +
@@ -380,7 +381,8 @@ plot_absolute <- ggplot(gap_metrics, aes(colour = model_run, fill = model_run)) 
   scale_y_continuous(
     name  = expression("Absolute gap (Q1 − Q5) (tonnes km"^{-2}*")"),
     guide = guide_axis(minor.ticks = TRUE),
-    expand = expansion(mult = 0.1)
+    expand = expansion(mult = 0.1),
+    breaks = seq(0,1.6, by = 0.4),
   ) +
   guides(colour = "none", fill = "none")+
   theme_inequality() 
@@ -394,7 +396,8 @@ plot_relative <- ggplot(gap_metrics, aes(colour = model_run, fill = model_run)) 
   #   aes(x = year, ymin = rel_p25, ymax = rel_p75),
   #   alpha = 0.15, colour = NA
   # ) +
-  geom_line(aes(x = year, y = rel_median), linewidth = 1.2) +
+  geom_point(aes(x = year, y = rel_median), size = 0.6) +
+  geom_line(aes(x = year, y = rel_median), linewidth = 1.2, alpha = 0.7) +
   geom_hline(yintercept = 1, linetype = "dotted", colour = "grey50") +
   scale_colour_manual(name = "", values = scenario_colours, ) +
   scale_fill_manual(name = "", values = scenario_colours) +
@@ -406,10 +409,14 @@ plot_relative <- ggplot(gap_metrics, aes(colour = model_run, fill = model_run)) 
   scale_y_continuous(
     name  = "Relative gap (Q1 / Q5 ratio)",
     guide = guide_axis(minor.ticks = TRUE),
+    breaks = seq(1,2.2, by = 0.2),
     expand = expansion(mult = 0.1)
   ) +
-  guides(colour = "none", fill = "none")+
+ # guides(colour = "none", fill = "none")+
   theme_inequality()
+
+
+ggplotly(plot_relative)
 
 # ==============================================================================
 # COMBINE
@@ -417,7 +424,7 @@ plot_relative <- ggplot(gap_metrics, aes(colour = model_run, fill = model_run)) 
 
 library(patchwork)
 
-plot_abs + plot_pct + plot_absolute + plot_relative +
+plot_absolute + plot_relative +
   plot_annotation(tag_levels = "A") +
   plot_layout(guides = "collect") &
   theme(
@@ -425,14 +432,12 @@ plot_abs + plot_pct + plot_absolute + plot_relative +
     plot.tag.position    = c(0, 1)
   )
 
-ggsave(
-  "plots/paper_plots/inequality_figure.png", dpi = 600
-)
+ggsave("plots/paper_plots/inequality_figure.png", dpi = 600)
 
 
 
 
-(plot_pct + plot_absolute + plot_relative + guide_area()) +
+(plot_absolute + plot_relative + guide_area()) +
   plot_layout(
     design = "
 AB
