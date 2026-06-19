@@ -49,13 +49,15 @@ of households in England & Wales burn fossil fuels for heat
 
 ## Millions of small chemical reactors... {auto-animate="true"}
 
-Combustion of natural gas doesn't just make CO~2~ and water. 
+Combustion of natural gas doesn't just make CO~2~ and water. **Also get NO~x~ = NO + NO~2~**
 
 Atmospheric N~2~ is oxidised — thermal NO~x~ forms via the Zeldovich mechanism:
 
 $$\mathrm{O + N_2 \rightarrow NO + N}$$ 
 
 $$\mathrm{N + O_2 \rightarrow NO + O}$$
+
+$$\mathrm{N + OH \rightarrow NO + H}$$
 
 ::: {.fragment data-id="chemistry-list"}
 Once emitted, NO~x~ drives secondary chemistry:
@@ -65,8 +67,11 @@ Once emitted, NO~x~ drives secondary chemistry:
 - [**Particulate matter**]{data-id="pm" style="display: inline-block;"} [— via nitrate aerosol formation]{data-id="pm-desc"}
 :::
 
-::: {.callout-note .fragment appearance="simple"}
+
+::: {.fragment style="position: absolute; bottom: 2em; right: 2em; width: 25%;"}
+::: {.callout-note appearance="simple"}
 NO~x~ is relatively short-lived in the atmosphere — so **where** it is emitted determines **who** is exposed.
+:::
 :::
 
 ::: notes
@@ -231,7 +236,9 @@ Targets: 600,000 installations/yr by 2028 → revised **down** to 450,000/yr by 
 ::: {.incremental}
 -   BUS + ECO installation statistics [@desnz_hpdeployment2024]
 -   Heat pump suitability index [@nesta_hpsuitability2024]
+<hr>
 -   NO~x~ emissions [@naei2024] 
+<hr>
 -   Modelled NO~x~ background concentrations [@defra_pcm2024]
 -   Deprivation (composite UK Index of Multiple Deprivation) [@parsons2021compositeimd]
 :::
@@ -357,7 +364,7 @@ Our scenarios may be a **best case** — slower rollout stretches the inequality
 
 ::: incremental
 1.  Domestic boilers are becoming a **dominant source of urban NO~x~** — heat pumps no emissions at the point of use
-2.  Climate change doesn't care where a heat pump goes but it matters for **Air quality**
+2.  Climate change doesn't care where a heat pump goes but it matters for **air quality**
 3.  Current subsidy design sends them to **affluent, already-clean** areas: 77% more NO~x~ benefit.
 4.  Targeting by **air quality, deprivation and suitability** delivers more health benefit from the *same number* of heat pumps
 :::

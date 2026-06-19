@@ -459,7 +459,6 @@ long_data_nox_quntile |>
   scale_y_continuous(limits = c(0,NA), expand = expansion(mult = c(0, 0.1)), name = "Installations (thousands)") +
   scale_colour_manual(values = c("#607345FF", "#6C568CFF"), name = "NOx Concentration Quintile", labels = c(`1`= "1 - Least Polluted", `5` = "5 - Most Polluted"))  +#, labels = c(`1`= "1 L
   facet_wrap(~model_run,
-    scales = "free",
     axes = "all",
     labeller = as_labeller(metric_labels)
   ) +
@@ -514,7 +513,6 @@ long_data_nox_quntile |>
   scale_y_continuous(limits = c(0,NA), expand = expansion(mult = c(0, 0.1)), name = "Nox savings (kilotonnes)") +
   scale_colour_manual(values = c("#607345FF", "#6C568CFF"), name = "NOx Concentration Quintile", labels = c(`1`= "1 - Least Polluted", `5` = "5 - Most Polluted"))  +#, labels = c(`1`= "1 L
   facet_wrap(~model_run,
-             scales = "free",
              axes = "all",
              labeller = as_labeller(metric_labels)
   ) +
@@ -571,7 +569,6 @@ long_data_nox_quntile |>
   scale_y_continuous(limits = c(0,NA), expand = expansion(mult = c(0, 0.1)), name = "Cost avoided (£Millions)") +
   scale_colour_manual(values = c("#607345FF", "#6C568CFF"), name = "NOx Concentration Quintile", labels = c(`1`= "1 - Least Polluted", `5` = "5 - Most Polluted"))  +#, labels = c(`1`= "1 L
   facet_wrap(~model_run,
-             scales = "free",
              axes = "all",
              labeller = as_labeller(metric_labels)
   ) +
