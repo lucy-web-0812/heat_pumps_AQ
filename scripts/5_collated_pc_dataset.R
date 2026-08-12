@@ -111,4 +111,6 @@ pc_combined_dataset_2 <- pc_combined_dataset_1 |>
 pc_combined_dataset_2 |> 
   write_csv("data/processed_data/pc_combined_dataset.csv")
 
-
+pc_combined_dataset_2 |> 
+  saveRDS("data/processed_data/pc_combined_dataset.RDS"
+  )

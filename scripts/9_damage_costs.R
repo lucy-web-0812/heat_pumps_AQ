@@ -198,6 +198,10 @@ ribbon_df <- summary_by_quintile |>
 
 p1 <- summary_by_quintile |>
   filter(model_run %in% c("present_day_scenario", "suitability_probability")) |>
+  mutate(model_run_label = case_when(
+    model_run == "present_day_scenario" ~ "Current trends continue", 
+    model_run == "suitability_probability" ~ "Suitability-driven uptake", 
+  )) |> 
   filter(new_ranking_quintile_deprivation %in% c("1", "5")) |>
   ggplot() +
   geom_ribbon(data = ribbon_df, aes(x = year, ymin = least_deprived/ 1000000, ymax = most_deprived/ 1000000), fill = "grey", alpha = 0.2) +
@@ -210,7 +214,7 @@ p1 <- summary_by_quintile |>
     ),
     linewidth = 1.2
   ) +
-  facet_wrap(~ model_run) +
+  facet_wrap(~ model_run_label) +
   scale_y_continuous(name = "Cumulative damage \ncost avoided (£Millions)", expand = c(0, 0)) +
   scale_colour_manual(
     name = "Relative Deprivation Quintile",
@@ -243,7 +247,7 @@ p2 <- ggplot(ribbon_df) +
   scale_fill_manual(values = c("#7F7B82", "#DC6BAD")) +
   scale_x_date(name = "Year") +
   scale_y_continuous(name = "Difference in damage \ncost avoided (£Millions)") +
-  facet_wrap( ~ model_run) +
+  facet_wrap( ~ model_run_label) +
   ggtitle("Difference between quintiles (Q5 - Q1)") +
   theme_minimal(18) +
   theme(legend.position = "none", 
@@ -252,7 +256,7 @@ p2 <- ggplot(ribbon_df) +
 
 
 
-p1 /p5 
+p1 /p2 
 
 
 ggsave("plots/misc_plots/difference_between_quintiles.png")

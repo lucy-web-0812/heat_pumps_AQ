@@ -5,6 +5,7 @@
 library(conflicted)
 conflict_prefer("select", "dplyr")
 conflict_prefer("filter", "dplyr")
+conflict_prefer("lag", "dplyr")
 
 
 source("scripts/1_data_cleaning.R")

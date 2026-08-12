@@ -54,12 +54,22 @@ rsconnect/
 plots/misc_plots/*.png
 
 
-
+presentation_files/
 _extensions/
+plots/
+data/raw_data/
 
 # Don't need our second README file...
 
 heat_pumps_README.md
 
 
-".gpkg" 
+*.gpkg
+*.qmd
+*.html
+*.css
+*.scss
+
+
+# And also our thesis plots... 
+scripts/thesis_plots.R
