@@ -236,6 +236,12 @@ pct_savings_by_quintile <- pc_dep_model_results |>
   mutate(percentage = nox_savings_per_quintile / sum(nox_savings_per_quintile) * 100)
 
 
+
+pc_dep_model_results |> 
+  filter(model_run %in% c("present_day_scenario", "suitability_probability")) |> View()
+
+
+
 ggplot(pct_savings_by_quintile) +
   geom_col(aes(x = new_ranking_quintile_deprivation, y = percentage, fill = as.factor(new_ranking_quintile_deprivation)), alpha = 0.8) +
   geom_text(
@@ -750,5 +756,4 @@ pc_dep_model_results_all |>
   facet_wrap( ~ model_run, labeller = as_labeller(model_names)) +
   theme_minimal(18) +
   theme(legend.position = "top", axis.line = element_line())
-
 

@@ -133,17 +133,23 @@ damage_costs_by_constituency <- read_csv("data/processed_data/damage_costs_by_pa
 total_damage_costs <- model_results |> 
   left_join(discount_factors) |> 
   left_join(damage_costs_by_constituency, join_by(PCON25CD == PCON24CD)) |> 
-  mutate(annual_damage_cost = cumulative_heat_pump_number * kw_hours_per_year * nox_from_boiler * grams_to_tonnes_factor * damage_cost_central * discount_factor) |>
+  mutate(annual_damage_cost = cumulative_heat_pump_number * kw_hours_per_year * nox_from_boiler * grams_to_tonnes_factor * damage_cost_central * discount_factor, 
+         annual_damage_cost_low = cumulative_heat_pump_number * kw_hours_per_year * nox_from_boiler * grams_to_tonnes_factor * damage_cost_low * discount_factor,
+         annual_damage_cost_high = cumulative_heat_pump_number * kw_hours_per_year * nox_from_boiler * grams_to_tonnes_factor * damage_cost_high * discount_factor) |>
   group_by(PCON25CD, model_run, year) |> 
   summarise(
     total_damage_cost_avoided = sum(annual_damage_cost),
+    total_damage_cost_avoided_low = sum(annual_damage_cost_low),
+    total_damage_cost_avoided_high = sum(annual_damage_cost_high),
     .groups = "drop"
   ) |>
   filter(is.na(total_damage_cost_avoided) == F) |> 
   arrange(PCON25CD, model_run, year) |>
   group_by(PCON25CD, model_run) |>
   mutate(
-    cumulative_damage_cost_avoided = cumsum(total_damage_cost_avoided)
+    cumulative_damage_cost_avoided = cumsum(total_damage_cost_avoided), 
+    cumulative_damage_cost_avoided_low = cumsum(total_damage_cost_avoided_low),
+    cumulative_damage_cost_avoided_high = cumsum(total_damage_cost_avoided_high)
   ) |>   
   mutate(model_run_label = case_when(
     model_run == "all_three_factors" ~ "BUS, ECO and Suitability", 
@@ -173,7 +179,116 @@ df_joined <- total_damage_costs |>
 summary_by_quintile <- df_joined |> 
   group_by(model_run,new_ranking_quintile_deprivation, year) |> 
   summarise(total_dca_by_quintile = sum(total_damage_cost_avoided), 
-            cumulative_damage_cost_avoided_by_quintile = sum(cumulative_damage_cost_avoided))
+            total_dca_by_quintile_high = sum(total_damage_cost_avoided_high), 
+            total_dca_by_quintile_low = sum(total_damage_cost_avoided_low), 
+            cumulative_damage_cost_avoided_by_quintile = sum(cumulative_damage_cost_avoided), 
+            cumulative_damage_cost_avoided_by_quintile_high = sum(cumulative_damage_cost_avoided_high),
+            cumulative_damage_cost_avoided_by_quintile_low = sum(cumulative_damage_cost_avoided_low)) |> 
+  filter(model_run %in% c("present_day_scenario", "suitability_probability"))  |> 
+  mutate(model_run_label = case_when(
+    model_run == "present_day_scenario" ~ "Current trends continue", 
+    model_run == "suitability_probability" ~ "Suitability-driven uptake", 
+  )) 
+
+
+
+# Yes we do have large uncertainty ribbons but it is the RELATIVE difference that matters....that is when we are looking at inequalities...
+
+summary_by_quintile |> 
+  filter(year == "2050-01-01")  |> 
+  filter(new_ranking_quintile_deprivation %in% c(1,5)) |> 
+  group_by(model_run_label) |> 
+ summarise(overall_damage_cost = sum(cumulative_damage_cost_avoided_by_quintile),
+                                     overall_damage_cost_low = sum(cumulative_damage_cost_avoided_by_quintile_low),
+                                     overall_damage_cost_high = sum(cumulative_damage_cost_avoided_by_quintile_high)) |> 
+  select(model_run_label,overall_damage_cost,overall_damage_cost_low, overall_damage_cost_high)
+
+
+summary_by_quintile |> 
+  filter(new_ranking_quintile_deprivation %in% c(1,5)) |>  
+  ggplot(aes(x = year, y = cumulative_damage_cost_avoided_by_quintile)) +
+  geom_line(aes(colour = new_ranking_quintile_deprivation, group = new_ranking_quintile_deprivation)) +
+  geom_ribbon(aes(x = year, ymin = cumulative_damage_cost_avoided_by_quintile_low, ymax = cumulative_damage_cost_avoided_by_quintile_high, fill = new_ranking_quintile_deprivation), alpha = 0.3) +
+  facet_grid(rows = vars(model_run_label), cols = vars(new_ranking_quintile_deprivation))
+
+
+# Lets look at the difference.... 
+
+scenario_wide <- summary_by_quintile |>
+  select(model_run, year, new_ranking_quintile_deprivation, cumulative_damage_cost_avoided_by_quintile, cumulative_damage_cost_avoided_by_quintile_low, cumulative_damage_cost_avoided_by_quintile_high) |> 
+  rename(central = cumulative_damage_cost_avoided_by_quintile, low = cumulative_damage_cost_avoided_by_quintile_low, high = cumulative_damage_cost_avoided_by_quintile_high) |> 
+  pivot_wider(
+    names_from = model_run,
+    values_from = c(central, low, high),
+    names_sep = "__"
+  )
+
+scenario_diff <- scenario_wide |>
+  mutate(
+    diff_central = central__suitability_probability - central__present_day_scenario,
+    diff_low     = low__suitability_probability     - low__present_day_scenario,
+    diff_high    = high__suitability_probability    - high__present_day_scenario
+  ) |>
+  select(new_ranking_quintile_deprivation, year, diff_central, diff_low, diff_high)
+
+scenario_diff |> 
+  filter(new_ranking_quintile_deprivation %in% c(1,5)) |> 
+  ggplot( aes(x = year, y = diff_central, group = factor(new_ranking_quintile_deprivation))) +
+  geom_hline(yintercept = 0, colour = "grey40", linetype = "dashed") +
+  geom_ribbon(
+    aes(ymin = diff_low, ymax = diff_high, fill = factor(new_ranking_quintile_deprivation)),
+    alpha = 0.2, colour = NA
+  ) +
+  geom_line(aes(colour = factor(new_ranking_quintile_deprivation)), linewidth = 1) +
+  scale_colour_brewer(palette = "Set1", direction = -1, name = "Deprivation\nquintile") +
+  scale_fill_brewer(palette = "Set1", direction = -1, name = "Deprivation\nquintile") +
+  scale_y_continuous(labels = scales::label_currency(prefix = "£", scale = 1e-6, suffix = "M")) +
+  labs(
+    x = NULL,
+    y = "Additional cumulative damage cost avoided\n(Suitability-driven minus Current trends)",
+    title = "Economic benefit of suitability-driven vs. current policy, by deprivation quintile"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(panel.grid.minor = element_blank())
+
+
+# How about we do one as a percentage of the other? 
+
+summary_by_quintile_nox |> 
+  filter(model_run %in% c("present_day_scenario", "suitability_probability")) |>
+  filter(nox_conc_quintile %in% c(1,5)) |> 
+  rename(central = cumulative_damage_cost_avoided_by_quintile, low = cumulative_damage_cost_avoided_by_quintile_low, high = cumulative_damage_cost_avoided_by_quintile_high) |> 
+  select(year, model_run, nox_conc_quintile, low, central,high) |> 
+  pivot_wider(
+    names_from = nox_conc_quintile,
+    values_from = c(central, low, high),
+    names_sep = "_"
+  ) |> 
+  mutate(pct_central = (central_1/central_5) * 100, 
+         pct_low = (low_1/low_5) * 100, 
+         pct_high = (high_1/high_5) * 100)  |> 
+  pivot_longer(cols = c(pct_central:pct_high), names_to = "estimate", values_to = "pct") |> 
+  filter(estimate == "pct_central") |> 
+  ggplot(aes(x = year, y = (pct) , colour = estimate)) +
+  geom_line(colour = "darkgrey") +
+  geom_point(colour = "darkgrey") +
+  geom_hline(aes(yintercept = 100)) +
+  annotate(geom = "text", x = as_date("2045-01-01"), y = 175, label = "Greater in Least Polluted") +
+  annotate(geom = "text", x = as_date("2030-01-01"), y = 75, label = "Greater in Most Polluted") +
+  annotate(geom = "rect", xmin = -Inf, xmax = Inf, ymin = 100, ymax = Inf, fill = "lightgreen", alpha = 0.3) +
+  
+  annotate(geom = "rect", xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = 100, fill = "red", alpha = 0.3) +
+  scale_y_continuous(name = "Cumulative damgage cost avoided in least polluted \nareas as a percentage of most polluted areas") +
+  scale_x_date(name = "Year") +
+  facet_wrap(~model_run) +
+  theme_minimal() +
+  theme(
+    axis.line = element_line()
+  )
+
+
+
+
 
 
 ribbon_df <- summary_by_quintile |> 
@@ -268,8 +383,17 @@ ggsave("plots/misc_plots/difference_between_quintiles.png")
 
 summary_by_quintile_nox <- df_joined |> 
   group_by(model_run,nox_conc_quintile, year) |> 
-  summarise(total_dca_by_quintile = sum(total_damage_cost_avoided), 
-            cumulative_damage_cost_avoided_by_quintile = sum(cumulative_damage_cost_avoided))
+  summarise(total_dca_by_quintile = sum(total_damage_cost_avoided),  total_dca_by_quintile_high = sum(total_damage_cost_avoided_high), 
+                                                                                                        total_dca_by_quintile_low = sum(total_damage_cost_avoided_low), 
+                                                                                                        cumulative_damage_cost_avoided_by_quintile = sum(cumulative_damage_cost_avoided), 
+                                                                                                        cumulative_damage_cost_avoided_by_quintile_high = sum(cumulative_damage_cost_avoided_high),
+                                                                                                        cumulative_damage_cost_avoided_by_quintile_low = sum(cumulative_damage_cost_avoided_low)) |> 
+  filter(model_run %in% c("present_day_scenario", "suitability_probability"))  |> 
+  mutate(model_run_label = case_when(
+    model_run == "present_day_scenario" ~ "Current trends continue", 
+    model_run == "suitability_probability" ~ "Suitability-driven uptake", 
+  )) 
+
 
 
 ribbon_df_nox <- summary_by_quintile_nox |> 

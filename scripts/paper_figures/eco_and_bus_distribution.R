@@ -78,23 +78,6 @@ saveRDS(grant_scheme_stats_with_geographies, "data/processed_data/grant_scheme_s
 
 
 
-p <- ggplot(grant_scheme_stats_with_geographies) +
-  geom_sf_interactive(aes(fill = heat_pump_installations_per_pc_per_10000, geometry = geometry, 
-                          tooltip = paste0(westminster_parliamentary_constituency, 
-                                           "<br> Installs per 10,000: ", signif(heat_pump_installations_per_pc_per_10000,3)),  
-                          data_id = area_codes), colour = NA) +
-  scale_fill_viridis_c(trans = "log10", name = "", labels = c("1", "10", "100"), breaks = c(1,10,100)) +
-  facet_wrap(~scheme) +
-  theme_void() +
-  theme(legend.position = "top") +
-  ggtitle("Heat Pump Installations per 10000 people per Parliamentary Constituency")
-
-
-
-girafe(ggobj = p)
-
-
-
 
 # If we want to see what areas there are a lot of BUS versus ECO and vice versa.... 
 
@@ -143,29 +126,79 @@ map_labels <- c(heat_pumps_BUS = "Boiler Upgrade Scheme", heat_pumps_ECO = "Ener
 
 # BOILER UPGRADE SCHEME 
 
-a <- grant_scheme_stats_with_geographies |> 
-  filter(scheme == "heat_pumps_BUS") |> 
+a <- grant_scheme_stats_with_geographies |>
+  filter(scheme == "heat_pumps_BUS") |>
   ggplot() +
-  geom_sf(aes(fill = heat_pump_installations_per_pc_per_10000, geometry = geometry), colour = NA) +
-  #scale_fill_viridis_c(option = "viridis",
-  scico::scale_fill_scico(palette = "oslo", direction = -1,
-                          name = "Heat Pump Installations per 10,000 people via the Boiler Upgrade Scheme",
-                          #trans = "log1p",
-                          breaks = c(0,10,20,30,40,50,60, 70, 80),
-                          limits = c(0,80),
-                          guide = guide_coloursteps(
-                            barwidth = unit(100, "mm"),
-                            barheight = unit(5, "mm"),
-                            label.position = "bottom",
-                            title.position = "top",
-                            ticks.colour = "white",
-                            ticks.linewidth = 1, #nrow = 1
-                          )) +
-  theme_void() +
-  #ggtitle("Heat Pump Installations per 10,0000 people via the Boiler Upgrade Scheme") +
-  theme(legend.position = "top", 
-        legend.title = element_text(size = 16, hjust = 0.5),
-        legend.text = element_text(size = 14)) 
+  geom_sf(
+    aes(
+      fill = heat_pump_installations_per_pc_per_10000,
+      geometry = geometry,
+      colour = ifelse(
+        westminster_parliamentary_constituency == "Liverpool Riverside",
+        "black",
+        NA
+      )
+    )) +
+  scale_colour_identity() +
+      #scale_fill_viridis_c(option = "viridis",
+      scico::scale_fill_scico(
+        palette = "oslo",
+        direction = -1,
+        name = "Heat Pump Installations per 10,000 people via the Boiler Upgrade Scheme",
+        #trans = "log1p",
+        breaks = c(0, 10, 20, 30, 40, 50, 60, 70, 80),
+        limits = c(0, 80),
+        guide = guide_coloursteps(
+          barwidth = unit(100, "mm"),
+          barheight = unit(5, "mm"),
+          label.position = "bottom",
+          title.position = "top",
+          ticks.colour = "white",
+          ticks.linewidth = 1,
+          #nrow = 1
+        )
+      ) +
+      theme_void() +
+      annotate(
+        "curve",
+        x = 280000,
+        y = 420000,
+        xend = 325000,
+        yend = 395000,
+        curvature = 0.2,
+        arrow = arrow(length = unit(0.125, "cm"), type = "open"),
+        linewidth = 0.2
+      ) +
+      annotate(
+        "text",
+        x = 270000,
+        y = 450000,
+        label = "Liverpool \nRiverside",
+        size = 3
+      ) +
+      annotate(
+        "curve",
+        x = 140000,
+        y = 100,
+        xend = 152000,
+        yend = 27500,
+        curvature = 0.2,
+        arrow = arrow(length = unit(0.125, "cm"), type = "open"),
+        linewidth = 0.2
+      ) +
+      annotate(
+        "text",
+        x = 110000,
+        y = -7000,
+        label = "St Ives",
+        size = 3
+      ) +
+      #ggtitle("Heat Pump Installations per 10,0000 people via the Boiler Upgrade Scheme") +
+      theme(
+        legend.position = "top",
+        legend.title = element_text(size = 12, hjust = 0.5),
+        legend.text = element_text(size = 12)
+      ) 
 
 
 
@@ -190,8 +223,8 @@ b <- grant_scheme_stats_with_geographies |>
                           )) +
   theme_void() +
   theme(legend.position = "top", 
-        legend.title = element_text(size = 16, hjust = 0.5), 
-        legend.text = element_text(size = 14)) 
+        legend.title = element_text(size = 12, hjust = 0.5), 
+        legend.text = element_text(size = 12)) 
 
 
 a + b + patchwork::plot_layout(guides = "collect") & theme(legend.position = "top")
@@ -199,6 +232,7 @@ a + b + patchwork::plot_layout(guides = "collect") & theme(legend.position = "to
 
 
 ggsave("plots/presentation/BUS_distribution.png", device = "png", dpi = 600)
+ggsave("plots/paper_plots/BUS_distribution.png", device = "png", dpi = 1200, height = 18, width = 16, units = "cm")
 
 
 
@@ -274,6 +308,88 @@ c + d + patchwork::plot_layout(guides = "collect") & theme(legend.position = "to
 ggsave("plots/presentation/ECO_distribution.png", device = "png", dpi = 600)
 
 
+
+# Changing to make the 0 part of the legend..... 
+
+make_density_map <- function(data, geometry_col) {
+  geometry_col <- rlang::enquo(geometry_col)
+  
+  zero_data    <- data |> filter(heat_pump_installations_per_pc_per_10000 == 0)
+  nonzero_data <- data |> filter(heat_pump_installations_per_pc_per_10000 > 0)
+  
+  ggplot() +
+    # --- Layer 1: zero areas get their own discrete scale + legend key ---
+    geom_sf(
+      data = zero_data,
+      aes(fill = "0", geometry = !!geometry_col),
+      colour = NA
+    ) +
+    scale_fill_manual(
+      values = c("0" = "gray50"),
+      name = " ",
+      labels = "0",
+      guide = guide_legend(order = 1, 
+                           override.aes = list(colour = NA), 
+                           label.position = "bottom", 
+                           title.position = "top", 
+                           keywidth = unit(9, "mm"), 
+                           keyheight = unit(7, "mm"))
+    ) +
+    ggnewscale::new_scale_fill() +
+    # --- Layer 2: non-zero areas on the continuous log1p scale -----------
+  geom_sf(
+    data = nonzero_data,
+    aes(fill = heat_pump_installations_per_pc_per_10000, geometry = !!geometry_col),
+    colour = NA
+  ) +
+    scale_fill_distiller(
+      palette = "YlGnBu", 
+      direction = 1,
+      name = "Heat Pump Installations per 10,000 people via the Energy Company Obligation",
+      trans = "log1p",
+      limits = c(0.1, 300),
+      breaks = c(0.1, 1, 5, 10, 30, 50, 100, 200, 300),
+      labels = c(0.1, 1, 5, 10, 30, 50, 100, 200, 300),
+      guide = guide_coloursteps(
+        order = 2,
+        barwidth = unit(100, "mm"),
+        barheight = unit(7, "mm"),
+        label.position = "bottom",
+        title.position = "top",
+        ticks.colour = "white",
+        ticks.linewidth = 1
+      )
+    ) +
+    theme_void() +
+    theme(legend.position = "top", 
+          legend.title = element_text(size = 12, hjust = 0.5), 
+          legend.text = element_text(size = 12)) 
+}
+
+# Build both maps
+eco_data <- grant_scheme_stats_with_geographies |>
+  filter(scheme == "heat_pumps_ECO")
+
+normal_plot <- make_density_map(eco_data, geometry)
+hexmap_plot <- make_density_map(eco_data, hexmap_geometry)
+
+
+combined_plot <- normal_plot + hexmap_plot +
+  plot_layout(guides = "collect") &
+  theme(
+    legend.position = "top",
+    legend.box = "horizontal",
+    legend.justification = "center", 
+    legend.spacing.x = unit(-15, "mm")
+  )
+
+ggsave("plots/paper_plots/eco_per_pc_combined.png", combined_plot,
+       height = 150, width = 160, units = "mm", dpi = 600)
+
+
+
+
+
 grant_scheme_stats_with_geographies |> 
   filter(scheme == "heat_pumps_ECO") |> 
   select(westminster_parliamentary_constituency, heat_pump_installations_per_pc, heat_pump_installations_per_pc_per_10000) |> 
@@ -284,27 +400,28 @@ grant_scheme_stats_with_geographies |>
 # SUITABILIITY
 
 
-lsoa_boundaries <- read_sf("data/LSOA_boundaries/boundaries_used_by_NESTA_clean.gpkg")
+lsoa_boundaries <- read_sf("data/raw_data/LSOAs/Lower_layer_Super_Output_Areas_December_2021_Boundaries_EW_BGC_V5_-6970154227154374572.gpkg")
 
 
 
 nesta_stats_with_geom <- nesta_stats |> 
   select(lsoa, ASHP_S_avg_score_weighted, ASHP_N_avg_score_weighted) |> 
-  left_join(lsoa_boundaries, join_by(lsoa == lsoacd))
+  left_join(lsoa_boundaries, join_by(lsoa == LSOA21CD))
 
-e <- ggplot(nesta_stats_with_geom) +
-  geom_sf(aes(geometry = geom, fill = ASHP_S_avg_score_weighted), colour = NA) +
-  #scale_fill_viridis_c(name = "",
-  scale_fill_gradient(high = "darkred", low = "grey",
-                      breaks = c(0.2,0.4, 0.6, 0.8,1), 
-                      limits = c(0.2,1),
+
+ggplot(nesta_stats_with_geom) +
+  geom_sf(aes(geometry = SHAPE, fill = ASHP_S_avg_score_weighted), colour = NA) +
+  scale_fill_viridis_c(breaks = c(0,0.2,0.4, 0.6, 0.8,1), 
+                      limits = c(0,1),
                       guide = guide_legend(keywidth = unit(10,"mm"), , 
                                            label.position = "bottom")) +
-  theme_void()
+  theme_void(3)
 
 
-f <- ggplot(nesta_stats_with_geom) +
-  geom_sf(aes(geometry = geom, fill = ASHP_N_avg_score_weighted), colour = NA) +
+
+
+ggplot(nesta_stats_with_geom) +
+  geom_sf(aes(geometry = SHAPE, fill = ASHP_N_avg_score_weighted), colour = NA) +
   #scale_fill_viridis_c(name = "",
   scale_fill_gradient(high = "darkred", low = "grey",
                       breaks = c(0.2,0.4, 0.6, 0.8, 1), 

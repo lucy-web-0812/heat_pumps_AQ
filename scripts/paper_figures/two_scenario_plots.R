@@ -240,19 +240,29 @@ fill_df <- long_data |>
 
 
 
+abc_labels <- tibble(
+  metric = c(
+    "hp_installed",
+    "cumulative_savings_per_quintile",
+    "cumulative_damage_cost_avoided_per_quintile"
+  ),
+  label = c("c", "b", "a")
+)
 
-q <- long_data |>
+
+
+p <- long_data |>
   filter(
     metric %in% c(
-      "hp_installed"#,
-      #"cumulative_savings_per_quintile",
-      #"cumulative_damage_cost_avoided_per_quintile"
+      "hp_installed",
+      "cumulative_savings_per_quintile",
+      "cumulative_damage_cost_avoided_per_quintile"
     )
   ) |>
   ggplot() +
   #geom_ribbon(data = fill_df, aes(x = year, ymin = `1`, ymax = `5`), fill = "grey", alpha = 0.2)+
   scale_x_date(name = "Year") +
-  scale_y_continuous(expand = c(0,0), limits = c(0,NA)) +
+  scale_y_continuous(expand = expansion(mult = c(0,0.15)), limits = c(0,NA)) +
   scale_linetype_manual(values = c(1, 2), name = "Deprivation Quintile", labels = c(`1`= "1 Most Deprived", `5` = "5 - Least Deprived")) +
   scale_colour_manual(values = c("#260C3F", "#DCA1C2"), name = "Deprivation Quintile", labels = c(`1`= "1 Most Deprived", `5` = "5 - Least Deprived")) +
   geom_line(aes(
@@ -262,7 +272,15 @@ q <- long_data |>
     linetype = factor(new_ranking_quintile_deprivation),
     group = interaction(model_run, new_ranking_quintile_deprivation)
   ),
-  linewidth = 1.2) +
+  linewidth = 1) +
+  # geom_text(
+  #   data = abc_labels,
+  #   aes(x = -Inf, y = Inf, label = label),
+  #   hjust = -0.5,
+  #   vjust = 1,
+  #   inherit.aes = FALSE,
+  #   size = 5
+  # ) +
   facet_grid(rows = vars(metric), 
              cols = vars(model_run),
              scales = "free_y",
@@ -285,7 +303,31 @@ q <- long_data |>
     legend.key.width = unit(2, "cm")
   ) 
 
-ggplotly(q)
+
+ggdraw(p) +
+  draw_text(
+    "a)",
+    x = 0.15,
+    y = 0.86,
+    size = 16,
+    fontface = "bold"
+  ) +
+  draw_text(
+    "b)",
+    x = 0.15,
+    y = 0.59,
+    size = 16,
+    fontface = "bold"
+  ) +
+  draw_text(
+    "c)",
+    x = 0.15,
+    y = 0.3,
+    size = 16,
+    fontface = "bold"
+  )
+
+
 
 ggsave("plots/paper_plots/dep_quintiles_timeseries.png", width = 17.75, height = 20, units = "cm")
 
@@ -379,7 +421,7 @@ fill_df <- long_data_nox_quntile |>
 
 
 
-long_data_nox_quntile |>
+q <- long_data_nox_quntile |>
   filter(
     metric %in% c(
       "hp_installed",
@@ -398,7 +440,7 @@ long_data_nox_quntile |>
   )) +
   scale_linetype_manual(values = c(1,2), name = "NOx Concentration Quintile", labels = c(`1`= "1 - Least Polluted", `5` = "5 - Most Polluted")) +
   scale_x_date(name = "Year", limits = as_date(c("2025-01-01", "2050-01-01"))) +
-  scale_y_continuous(limits = c(0,NA), expand = c(0,0)) +
+  scale_y_continuous(limits = c(0,NA), expand = expansion(mult = c(0,0.1))) +
   scale_colour_manual(values = c("#607345FF", "#6C568CFF"), name = "NOx Concentration Quintile", labels = c(`1`= "1 - Least Polluted", `5` = "5 - Most Polluted"))  +#, labels = c(`1`= "1 L
   facet_grid(
     rows = vars(metric),
@@ -424,7 +466,33 @@ long_data_nox_quntile |>
     legend.key.width = unit(2, "cm")
   ) 
 
-plotly::ggplotly(p)
+
+
+
+ggdraw(q) +
+  draw_text(
+    "a)",
+    x = 0.15,
+    y = 0.86,
+    size = 16,
+    fontface = "bold"
+  ) +
+  draw_text(
+    "b)",
+    x = 0.15,
+    y = 0.59,
+    size = 16,
+    fontface = "bold"
+  ) +
+  draw_text(
+    "c)",
+    x = 0.15,
+    y = 0.3,
+    size = 16,
+    fontface = "bold"
+  )
+
+
 
 ggsave("plots/paper_plots/nox_quintiles_timeseries.png", width = 17.75, height = 20, units = "cm")
 

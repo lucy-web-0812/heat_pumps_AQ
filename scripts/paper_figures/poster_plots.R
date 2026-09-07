@@ -199,7 +199,7 @@ pc_combined_dataset |>
   select(-geometry) |> 
   left_join(pc_boundaries, join_by(PCON25CD == PCON24CD)) |> 
   ggplot() +
-  geom_sf(aes(fill =factor(new_ranking_quintile_deprivation), geometry = geometry), colour = "grey") +
+  geom_sf(aes(fill =factor(new_ranking_quintile_deprivation), geometry = geometry), colour = "#784F41") +
   scico::scale_fill_scico_d(name = "Relative Deprivation Quintile", palette = "acton") +
   ggthemes::theme_map() +
   theme(legend.position = "top", 
@@ -207,8 +207,8 @@ pc_combined_dataset |>
         legend.text = element_text(size = 14), 
         legend.background = element_blank())
 
-ggsave("plots/poster_plots/dep_quintile_map.png", width = 6.209302, height = 6.662791, dpi = 600)
-
+ggsave("plots/poster_plots/dep_quintile_map.png", width = 6.209302, height = 6.662791, dpi = 600, units = "cm")
+ggsave("plots/paper_plots/dep_quintile_map.png", width = 18, height = 18, dpi = 600, units = "cm")
 
 pc_combined_dataset |> 
   select(-geometry) |> 
@@ -220,10 +220,58 @@ pc_combined_dataset |>
   theme(legend.position = "top", 
         legend.title = element_text(size = 14), 
         legend.text = element_text(size = 14),
-        legend.background = element_blank())
+        legend.background = element_blank(), 
+        legend.justification = "center")
 
 
 ggsave("plots/poster_plots/nox_quintile_map.png", width = 6.209302, height = 6.662791, dpi = 600)
+ggsave("plots/paper_plots/nox_quintile_map.png", width = 18, height = 18, dpi = 600, units = "cm")
+
+
+
+
+dep_quintile <- pc_combined_dataset |> 
+  select(-geometry) |> 
+  left_join(pc_boundaries, join_by(PCON25CD == PCON24CD)) |> 
+  ggplot() +
+  geom_sf(aes(fill =factor(new_ranking_quintile_deprivation), geometry = geometry), colour = "#784F41", linewidth = 0.1) +
+  scico::scale_fill_scico_d(name = "Relative Deprivation Quintile", palette = "acton") +
+  ggthemes::theme_map() +
+  theme(legend.position = "top", 
+        legend.title.position = "top",
+        legend.title = element_text(size = 11), 
+        legend.text = element_text(size = 11), 
+        legend.background = element_blank(),
+        legend.justification = "center", 
+        plot.margin=grid::unit(c(0,-100,-3,-100), "mm"), 
+        axis.ticks.length = unit(0, "pt"))
+
+
+nox_quintile <- pc_combined_dataset |> 
+  select(-geometry) |> 
+  left_join(pc_boundaries, join_by(PCON25CD == PCON24CD)) |> 
+  ggplot() +
+  geom_sf(aes(fill =factor(nox_conc_quintile), geometry = geometry), colour = "black", linewidth = 0.1) +
+  scale_fill_paletteer_d("calecopal::lupinus", name = "NOx Concentration Quintile", direction = -1) +
+  ggthemes::theme_map() +
+  theme(legend.position = "top", 
+        legend.title.position = "top",
+        legend.title = element_text(size = 11), 
+        legend.text = element_text(size = 11),
+        legend.background = element_blank(), 
+        legend.justification = "center", 
+        plot.margin=grid::unit(c(0,-100,-3,-100), "mm"), 
+        axis.ticks.length = unit(0, "pt"))
+
+
+
+dep_quintile + nox_quintile +
+  plot_annotation(tag_levels = 'a', tag_suffix = ")")
+
+ggsave("plots/paper_plots/combined_nox_dep_quintile.png", width = 18, height = 12, dpi = 1200, units = "cm")
+
+
+
 
 
 

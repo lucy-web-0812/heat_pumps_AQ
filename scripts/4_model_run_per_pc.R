@@ -76,7 +76,7 @@ future_heat_pumps_percentages <- read_csv("data/raw_data/CCC_seventh_carbon_budg
   left_join(household_changes) |>
   select(-growth_index) |> 
   filter(year >= "2023-01-01" &
-           year <= "2050-01-01") # Just filter to get the 2024 to 2040 data
+           year <= "2050-01-01") # Just filter to get the 2024 to 2050 data
 
 
 
@@ -191,7 +191,7 @@ model_runs <- unique(ordered_with_relative_probabilities$model_run)
 results <- list()
 
 # Set number of Monte Carlo draws (1 for testing, 10000 for production)
-n_draws <- 1000  # Change to 10000 (or however many you want) for full model
+n_draws <- 10000  # Change to 10000 (or however many you want) for full model
 hard_cap_start <- 0.70
 hard_cap_end <- 0.80
 
