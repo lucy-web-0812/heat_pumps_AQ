@@ -34,7 +34,7 @@ The project models NOx emissions savings and avoided damage costs under differen
 │   ├── scrolytelling_plots/
 │   └── misc_plots/            # Exploratory plots, not used in outputs
 ├── index.qmd / index.html              # Scrollytelling web summary of the analysis
-├── presentation.qmd / presentation.html
+├── presentation.qmd / presentation.html  # Conference presentation
 └── heat_pumps_AQ.Rproj
 ```
  
