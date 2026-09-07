@@ -1,12 +1,5 @@
 # There are several statistics reported on an LSOA scale that need to be converted to on a parliamentary constituency basis... 
 
-library(tidyverse)
-library(sf)
-library(terra)
-library(IMD)
-
-
-
 ##############################
 # 1. Heat pump Suitability 
 ##############################

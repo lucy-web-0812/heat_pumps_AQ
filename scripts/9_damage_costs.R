@@ -1,13 +1,6 @@
 # Script to assign the correct damage cost category to the parlimentary constituencies 
 # Do this by looking at the built up areas...
 
-
-library(sf)
-library(tidyverse)
-library(plotly)
-library(patchwork)
-
-
 source("scripts/functions/removing_spiel_function.R")
 
 model_results <- read_csv("data/processed_data/model_results_per_pc.csv")
@@ -252,41 +245,6 @@ scenario_diff |>
   theme(panel.grid.minor = element_blank())
 
 
-# How about we do one as a percentage of the other? 
-
-summary_by_quintile_nox |> 
-  filter(model_run %in% c("present_day_scenario", "suitability_probability")) |>
-  filter(nox_conc_quintile %in% c(1,5)) |> 
-  rename(central = cumulative_damage_cost_avoided_by_quintile, low = cumulative_damage_cost_avoided_by_quintile_low, high = cumulative_damage_cost_avoided_by_quintile_high) |> 
-  select(year, model_run, nox_conc_quintile, low, central,high) |> 
-  pivot_wider(
-    names_from = nox_conc_quintile,
-    values_from = c(central, low, high),
-    names_sep = "_"
-  ) |> 
-  mutate(pct_central = (central_1/central_5) * 100, 
-         pct_low = (low_1/low_5) * 100, 
-         pct_high = (high_1/high_5) * 100)  |> 
-  pivot_longer(cols = c(pct_central:pct_high), names_to = "estimate", values_to = "pct") |> 
-  filter(estimate == "pct_central") |> 
-  ggplot(aes(x = year, y = (pct) , colour = estimate)) +
-  geom_line(colour = "darkgrey") +
-  geom_point(colour = "darkgrey") +
-  geom_hline(aes(yintercept = 100)) +
-  annotate(geom = "text", x = as_date("2045-01-01"), y = 175, label = "Greater in Least Polluted") +
-  annotate(geom = "text", x = as_date("2030-01-01"), y = 75, label = "Greater in Most Polluted") +
-  annotate(geom = "rect", xmin = -Inf, xmax = Inf, ymin = 100, ymax = Inf, fill = "lightgreen", alpha = 0.3) +
-  
-  annotate(geom = "rect", xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = 100, fill = "red", alpha = 0.3) +
-  scale_y_continuous(name = "Cumulative damgage cost avoided in least polluted \nareas as a percentage of most polluted areas") +
-  scale_x_date(name = "Year") +
-  facet_wrap(~model_run) +
-  theme_minimal() +
-  theme(
-    axis.line = element_line()
-  )
-
-
 
 
 
@@ -393,6 +351,45 @@ summary_by_quintile_nox <- df_joined |>
     model_run == "present_day_scenario" ~ "Current trends continue", 
     model_run == "suitability_probability" ~ "Suitability-driven uptake", 
   )) 
+
+
+
+
+# How about we do one as a percentage of the other? 
+
+summary_by_quintile_nox |> 
+  filter(model_run %in% c("present_day_scenario", "suitability_probability")) |>
+  filter(nox_conc_quintile %in% c(1,5)) |> 
+  rename(central = cumulative_damage_cost_avoided_by_quintile, low = cumulative_damage_cost_avoided_by_quintile_low, high = cumulative_damage_cost_avoided_by_quintile_high) |> 
+  select(year, model_run, nox_conc_quintile, low, central,high) |> 
+  pivot_wider(
+    names_from = nox_conc_quintile,
+    values_from = c(central, low, high),
+    names_sep = "_"
+  ) |> 
+  mutate(pct_central = (central_1/central_5) * 100, 
+         pct_low = (low_1/low_5) * 100, 
+         pct_high = (high_1/high_5) * 100)  |> 
+  pivot_longer(cols = c(pct_central:pct_high), names_to = "estimate", values_to = "pct") |> 
+  filter(estimate == "pct_central") |> 
+  ggplot(aes(x = year, y = (pct) , colour = estimate)) +
+  geom_line(colour = "darkgrey") +
+  geom_point(colour = "darkgrey") +
+  geom_hline(aes(yintercept = 100)) +
+  annotate(geom = "text", x = as_date("2045-01-01"), y = 175, label = "Greater in Least Polluted") +
+  annotate(geom = "text", x = as_date("2030-01-01"), y = 75, label = "Greater in Most Polluted") +
+  annotate(geom = "rect", xmin = -Inf, xmax = Inf, ymin = 100, ymax = Inf, fill = "lightgreen", alpha = 0.3) +
+  
+  annotate(geom = "rect", xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = 100, fill = "red", alpha = 0.3) +
+  scale_y_continuous(name = "Cumulative damgage cost avoided in least polluted \nareas as a percentage of most polluted areas") +
+  scale_x_date(name = "Year") +
+  facet_wrap(~model_run) +
+  theme_minimal() +
+  theme(
+    axis.line = element_line()
+  )
+
+
 
 
 

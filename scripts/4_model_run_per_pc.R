@@ -4,14 +4,6 @@
 # This could take a while...
 
 # Model Scenarios - Whole country
-library(tidyverse)
-library(sf)
-library(plotly)
-library(readxl)
-library(scales)
-
-
-
 
 # FIRSTLY PREP THE DATA
 # We need the LSOA data, BUS data, ECO data and heat pump suitability - all of these have been cleaned in script data_cleaning

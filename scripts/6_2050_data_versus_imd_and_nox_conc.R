@@ -2,12 +2,6 @@
 
 # Producing plots for the different policy scenarios for 2050, separated by quintiles of deprivation and quintiles of NOx concentration. 
 
-library(tidyverse)
-library(sf)
-library(paletteer)
-library(patchwork)
-library(plotly)
-library(htmlwidgets)
 
 model_results_per_pc <- read_csv("data/processed_data/model_results_per_pc.csv")
 
@@ -237,8 +231,6 @@ pct_savings_by_quintile <- pc_dep_model_results |>
 
 
 
-pc_dep_model_results |> 
-  filter(model_run %in% c("present_day_scenario", "suitability_probability")) |> View()
 
 
 
@@ -693,11 +685,6 @@ ggplotly(p, tooltip = "text")
 
 with_tooltip_nox_conc_hp_installs <- ggplotly(p, tooltip = "text")
 
-saveWidget(
-  with_tooltip_nox_conc_hp_installs,
-  file = "plots/scrolytelling_plots/heat_pump_nox_quintiles.html",
-  selfcontained = FALSE
-)
 
 
 pc_dep_model_results_all |>

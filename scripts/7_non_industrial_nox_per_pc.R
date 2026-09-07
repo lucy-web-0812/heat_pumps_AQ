@@ -1,16 +1,5 @@
 # Now look at the NOx emissions from 02nonindustrial combustion compared to the heat pump uptake....
 
-
-library(raster)
-library(sf)
-library(dplyr)
-library(terra)
-library(exactextractr)
-library(tidyverse)
-
-
-
-
 nox_from_non_indust <- raster("data/raw_data/NAEI_data/02nonindustcombnox23_2023.asc") 
 
 

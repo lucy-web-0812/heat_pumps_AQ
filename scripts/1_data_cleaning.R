@@ -1,9 +1,4 @@
 # Lets have one central data cleaning and processing script for all the stats....
-
-library(tidyverse)
-library(sf)
-library(readxl)
-
 # LAST UPDATED....
 
 # 05.05.2026 with the March BUS and April HEE - BUT THIS IS ACTUALLY ONLY UNTIL DECEMEBER! 

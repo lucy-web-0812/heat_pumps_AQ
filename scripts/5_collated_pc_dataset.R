@@ -1,11 +1,4 @@
 # Building a file that has all the information about a parliamentary constituency... 
-
-
-library(tidyverse)
-library(sf)
-library(arrow)
-
-
 # PC names and codes.....
 
 parliamentary_constituencies <- read_csv(

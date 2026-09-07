@@ -1,8 +1,5 @@
 # Household projections 
 
-library(tidyverse)
-
-
 source("scripts/functions/removing_spiel_function.R")
 
 household_projections_2022_based <- spiel_remover("data/raw_data/household_stats/2022-based HHPs Migration category variant (2023 geog).xlsx", sheet = "Table 406") |> 
