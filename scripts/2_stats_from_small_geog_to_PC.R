@@ -130,14 +130,14 @@ process_pollutant <- function(file_name,
 
 
 
-pm10_stats <- process_pollutant(file_name = "mappm102024g.csv", pollutant_name = "pm10", year_measured = "2024")
-pm2.5_stats <- process_pollutant(file_name = "mappm252024g.csv", pollutant_name = "pm2.5", year_measured = "2024")
-no2_stats <- process_pollutant(file_name = "mapno22024.csv", pollutant_name = "no2", year_measured = "2024")
+#pm10_stats <- process_pollutant(file_name = "mappm102024g.csv", pollutant_name = "pm10", year_measured = "2024")
+#pm2.5_stats <- process_pollutant(file_name = "mappm252024g.csv", pollutant_name = "pm2.5", year_measured = "2024")
+#no2_stats <- process_pollutant(file_name = "mapno22024.csv", pollutant_name = "no2", year_measured = "2024")
 nox_stats <- process_pollutant(file_name = "mapnox2024.csv", pollutant_name = "nox", year_measured = "2024")
 
-write_csv(pm10_stats, "data/processed_data/pm10_stats_2024_per_pc.csv")
-write_csv(pm2.5_stats, "data/processed_data/pm_25_stats_2024_per_pc.csv")
-write_csv(no2_stats, "data/processed_data/no2_stats_2024_per_pc.csv")
+#write_csv(pm10_stats, "data/processed_data/pm10_stats_2024_per_pc.csv")
+#write_csv(pm2.5_stats, "data/processed_data/pm_25_stats_2024_per_pc.csv")
+#write_csv(no2_stats, "data/processed_data/no2_stats_2024_per_pc.csv")
 write_csv(nox_stats, "data/processed_data/nox_stats_2024_per_pc.csv")
 
 
